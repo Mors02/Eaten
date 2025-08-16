@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7daa79b8e25f822469d5d8e99472ddd3
+guid: 6b5edcfa69324244d85ddb0ad05bf2d5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6973212877580597367
-    second: Lilly_0
+      213: 5686563296393176714
+    second: Culzacar_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -73,9 +73,9 @@ TextureImporter:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: 4
-    textureCompression: 3
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lilly_0
+      name: Culzacar_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 15
-        height: 14
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 98701a065db2a3f90800000000000000
-      internalID: -6973212877580597367
+      spriteID: a862a4a703bbaee40800000000000000
+      internalID: 5686563296393176714
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lilly_0: -6973212877580597367
+      Culzacar_0: 5686563296393176714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

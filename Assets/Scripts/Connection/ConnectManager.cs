@@ -13,11 +13,13 @@ public class ConnectManager : MonoBehaviour
     private Vector2 _offset;
     private int[] _selectedBlocks;
     private int _howManyBlocks = 0;
+    private int _MAXBLOCKS = 4;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _canvas = GetComponentInParent<Canvas>();
-        _selectedBlocks = new int[4];
+        _selectedBlocks = new int[_MAXBLOCKS];
+        _howManyBlocks = 0;
     }
 
     public void SelectStartingBlock(Transform transform)
@@ -46,17 +48,20 @@ public class ConnectManager : MonoBehaviour
         _lineTransform.pivot = new Vector2(0, 0.5f);
 
         _currentBlock = Int32.Parse(transform.gameObject.name);
-        _selectedBlocks[0] = _currentBlock;
+        Debug.Log("index: " + _howManyBlocks);
+        _selectedBlocks[_howManyBlocks++] = _currentBlock;
         Debug.Log(_currentBlock);
     }
 
     public void StopClicking()
     {
         _clicking = false;
-        Destroy(this._lineTransform.gameObject);
+        //check if we didnt already destroy the line when reaching max length
+        if (_lineTransform != null)
+            Destroy(this._lineTransform.gameObject);
         _currectRectTransform = null;
         _currentBlock = -1;
-        _selectedBlocks = new int[4];
+        _selectedBlocks = new int[_MAXBLOCKS];
         _howManyBlocks = 0;
     }
     
@@ -65,15 +70,43 @@ public class ConnectManager : MonoBehaviour
         return _clicking;
     }
 
-    public bool AlreadySelected(string name)
+    public bool CanSelect(string name)
     {
+        if (_howManyBlocks >= _MAXBLOCKS)
+        {
+            StopClicking();
+            return false;
+        }
+            
+
         int id = Int32.Parse(name);
         for (int i = 0; i<_howManyBlocks; i++)
         {
             if (_selectedBlocks[i] == id)
-                return true;
+                return false;
         }
-        return false;
+        return true;
+    }
+
+    public void Connect(Transform transform)
+    {
+        // Calculate direction and distance
+        Vector2 dotPosition = _currectRectTransform.position;
+        Vector2 direction = new Vector2(transform.position.x, transform.position.y) - _dotStartPosition;
+        float distance = direction.magnitude;
+
+        // Update line length
+        _lineTransform.sizeDelta = new Vector2(distance, _lineTransform.sizeDelta.y);
+
+        // Calculate and apply rotation
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _lineTransform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        // Keep line positioned at the dot
+        _lineTransform.position = dotPosition;
+
+        //add to the selected blocks
+        SelectStartingBlock(transform);
     }
 
 
@@ -96,7 +129,7 @@ public class ConnectManager : MonoBehaviour
             
             // Calculate direction and distance
             Vector2 dotPosition = _currectRectTransform.position;
-            Vector2 direction = (mouseCanvasPos + _offset) - _dotStartPosition;
+            Vector2 direction = mouseCanvasPos - _dotStartPosition;
             float distance = direction.magnitude;
 
             // Update line length

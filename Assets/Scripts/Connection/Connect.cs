@@ -6,6 +6,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, I
     [SerializeField]
     private GameObject _line; 
     private ConnectManager _cm;
+    private CharacterBrain _cb;
 
     private void Start()
     {
@@ -19,9 +20,11 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, I
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_cm.IsClicking() && !_cm.AlreadySelected(gameObject.name))
+        if (_cm.IsClicking() && _cm.CanSelect(gameObject.name))
         {
             Debug.Log("Can add " + gameObject.name);
+            _cm.Connect(transform);
+           
         }
     }
 
