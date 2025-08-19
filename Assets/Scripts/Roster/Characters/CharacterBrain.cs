@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public abstract class CharacterBrain
 {
@@ -17,9 +18,17 @@ public abstract class CharacterBrain
 
     public int Id { get; set; }
 
+    /// <summary>
+    /// Random value
+    /// </summary>
     public string characterName { get; set; }
 
+    /// <summary>
+    /// Random value
+    /// </summary>
     public int AbilityId { get; set; }
+
+    public Ability _ability;
 
     public string AbilityPool
     {
@@ -27,15 +36,27 @@ public abstract class CharacterBrain
         set => this._character.abilityPool = value;
     }
 
+    /// <summary>
+    /// based on the base strength
+    /// </summary>
     public int Strength
     { get; set; }
 
+    /// <summary>
+    /// based on the base dexterity
+    /// </summary>
     public int Dexterity
     { get; set; }
 
+    /// <summary>
+    /// based on the base intelligence
+    /// </summary>
     public int Intelligence
     { get; set; }
 
+    /// <summary>
+    /// Random value
+    /// </summary>
     public int MaxHP
     { get; set; }
 
@@ -53,8 +74,17 @@ public abstract class CharacterBrain
 
     public CharacterBrain()
     {
-        this.Strength = this._character.baseStrength;
-        this.CurrentHP = this.MaxHP = this._character.baseHp;
         this.Hunger = 100;
+    }
+
+
+    ///https://discussions.unity.com/t/workflow-for-locating-scriptableobjects-at-runtime/681440/2
+    //remember this for the randomize of the abilities
+    public static int GetAbilityFromPool(string pool)
+    {
+        string[] abilities = pool.Split(' ');
+        int random = UnityEngine.Random.Range(0, abilities.Length - 1);
+
+        return Int32.Parse(abilities[random]);
     }
 }
