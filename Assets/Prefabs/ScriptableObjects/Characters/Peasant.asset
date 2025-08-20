@@ -21,3 +21,5 @@ MonoBehaviour:
   sprite: {fileID: -8770469251013343304, guid: 647a74e0274b6984da5b9f7c83dcc79e, type: 3}
   abilityPool:
   - {fileID: 11400000, guid: 998f93eb7ed54474295d482593f19b14, type: 2}
+  - {fileID: 11400000, guid: c73180fc41450844e8d0b512303dd1b3, type: 2}
+  - {fileID: 11400000, guid: 0acc2d4a23194aa4aafb1267d8aa25ce, type: 2}
