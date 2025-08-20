@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 [CreateAssetMenu(fileName = "Character", menuName = "Scriptable Objects/Character")]
 public class Character : ScriptableObject
 {
@@ -10,6 +10,17 @@ public class Character : ScriptableObject
     public int baseDexterity;
     public int baseIntelligence;
     public Sprite sprite;
-    public string abilityPool;
+    //public string abilityPool;
+    [SerializeField] private List<AbilitySO> abilityPool = new List<AbilitySO>();
 
+    public AbilitySO GetRandomAbility()
+    {
+        if (abilityPool.Count == 0) return null;
+
+        AbilitySO selectedAbility;
+
+        selectedAbility = abilityPool[Random.Range(0, abilityPool.Count)];
+
+        return selectedAbility;
+    }
 }

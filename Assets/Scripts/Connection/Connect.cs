@@ -11,19 +11,20 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, I
     private void Start()
     {
         _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
+        //TODO: should be passed by the gameManager
+        this._cb = new Peasant();
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _cm.SelectStartingBlock(this.transform);
+        _cm.SelectStartingBlock(this);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (_cm.IsClicking() && _cm.CanSelect(gameObject.name))
         {
-            Debug.Log("Can add " + gameObject.name);
-            _cm.Connect(transform);
+            _cm.Connect(this);
            
         }
     }
@@ -31,6 +32,12 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, I
     public void OnPointerUp(PointerEventData eventData)
     {
         this._cm.StopClicking();
+    }
+
+    public Ability GetAbility()
+    {
+        Debug.Log(_cb.Ability.Name);
+        return this._cb.Ability;
     }
 
     

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class ConnectManager : MonoBehaviour
 {
@@ -14,17 +15,20 @@ public class ConnectManager : MonoBehaviour
     private int[] _selectedBlocks;
     private int _howManyBlocks = 0;
     private int _MAXBLOCKS = 4;
+    private List<Ability> _abilities;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _canvas = GetComponentInParent<Canvas>();
         _selectedBlocks = new int[_MAXBLOCKS];
         _howManyBlocks = 0;
+        _abilities = new List<Ability>();
     }
 
-    public void SelectStartingBlock(Transform transform)
+    public void SelectStartingBlock(Connect connect)
     {
-        Debug.Log("Clicked on " + gameObject.name);
+        Transform transform = connect.gameObject.transform;
+
         _clicking = true;
 
         // Instantiate line as child of canvas (not this dot)
@@ -48,9 +52,9 @@ public class ConnectManager : MonoBehaviour
         _lineTransform.pivot = new Vector2(0, 0.5f);
 
         _currentBlock = Int32.Parse(transform.gameObject.name);
-        Debug.Log("index: " + _howManyBlocks);
+        
         _selectedBlocks[_howManyBlocks++] = _currentBlock;
-        Debug.Log(_currentBlock);
+        _abilities.Add(connect.GetAbility());
     }
 
     public void StopClicking()
@@ -63,6 +67,26 @@ public class ConnectManager : MonoBehaviour
         _currentBlock = -1;
         _selectedBlocks = new int[_MAXBLOCKS];
         _howManyBlocks = 0;
+        
+    }
+
+    public void Restart()
+    {
+        this.StopClicking();
+        _abilities = new List<Ability>();
+        GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
+
+        foreach(GameObject line in lines)
+        {
+            Destroy(line);
+        }
+        
+    }
+
+    public void Confirm()
+    {
+        ActivateAllAbilities();
+        Restart();
     }
     
     public bool IsClicking()
@@ -88,8 +112,9 @@ public class ConnectManager : MonoBehaviour
         return true;
     }
 
-    public void Connect(Transform transform)
+    public void Connect(Connect connect)
     {
+        Transform transform = connect.gameObject.transform;
         // Calculate direction and distance
         Vector2 dotPosition = _currectRectTransform.position;
         Vector2 direction = new Vector2(transform.position.x, transform.position.y) - _dotStartPosition;
@@ -106,7 +131,19 @@ public class ConnectManager : MonoBehaviour
         _lineTransform.position = dotPosition;
 
         //add to the selected blocks
-        SelectStartingBlock(transform);
+        SelectStartingBlock(connect);
+    }
+
+    public void ActivateAllAbilities()
+    {
+        Debug.Log("There are " + _abilities.Count + " abilities");
+        foreach (Ability ability in _abilities)
+        {
+            Debug.Log(ability.Name);
+            ability.Activate();
+        }
+
+        _abilities = new List<Ability>();
     }
 
 

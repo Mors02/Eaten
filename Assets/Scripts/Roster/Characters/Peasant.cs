@@ -15,7 +15,7 @@ public class Peasant : CharacterBrain
         //TODO: this should be random
         this.characterName = "Edgar";
 
-        this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
-
+        //this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
+        this.Ability = this._character.GetRandomAbility().CreateAbility(this);
     }
 }

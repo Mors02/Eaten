@@ -3,12 +3,10 @@ using UnityEngine;
 
 public class Cut : Ability
 {
-    protected int _baseDamage;
-    public int BaseDamage => _baseDamage;
 
     public override void Activate()
     {
-        
+        Debug.Log("Activated CUT: " + this.Description);
     }
 
     public Cut(CharacterBrain character, string name, string description, int baseDamage) : base(name, description)

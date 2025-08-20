@@ -3,6 +3,8 @@ using UnityEngine;
 
 public abstract class Ability
 {
+    protected int _baseDamage;
+    public int BaseDamage => _baseDamage;
     public string Name { get; set; }
 
     public string BaseDescription { get; set; }
@@ -18,7 +20,7 @@ public abstract class Ability
     public Ability(string name, string description)
     {
         this.Name = name;
-        this.Description = description;
+        this.BaseDescription = description;
     }
 
     public abstract Dictionary<string, int> GetSubstitutions();

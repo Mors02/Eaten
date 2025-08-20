@@ -26,15 +26,15 @@ public abstract class CharacterBrain
     /// <summary>
     /// Random value
     /// </summary>
-    public int AbilityId { get; set; }
+    public int AbilityId { get; set; }    
 
-    public Ability _ability;
+    public Ability Ability { get; set; }
 
-    public string AbilityPool
+    /*public string AbilityPool
     {
         get => this._character.abilityPool;
         set => this._character.abilityPool = value;
-    }
+    }*/
 
     /// <summary>
     /// based on the base strength
@@ -79,12 +79,12 @@ public abstract class CharacterBrain
 
 
     ///https://discussions.unity.com/t/workflow-for-locating-scriptableobjects-at-runtime/681440/2
-    //remember this for the randomize of the abilities
-    public static int GetAbilityFromPool(string pool)
+    //remember this for the randomize of the abilities DEPRACATED
+    /*public static int GetAbilityFromPool(string pool)
     {
         string[] abilities = pool.Split(' ');
         int random = UnityEngine.Random.Range(0, abilities.Length - 1);
 
         return Int32.Parse(abilities[random]);
-    }
+    }*/
 }
