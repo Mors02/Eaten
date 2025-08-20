@@ -118,7 +118,7 @@ public class ConnectManager : MonoBehaviour
         // Calculate direction and distance
         Vector2 dotPosition = _currectRectTransform.position;
         Vector2 direction = new Vector2(transform.position.x, transform.position.y) - _dotStartPosition;
-        float distance = direction.magnitude;
+        float distance = direction.magnitude / _canvas.scaleFactor;
 
         // Update line length
         _lineTransform.sizeDelta = new Vector2(distance, _lineTransform.sizeDelta.y);
@@ -159,14 +159,14 @@ public class ConnectManager : MonoBehaviour
                 _camera,
                 out mouseCanvasPos
             );*/
-            mouseCanvasPos = Input.mousePosition / _canvas.scaleFactor;
+            mouseCanvasPos = Input.mousePosition; /// _canvas.scaleFactor;
 
             //mouseCanvasPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
             
             // Calculate direction and distance
             Vector2 dotPosition = _currectRectTransform.position;
-            Vector2 direction = mouseCanvasPos - _dotStartPosition;
+            Vector2 direction = (mouseCanvasPos - _dotStartPosition) / _canvas.scaleFactor;
             float distance = direction.magnitude;
 
             // Update line length
