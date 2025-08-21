@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class Peasant : CharacterBrain
 {
-    public Peasant() : base()
+    public Peasant(string id) : base(id)
     {
         this._character = GameAssets.i.Peasant;
-
+        
         //set up stats
         this.Strength = this._character.baseStrength;
         this.Dexterity = this._character.baseDexterity;
@@ -16,6 +16,6 @@ public class Peasant : CharacterBrain
         this.characterName = "Edgar";
 
         //this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
-        this.Ability = this._character.GetRandomAbility().CreateAbility(this);
+        this.Ability = this._character.GetRandomAbility().CreateAbility(new CharacterData(this, this.Id));
     }
 }

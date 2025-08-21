@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 public class ConnectManager : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class ConnectManager : MonoBehaviour
     private int _howManyBlocks = 0;
     private int _MAXBLOCKS = 4;
     private List<Ability> _abilities;
+
+    [SerializeField]
+    private Transform _party;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -136,11 +140,20 @@ public class ConnectManager : MonoBehaviour
 
     public void ActivateAllAbilities()
     {
+        
         Debug.Log("There are " + _abilities.Count + " abilities");
         foreach (Ability ability in _abilities)
         {
             Debug.Log(ability.Name);
             ability.Activate();
+            foreach (Transform child in _party)
+            {
+                
+                if (child.gameObject.name == ability.CharacterId.ToString())
+                {
+                    child.GetComponentInChildren<Animator>().SetTrigger(ability.AnimationType.ToString());
+                }
+            }
         }
 
         _abilities = new List<Ability>();

@@ -9,5 +9,14 @@ public abstract class AbilitySO : ScriptableObject
     public string AbilityName => abilityName;
     public string Description => description;
 
-    public abstract Ability CreateAbility(CharacterBrain character);
+    [SerializeField] protected AnimationType _animationType;
+    public AnimationType AnimationType => _animationType;
+
+    public abstract Ability CreateAbility(CharacterData character);
+}
+
+public enum AnimationType
+{
+    Run,
+    Jump
 }

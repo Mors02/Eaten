@@ -9,9 +9,8 @@ public class Cut : Ability
         Debug.Log("Activated CUT: " + this.Description);
     }
 
-    public Cut(CharacterBrain character, string name, string description, int baseDamage) : base(name, description)
+    public Cut(CharacterData character, AbilitySO ability, int baseDamage) : base(character, ability)
     {
-        this._character = character;
         this._baseDamage = baseDamage;
         this.Description = Tools.Parametrize(this.BaseDescription, GetSubstitutions());
     }

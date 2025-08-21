@@ -7,6 +7,8 @@ public abstract class Ability
     public int BaseDamage => _baseDamage;
     public string Name { get; set; }
 
+    public AnimationType AnimationType { get; set; }
+
     public string BaseDescription { get; set; }
 
     public string Description { get; set; }
@@ -17,11 +19,16 @@ public abstract class Ability
 
     public CharacterBrain Character => _character;
 
-    public Ability(string name, string description)
+    public Ability(CharacterData character, AbilitySO abilityData)
     {
-        this.Name = name;
-        this.BaseDescription = description;
+        this._character = character.characterBrain;
+        this.CharacterId = character.Id;
+        this.Name = abilityData.AbilityName;
+        this.BaseDescription = abilityData.Description;
+        this.AnimationType = abilityData.AnimationType;
     }
+
+    public int CharacterId { get; set; }
 
     public abstract Dictionary<string, int> GetSubstitutions();
 }

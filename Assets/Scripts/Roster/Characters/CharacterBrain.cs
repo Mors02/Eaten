@@ -26,7 +26,7 @@ public abstract class CharacterBrain
     /// <summary>
     /// Random value
     /// </summary>
-    public int AbilityId { get; set; }    
+    public int AbilityId { get; set; }
 
     public Ability Ability { get; set; }
 
@@ -67,13 +67,14 @@ public abstract class CharacterBrain
     { get; set; }
 
     public string Description
-    { 
-        get => this._character.description; 
-        set => this._character.description = value; 
+    {
+        get => this._character.description;
+        set => this._character.description = value;
     }
 
-    public CharacterBrain()
+    public CharacterBrain(string id)
     {
+        this.Id = Int32.Parse(id);
         this.Hunger = 100;
     }
 
@@ -87,4 +88,16 @@ public abstract class CharacterBrain
 
         return Int32.Parse(abilities[random]);
     }*/
+}
+
+public class CharacterData
+{
+    public CharacterBrain characterBrain;
+    public int Id;
+
+    public CharacterData(CharacterBrain cb, int id)
+    {
+        characterBrain = cb;
+        Id = id;
+    }
 }

@@ -12,7 +12,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, I
     {
         _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
         //TODO: should be passed by the gameManager
-        this._cb = new Peasant();
+        this._cb = new Peasant(this.gameObject.name);
     }
 
     public void OnPointerDown(PointerEventData eventData)

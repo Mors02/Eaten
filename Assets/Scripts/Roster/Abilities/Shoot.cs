@@ -15,9 +15,8 @@ public class Shoot : Ability
         return subs;
     }
 
-    public Shoot(CharacterBrain character, string name, string description, int damage) : base(name, description)
+    public Shoot(CharacterData character, AbilitySO abilityData, int damage) : base(character, abilityData)
     {
-        this._character = character;
         this._baseDamage = damage;
         this.Description = Tools.Parametrize(BaseDescription, GetSubstitutions());
     }
