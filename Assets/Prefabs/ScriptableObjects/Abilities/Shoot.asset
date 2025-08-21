@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Shoot
   description: Deals %damage% to enemy party
+  _animationType: 1
   _baseDamage: 3

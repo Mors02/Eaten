@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Heal
   description: Heals next in line by %heal%
+  _animationType: 1
   _healAmount: 3
