@@ -56,7 +56,7 @@ public class ConnectManager : MonoBehaviour
         _lineTransform.pivot = new Vector2(0, 0.5f);
 
         _currentBlock = Int32.Parse(transform.gameObject.name);
-        
+
         _selectedBlocks[_howManyBlocks++] = _currentBlock;
         _abilities.Add(connect.GetAbility());
     }
@@ -71,7 +71,7 @@ public class ConnectManager : MonoBehaviour
         _currentBlock = -1;
         _selectedBlocks = new int[_MAXBLOCKS];
         _howManyBlocks = 0;
-        
+
     }
 
     public void Restart()
@@ -80,11 +80,11 @@ public class ConnectManager : MonoBehaviour
         _abilities = new List<Ability>();
         GameObject[] lines = GameObject.FindGameObjectsWithTag("Line");
 
-        foreach(GameObject line in lines)
+        foreach (GameObject line in lines)
         {
             Destroy(line);
         }
-        
+
     }
 
     public void Confirm()
@@ -92,7 +92,7 @@ public class ConnectManager : MonoBehaviour
         ActivateAllAbilities();
         Restart();
     }
-    
+
     public bool IsClicking()
     {
         return _clicking;
@@ -105,10 +105,10 @@ public class ConnectManager : MonoBehaviour
             StopClicking();
             return false;
         }
-            
+
 
         int id = Int32.Parse(name);
-        for (int i = 0; i<_howManyBlocks; i++)
+        for (int i = 0; i < _howManyBlocks; i++)
         {
             if (_selectedBlocks[i] == id)
                 return false;
@@ -140,7 +140,7 @@ public class ConnectManager : MonoBehaviour
 
     public void ActivateAllAbilities()
     {
-        
+
         Debug.Log("There are " + _abilities.Count + " abilities");
         foreach (Ability ability in _abilities)
         {
@@ -148,7 +148,7 @@ public class ConnectManager : MonoBehaviour
             ability.Activate();
             foreach (Transform child in _party)
             {
-                
+
                 if (child.gameObject.name == ability.CharacterId.ToString())
                 {
                     child.GetComponentInChildren<Animator>().SetTrigger(ability.AnimationType.ToString());
@@ -176,7 +176,7 @@ public class ConnectManager : MonoBehaviour
 
             //mouseCanvasPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
-            
+
             // Calculate direction and distance
             Vector2 dotPosition = _currectRectTransform.position;
             Vector2 direction = (mouseCanvasPos - _dotStartPosition) / _canvas.scaleFactor;
@@ -194,5 +194,15 @@ public class ConnectManager : MonoBehaviour
         }
     }
 
+    public List<CharacterBrain> GetParty()
+    {
+        List<CharacterBrain> party = new List<CharacterBrain>();
+        foreach (Transform transform in _party)
+        {
+            party.Add(transform.GetComponent<Connect>().Character);
+        }
+
+        return party;
+    }
 
 }

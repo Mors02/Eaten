@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8fe0f7fd725d4447b83a83974f18a2e, type: 3}
   m_Name: Cultists
   m_EditorClassIdentifier: 
-  _name: 
-  _characters: []
-  Characters: []
+  _name: Group of blood cultists
+  _characters:
+  - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
+  - {fileID: 11400000, guid: bced9542b3dc7407495fdb39de765588, type: 2}
+  - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
+  _abilities: []
+  baseHp: 30
+  baseStrength: 8
+  baseDexterity: 4
+  baseIntelligence: 5

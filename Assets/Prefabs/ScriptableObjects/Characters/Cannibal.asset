@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209411127864b4741a758fb0dd52f84d, type: 3}
   m_Name: Cannibal
   m_EditorClassIdentifier: 
-  characterType: 
-  baseHp: 0
+  characterType: Cannibal
+  baseHp: 12
   description: 
-  baseStrength: 0
-  baseDexterity: 0
-  baseIntelligence: 0
-  sprite: {fileID: 0}
+  baseStrength: 5
+  baseDexterity: 2
+  baseIntelligence: 1
+  sprite: {fileID: 5295185506324920285, guid: 666aeef905cfdd945915d06f8199f2cf, type: 3}
   abilityPool: []

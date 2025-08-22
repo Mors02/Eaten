@@ -8,6 +8,8 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, I
     private ConnectManager _cm;
     private CharacterBrain _cb;
 
+    public CharacterBrain Character => _cb;
+
     private void Start()
     {
         _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();

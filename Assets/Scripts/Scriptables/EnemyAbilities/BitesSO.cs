@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "BitesSO", menuName = "Scriptable Objects/EnemyAbilities/BitesSO")]
 public class BitesSO : EnemyAbilitySO
 {
     [Header("Bites informations")]
@@ -9,5 +10,5 @@ public class BitesSO : EnemyAbilitySO
     {
         return new Bites(party, this);
     }
-    
+
 }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209411127864b4741a758fb0dd52f84d, type: 3}
   m_Name: Cultist
   m_EditorClassIdentifier: 
-  characterType: 
-  baseHp: 0
+  characterType: Cultist
+  baseHp: 6
   description: 
-  baseStrength: 0
-  baseDexterity: 0
-  baseIntelligence: 0
-  sprite: {fileID: 0}
+  baseStrength: 4
+  baseDexterity: 4
+  baseIntelligence: 6
+  sprite: {fileID: 1012188541264668013, guid: 8c5657c3e6516ae4aac3773a7b5bad68, type: 3}
   abilityPool: []

@@ -13,6 +13,9 @@ public abstract class Ability
 
     public string Description { get; set; }
 
+/// <summary>
+/// Activate the ability
+/// </summary>
     public abstract void Activate(/*Pass something*/);
 
     protected CharacterBrain _character;
@@ -30,5 +33,9 @@ public abstract class Ability
 
     public int CharacterId { get; set; }
 
+/// <summary>
+/// get the dictionary that contains the substitutions inside the description to make it dynamic with the value changes (based on the stats of the character)
+/// </summary>
+/// <returns>Dictionary<string, int> that contains the string to substitute and the corresponding value</returns>
     public abstract Dictionary<string, int> GetSubstitutions();
 }

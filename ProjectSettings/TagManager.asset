@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Canvas
   - Line
+  - Rows
+  - Columns
   layers:
   - Default
   - TransparentFX

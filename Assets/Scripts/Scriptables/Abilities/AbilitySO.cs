@@ -12,6 +12,11 @@ public abstract class AbilitySO : ScriptableObject
     [SerializeField] protected AnimationType _animationType;
     public AnimationType AnimationType => _animationType;
 
+/// <summary>
+/// Instantiate the ability class that represents this ability
+/// </summary>
+/// <param name="character">The character that will use this ability</param>
+/// <returns>the ability class instantiated with the correct values</returns>
     public abstract Ability CreateAbility(CharacterData character);
 }
 
@@ -19,7 +24,9 @@ public enum AnimationType
 {
     Run,
     Jump,
-    Line,
+    Row,
+    Column,
     Square,
-    BigSquare
+    BigSquare,
+    Buff
 }
