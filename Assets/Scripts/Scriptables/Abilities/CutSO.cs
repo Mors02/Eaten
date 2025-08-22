@@ -6,8 +6,9 @@ public class CutSO : AbilitySO
     [Header("Cut settings")]
     [SerializeField] private int _baseDamage = 5;
 
+    public int Damage => _baseDamage;
     public override Ability CreateAbility(CharacterData character)
     {
-        return new Cut(character, this, _baseDamage);
+        return new Cut(character, this);
     }
 }

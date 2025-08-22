@@ -15,4 +15,7 @@ public class GameAssets : MonoBehaviour
 
     [Header("Characters")]
     public Character Peasant;
+
+    [Header("Enemies")]
+    public EnemyPartySO cultists;
 }

@@ -18,5 +18,8 @@ public abstract class AbilitySO : ScriptableObject
 public enum AnimationType
 {
     Run,
-    Jump
+    Jump,
+    Line,
+    Square,
+    BigSquare
 }

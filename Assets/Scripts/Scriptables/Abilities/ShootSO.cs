@@ -5,9 +5,10 @@ public class ShootSO : AbilitySO
 {
     [Header("Shoot settings")]
     [SerializeField] private int _baseDamage = 5;
-
+    public int Damage => _baseDamage;
+    
     public override Ability CreateAbility(CharacterData character)
     {
-        return new Shoot(character, this, _baseDamage);
+        return new Shoot(character, this);
     }
 }
