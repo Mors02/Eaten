@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Peasant: {fileID: 11400000, guid: aa72878b0aa3fcf4fa2fac82fef7aa70, type: 2}
+  cultists: {fileID: 11400000, guid: db8c93d03f9a043439c6c5fd479294c0, type: 2}

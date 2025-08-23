@@ -12,13 +12,14 @@ public class Target : MonoBehaviour
 
     public List<CharacterBrain> Characters { get; set; }
 
-    public ConnectManager party { get; set; }
+    public CombatManager party { get; set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.Index = Int32.Parse(this.gameObject.name);
         this.Characters = new List<CharacterBrain>();
-        this.party = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
+        this.party = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CombatManager>();
+        this.PopulateTarget();
     }
 
     /// <summary>
@@ -49,7 +50,7 @@ public class Target : MonoBehaviour
 
     public void DamageTarget()
     {
-        Debug.Log("Row " + Index);
+        Debug.Log("Row " + Index + ", " + Characters.Count + " characters");
         foreach (CharacterBrain ch in Characters)
         {
             Debug.Log(ch.Id + " received damage");

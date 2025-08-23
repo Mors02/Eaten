@@ -10,7 +10,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerUpHandler, I
 
     public CharacterBrain Character => _cb;
 
-    private void Start()
+    private void Awake()
     {
         _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
         //TODO: should be passed by the gameManager

@@ -17,6 +17,8 @@ public class ConnectManager : MonoBehaviour
     private int _howManyBlocks = 0;
     private int _MAXBLOCKS = 4;
     private List<Ability> _abilities;
+    [SerializeField]
+    private CombatManager _cm;
 
     [SerializeField]
     private Transform _party;
@@ -157,6 +159,8 @@ public class ConnectManager : MonoBehaviour
         }
 
         _abilities = new List<Ability>();
+
+        _cm.EnemyTurn();
     }
 
 
@@ -192,17 +196,6 @@ public class ConnectManager : MonoBehaviour
             // Keep line positioned at the dot
             _lineTransform.position = dotPosition;
         }
-    }
-
-    public List<CharacterBrain> GetParty()
-    {
-        List<CharacterBrain> party = new List<CharacterBrain>();
-        foreach (Transform transform in _party)
-        {
-            party.Add(transform.GetComponent<Connect>().Character);
-        }
-
-        return party;
     }
 
 }
