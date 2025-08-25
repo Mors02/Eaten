@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,14 +33,23 @@ public class EnemyManager : MonoBehaviour
         int index = Random.Range(0, EnemyParty.Abilities.Count);
         Debug.Log("Index: " + index);
         this.EnemyParty.Abilities[index].Activate(context);
+        GameAssets.i.UiManager.SetupInfoBox(this.EnemyParty.Abilities[index].Description);
     }
 
     public void Animate(string animation)
     {
+        IEnumerator coroutine = AnimateCharacters(animation);
+        StartCoroutine(coroutine);
+    }
+
+    private IEnumerator AnimateCharacters(string animation)
+    {
         foreach (Animator animator in Animators)
         {
             animator.SetTrigger(animation);
+            yield return new WaitForSeconds(0.2f);  
         }
+
     }
 
     void OnDrawGizmosSelected()

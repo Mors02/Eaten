@@ -12,8 +12,10 @@ public class Heal : Ability
 
     public override Dictionary<string, int> GetSubstitutions()
     {
-        Dictionary<string, int> subs = new Dictionary<string, int>();
-        subs.Add("%heal%", this.BaseHeal + this.Character.Intelligence);
+        Dictionary<string, int> subs = new Dictionary<string, int>
+        {
+            { "%heal%", this.BaseHeal + this.Character.Intelligence }
+        };
         return subs;
     }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -28,6 +29,13 @@ public class CombatManager : MonoBehaviour
 
     public void PlayerTurn(List<Ability> abilities, Transform partyGraphics)
     {
+
+        IEnumerator coroutine = AnimateCharacters(abilities, partyGraphics);
+        StartCoroutine(coroutine);
+        Invoke("EnemyTurn", 2f);
+    }
+
+    public IEnumerator AnimateCharacters(List<Ability> abilities, Transform partyGraphics) {
         Debug.Log("There are " + abilities.Count + " abilities");
         foreach (Ability ability in abilities)
         {
@@ -41,9 +49,8 @@ public class CombatManager : MonoBehaviour
                     child.GetComponentInChildren<Animator>().SetTrigger(ability.AnimationType.ToString());
                 }
             }
+            yield return new WaitForSeconds(0.2f);
         }
-
-        Invoke("EnemyTurn", 1f);
     }
 
     public List<CharacterBrain> GetParty()

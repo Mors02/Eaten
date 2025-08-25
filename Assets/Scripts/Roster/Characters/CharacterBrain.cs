@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public abstract class CharacterBrain
 {
@@ -76,8 +78,16 @@ public abstract class CharacterBrain
     {
         this.Id = Int32.Parse(id);
         this.Hunger = 100;
+        _onStatChange = new UnityEvent();
     }
 
+    public UnityEvent _onStatChange;
+
+    public void ReceiveDamage(int damage)
+    {
+        this.CurrentHP -= damage;
+        this._onStatChange.Invoke();
+    }
 
     ///https://discussions.unity.com/t/workflow-for-locating-scriptableobjects-at-runtime/681440/2
     //remember this for the randomize of the abilities DEPRACATED

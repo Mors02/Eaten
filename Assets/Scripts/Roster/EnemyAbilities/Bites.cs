@@ -6,7 +6,7 @@ public class Bites : EnemyAbility
     {
         Target target = this.GetTarget();
         Debug.Log("Activated BITES: " + target.gameObject.name);
-        target.DamageTarget();
+        target.DamageTarget(this._baseDamage + Party.Strength);
         target.Animate();
         context.EnemyParty.Animate("Run");
                 

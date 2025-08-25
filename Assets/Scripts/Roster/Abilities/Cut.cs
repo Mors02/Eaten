@@ -17,8 +17,10 @@ public class Cut : Ability
 
     public override Dictionary<string, int> GetSubstitutions()
     {
-        Dictionary<string, int> subs = new Dictionary<string, int>();
-        subs.Add("%damage%", this.BaseDamage + this.Character.Strength);
+        Dictionary<string, int> subs = new Dictionary<string, int>
+        {
+            { "%damage%", this.BaseDamage + this.Character.Strength }
+        };
         return subs;
     }
 }

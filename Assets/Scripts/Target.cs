@@ -53,11 +53,12 @@ public class Target : MonoBehaviour
         }
     }
 
-    public void DamageTarget()
+    public void DamageTarget(int damage)
     {
         //Debug.Log("Row " + Index + ", " + Characters.Count + " characters");
         foreach (CharacterBrain ch in Characters)
         {
+            ch.ReceiveDamage(damage);
             Debug.Log(ch.Id + " received damage");
         }
     }

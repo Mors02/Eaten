@@ -8,7 +8,13 @@ public class GameAssets : MonoBehaviour
     {
         get
         {
-            if (_i == null) _i = Instantiate(Resources.Load<GameAssets>("GameAssets"));
+            if (_i == null)
+            {
+                _i = Instantiate(Resources.Load<GameAssets>("GameAssets"));
+                Debug.Log(GameObject.FindGameObjectWithTag("UIManager").gameObject.name);
+                _i.UiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+            }
+
             return _i;
         }
     }
@@ -18,4 +24,6 @@ public class GameAssets : MonoBehaviour
 
     [Header("Enemies")]
     public EnemyPartySO cultists;
+
+    public UIManager UiManager;
 }

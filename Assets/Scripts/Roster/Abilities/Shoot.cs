@@ -10,8 +10,10 @@ public class Shoot : Ability
 
     public override Dictionary<string, int> GetSubstitutions()
     {
-        Dictionary<string, int> subs = new Dictionary<string, int>();
-        subs.Add("%damage%", this.BaseDamage + this.Character.Dexterity);
+        Dictionary<string, int> subs = new Dictionary<string, int>
+        {
+            { "%damage%", this.BaseDamage + this.Character.Dexterity }
+        };
         return subs;
     }
 
