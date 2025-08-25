@@ -16,7 +16,7 @@ public abstract class Ability
 /// <summary>
 /// Activate the ability
 /// </summary>
-    public abstract void Activate(/*Pass something*/);
+    public abstract void Activate(BattlefieldContext context);
 
     protected CharacterBrain _character;
 

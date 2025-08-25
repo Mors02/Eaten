@@ -15,7 +15,7 @@ public abstract class EnemyAbility
 /// <summary>
 /// Activate the ability and the animation
 /// </summary>
-    public abstract void Activate(/*Pass something*/);
+    public abstract void Activate(BattlefieldContext context);
 
     protected EnemyParty _party;
 

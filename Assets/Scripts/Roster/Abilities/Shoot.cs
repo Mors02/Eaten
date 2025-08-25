@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Shoot : Ability
 {
-    public override void Activate()
+    public override void Activate(BattlefieldContext context)
     {
         Debug.Log("Activated SHOOT: " + this.Description);
     }

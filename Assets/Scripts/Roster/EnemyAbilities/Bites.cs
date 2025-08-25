@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class Bites : EnemyAbility
 {
-    public override void Activate()
+    public override void Activate(BattlefieldContext context)
     {
         Target target = this.GetTarget();
         Debug.Log("Activated BITES: " + target.gameObject.name);
         target.DamageTarget();
+        target.Animate();
+        context.EnemyParty.Animate("Run");
                 
     }
 

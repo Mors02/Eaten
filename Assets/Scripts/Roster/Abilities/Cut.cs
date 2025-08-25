@@ -4,7 +4,7 @@ using UnityEngine;
 public class Cut : Ability
 {
 
-    public override void Activate()
+    public override void Activate(BattlefieldContext context)
     {
         Debug.Log("Activated CUT: " + this.Description);
     }

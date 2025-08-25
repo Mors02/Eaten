@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CombatManager : MonoBehaviour
@@ -22,7 +23,27 @@ public class CombatManager : MonoBehaviour
 
     public void EnemyTurn()
     {
-        this.EnemyParty.Attack();
+        this.EnemyParty.Attack(new BattlefieldContext(EnemyParty, Party));
+    }
+
+    public void PlayerTurn(List<Ability> abilities, Transform partyGraphics)
+    {
+        Debug.Log("There are " + abilities.Count + " abilities");
+        foreach (Ability ability in abilities)
+        {
+            Debug.Log(ability.Name);
+            ability.Activate(new BattlefieldContext(EnemyParty, Party));
+            foreach (Transform child in partyGraphics)
+            {
+
+                if (child.gameObject.name == ability.CharacterId.ToString())
+                {
+                    child.GetComponentInChildren<Animator>().SetTrigger(ability.AnimationType.ToString());
+                }
+            }
+        }
+
+        Invoke("EnemyTurn", 1f);
     }
 
     public List<CharacterBrain> GetParty()
@@ -30,10 +51,32 @@ public class CombatManager : MonoBehaviour
         List<CharacterBrain> party = new List<CharacterBrain>();
         foreach (Transform transform in _party)
         {
-            Debug.Log(transform.gameObject.name);
             party.Add(transform.gameObject.GetComponentInChildren<Connect>().Character);
         }
 
         return party;
     }
+}
+
+/// <summary>
+/// Class used to pass the battlefield informations to the activated ability
+/// </summary>
+public class BattlefieldContext
+{
+    /// <summary>
+    /// Enemy party with all the informations (both logic and graphics)
+    /// </summary>
+    public EnemyManager EnemyParty { get; set; }
+
+    /// <summary>
+    /// List of all the characters and their status (only logic)
+    /// </summary>
+    public List<CharacterBrain> Party { get; set; }
+
+    public BattlefieldContext(EnemyManager enemy, List<CharacterBrain> characters)
+    {
+        this.EnemyParty = enemy;
+        this.Party = characters;
+    }
+
 }

@@ -143,24 +143,9 @@ public class ConnectManager : MonoBehaviour
     public void ActivateAllAbilities()
     {
 
-        Debug.Log("There are " + _abilities.Count + " abilities");
-        foreach (Ability ability in _abilities)
-        {
-            Debug.Log(ability.Name);
-            ability.Activate();
-            foreach (Transform child in _party)
-            {
-
-                if (child.gameObject.name == ability.CharacterId.ToString())
-                {
-                    child.GetComponentInChildren<Animator>().SetTrigger(ability.AnimationType.ToString());
-                }
-            }
-        }
+        _cm.PlayerTurn(_abilities, _party);
 
         _abilities = new List<Ability>();
-
-        _cm.EnemyTurn();
     }
 
 

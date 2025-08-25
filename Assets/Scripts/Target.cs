@@ -10,6 +10,8 @@ public class Target : MonoBehaviour
     private AnimationType _targetType;
     public AnimationType TargetType { get => _targetType; set => _targetType = value; }
 
+    private Animator _animator;
+
     public List<CharacterBrain> Characters { get; set; }
 
     public CombatManager party { get; set; }
@@ -20,6 +22,7 @@ public class Target : MonoBehaviour
         this.Characters = new List<CharacterBrain>();
         this.party = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CombatManager>();
         this.PopulateTarget();
+        this._animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -31,8 +34,9 @@ public class Target : MonoBehaviour
         switch (this.TargetType)
         {
             case AnimationType.Row:
-                for (int i = Index * 3; i < Index + 3; i++)
+                for (int i = Index * 3; i < (Index * 3) + 3; i++)
                 {
+                    //Debug.Log(Index + ": Looking for " + i + "; " + (characters.ElementAt(i) == null? "Not found" : "Found"));
                     //what happens if the row is not full? idk
                     this.Characters.Add(characters.ElementAt(i));
                 }
@@ -41,6 +45,7 @@ public class Target : MonoBehaviour
             case AnimationType.Column:
                 for (int i = Index; i < Index + 6; i = i + 3)
                 {
+                    // Debug.Log("Looking for " + i + "; " + (characters.ElementAt(i) == null? "Not found" : "Found"));
                     //what happens if the column is not full? idk
                     this.Characters.Add(characters.ElementAt(i));
                 }
@@ -50,10 +55,15 @@ public class Target : MonoBehaviour
 
     public void DamageTarget()
     {
-        Debug.Log("Row " + Index + ", " + Characters.Count + " characters");
+        //Debug.Log("Row " + Index + ", " + Characters.Count + " characters");
         foreach (CharacterBrain ch in Characters)
         {
             Debug.Log(ch.Id + " received damage");
         }
+    }
+
+    public void Animate()
+    {
+        this._animator.SetTrigger(this._targetType.ToString());
     }
 }

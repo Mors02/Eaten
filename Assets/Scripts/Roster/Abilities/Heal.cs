@@ -5,7 +5,7 @@ public class Heal : Ability
 {
     public int _baseHeal;
     public int BaseHeal => _baseHeal;
-    public override void Activate()
+    public override void Activate(BattlefieldContext context)
     {
         Debug.Log("Activated HEAL: " + this.Description);
     }
