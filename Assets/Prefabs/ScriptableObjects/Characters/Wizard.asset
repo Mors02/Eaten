@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209411127864b4741a758fb0dd52f84d, type: 3}
+  m_Name: Wizard
+  m_EditorClassIdentifier: 
+  characterType: Wizard
+  baseHp: 6
+  description: A simple wizard from the academy
+  baseStrength: 4
+  baseDexterity: 4
+  baseIntelligence: 7
+  sprite: {fileID: 5686563296393176714, guid: 6b5edcfa69324244d85ddb0ad05bf2d5, type: 3}
+  abilityPool:
+  - {fileID: 11400000, guid: 998f93eb7ed54474295d482593f19b14, type: 2}
+  - {fileID: 11400000, guid: c73180fc41450844e8d0b512303dd1b3, type: 2}
+  - {fileID: 11400000, guid: 0acc2d4a23194aa4aafb1267d8aa25ce, type: 2}

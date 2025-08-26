@@ -5,17 +5,14 @@ public class Peasant : CharacterBrain
     public Peasant(string id) : base(id)
     {
         this._character = GameAssets.i.Peasant;
-        
-        //set up stats
-        this.Strength = this._character.baseStrength;
-        this.Dexterity = this._character.baseDexterity;
-        this.Intelligence = this._character.baseIntelligence;
-        this.CurrentHP = this.MaxHP = this._character.baseHp;
 
-        //TODO: this should be random
-        this.characterName = "Edgar";
+        this.SetupCharacter();
+    }
 
-        //this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
-        this.Ability = this._character.GetRandomAbility().CreateAbility(new CharacterData(this, this.Id));
+    public Peasant() : base()
+    {
+        this._character = GameAssets.i.Peasant;
+
+        this.SetupCharacter();
     }
 }

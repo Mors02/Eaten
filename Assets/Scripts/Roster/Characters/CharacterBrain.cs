@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using System.Collections.Generic;
 
 public abstract class CharacterBrain
 {
@@ -81,12 +82,47 @@ public abstract class CharacterBrain
         _onStatChange = new UnityEvent();
     }
 
+    public CharacterBrain()
+    {
+        this.Hunger = 100;
+        _onStatChange = new UnityEvent();
+    }
+
     public UnityEvent _onStatChange;
 
     public void ReceiveDamage(int damage)
     {
         this.CurrentHP -= damage;
         this._onStatChange.Invoke();
+    }
+
+    /// <summary>
+    /// Setup all the characters informations
+    /// </summary>
+    public void SetupCharacter()
+    {
+        //set up stats
+        this.Strength = this._character.baseStrength;
+        this.Dexterity = this._character.baseDexterity;
+        this.Intelligence = this._character.baseIntelligence;
+        this.CurrentHP = this.MaxHP = this._character.baseHp;
+
+        //TODO: this should be random
+        this.characterName = CharacterBrain.Names[UnityEngine.Random.Range(0, CharacterBrain.Names.Count)];
+
+        //this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
+        this.Ability = this._character.GetRandomAbility().CreateAbility(new CharacterData(this, this.Id));
+    }
+
+    /// <summary>
+    /// Pass the id inside the characterbrain to link it to the position inside the grid
+    /// </summary>
+    /// <param name="id">name of the gameobject square</param>
+    public void SetId(int id)
+    {
+        this.Id = id;
+        //this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
+        this.Ability.CharacterId = id;
     }
 
     ///https://discussions.unity.com/t/workflow-for-locating-scriptableobjects-at-runtime/681440/2
@@ -98,6 +134,50 @@ public abstract class CharacterBrain
 
         return Int32.Parse(abilities[random]);
     }*/
+
+    public static List<string> Names = new List<string>
+    {
+        "Heinrich",
+       "Konrad",
+       "Otto",
+       "Friedrich",
+       "Wilhelm",
+       "Gottfried",
+       "Albrecht",
+       "Bernhard",
+       "Dietrich",
+       "Engelbert",
+       "Gunther",
+       "Hartwig",
+       "Ludwig",
+       "Markward",
+       "Norbert",
+       "Raimund",
+       "Siegfried",
+       "Tankred",
+       "Ulrich",
+       "Walther",
+       "Adelheid",
+       "Bertha",
+       "Cunigunde",
+       "Dietlinde",
+       "Edeltraud",
+       "Gerhild",
+       "Hedwig",
+       "Irmgard",
+       "Kriemhild",
+       "Liutgard",
+       "Mathilde",
+       "Notburga",
+       "Richenza",
+       "Sieglinde",
+       "Thietberga",
+       "Uta",
+       "Waldburg",
+       "Gisela",
+       "Brunhild",
+       "Ermengarde"
+    };
 }
 
 public class CharacterData

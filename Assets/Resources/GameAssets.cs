@@ -21,6 +21,14 @@ public class GameAssets : MonoBehaviour
 
     [Header("Characters")]
     public Character Peasant;
+    public Character Dog;
+    public Character Oldman;
+    public Character Girl;
+    public Character Strongman;
+    public Character Wizard;
+    public Character Cleric;
+    public Character Child;
+    public Character Coolguy;
 
     [Header("Enemies")]
     public EnemyPartySO cultists;

@@ -45,4 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Peasant: {fileID: 11400000, guid: aa72878b0aa3fcf4fa2fac82fef7aa70, type: 2}
+  Dog: {fileID: 11400000, guid: 74e9555d9229847e99abd38ea22c95ae, type: 2}
+  Oldman: {fileID: 11400000, guid: 250dee8be58cd4959830659e3280530e, type: 2}
+  Girl: {fileID: 11400000, guid: 62badc94ec0c2b347afe57719ed8ba46, type: 2}
+  Strongman: {fileID: 11400000, guid: 91ab9805dc75b10439fd97e0ac73d1d2, type: 2}
+  Wizard: {fileID: 11400000, guid: b7dc1f9ad22aa5e459ec279da9cbadd4, type: 2}
+  Cleric: {fileID: 11400000, guid: d79a4927c2088184bb492f6b779443a5, type: 2}
+  Child: {fileID: 11400000, guid: b278be36b7f2e104a984a141a16aefd9, type: 2}
+  Coolguy: {fileID: 11400000, guid: 8fb92310100ab804ebfd63c3d60b1b15, type: 2}
   cultists: {fileID: 11400000, guid: db8c93d03f9a043439c6c5fd479294c0, type: 2}
+  UiManager: {fileID: 0}

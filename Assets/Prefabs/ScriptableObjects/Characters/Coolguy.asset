@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209411127864b4741a758fb0dd52f84d, type: 3}
+  m_Name: Coolguy
+  m_EditorClassIdentifier: 
+  characterType: Cool Guy
+  baseHp: 7
+  description: Nothing gets under his skin
+  baseStrength: 4
+  baseDexterity: 7
+  baseIntelligence: 3
+  sprite: {fileID: 6835199946384656699, guid: f0da02fbe70f3d343aa4cf6b8af51b66, type: 3}
+  abilityPool:
+  - {fileID: 11400000, guid: 998f93eb7ed54474295d482593f19b14, type: 2}
+  - {fileID: 11400000, guid: c73180fc41450844e8d0b512303dd1b3, type: 2}
+  - {fileID: 11400000, guid: 0acc2d4a23194aa4aafb1267d8aa25ce, type: 2}

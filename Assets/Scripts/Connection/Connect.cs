@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using System;
 public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
 {
     [SerializeField]
     private GameObject _line;
     private ConnectManager _cm;
     private CharacterBrain _cb;
+
+    [SerializeField]
+    private Image _image;
 
     [SerializeField]
     private Slider _smallSlider;
@@ -24,7 +28,16 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
         //TODO: should be passed by the gameManager
-        this._cb = new Peasant(this.gameObject.name);
+        int id = Int32.Parse(this.gameObject.name);
+
+        this._cb = GameManager.i.Characters[id];
+        
+        this._cb.SetId(id);
+
+        Debug.Log("ID: " + this._cb.Id);
+        
+        this._image.sprite = this._cb.Sprite;
+
         this._cb._onStatChange.AddListener(UpdateGraphics);
         this._cb._onStatChange.Invoke();
     }

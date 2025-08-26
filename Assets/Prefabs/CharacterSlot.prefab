@@ -554,6 +554,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _line: {fileID: 6974106623148199244, guid: 9c43d763d6c4b554fa4fb6b5d4929783, type: 3}
+  _image: {fileID: 7737885824656626585}
   _smallSlider: {fileID: 5560491908472466211}
   _bigSlider: {fileID: 2338104172800230263}
   _text: {fileID: 1932816155176303361}
