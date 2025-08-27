@@ -7,6 +7,11 @@ public class EnemyPartySO : ScriptableObject
     [SerializeField]
     private string _name;
 
+    [SerializeField]
+    private string _description;
+
+    public string Description => _description;
+
     public string Name => _name;
 
     [SerializeField]

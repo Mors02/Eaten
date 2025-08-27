@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -37,22 +38,37 @@ public class CombatManager : MonoBehaviour
 
     public IEnumerator AnimateCharacters(List<Ability> abilities, Transform partyGraphics) {
         Debug.Log("There are " + abilities.Count + " abilities");
-        foreach (Ability ability in abilities)
+        //foreach (Ability ability in abilities)
+        foreach (var ability in abilities.Select((value, i) => new {i, value}))
         {
-            Debug.Log(ability.Name);
-            ability.Activate(new BattlefieldContext(EnemyParty, Party));
+            Debug.Log(ability.value.Name);
+            
+            ability.value.Activate(new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i-1), GetCharacterInActivatedList(abilities, ability.i+1)));
             foreach (Transform child in partyGraphics)
             {
 
-                if (child.gameObject.name == ability.CharacterId.ToString())
+                if (child.gameObject.name == ability.value.CharacterId.ToString())
                 {
-                    child.GetComponentInChildren<Animator>().SetTrigger(ability.AnimationType.ToString());
+                    child.GetComponentInChildren<Animator>().SetTrigger(ability.value.AnimationType.ToString());
                 }
             }
             yield return new WaitForSeconds(0.2f);
         }
     }
 
+    public CharacterBrain GetCharacterInActivatedList(List<Ability> list, int index)
+    {
+        if (index == -1)
+            return null;
+        if (index == list.Count)
+            return null;
+        return list[index].Character;
+    }
+
+    /// <summary>
+    /// Get the whole party of characters
+    /// </summary>
+    /// <returns>A list of characters that can be used to activate abilities, change stats and retrieve data</returns>
     public List<CharacterBrain> GetParty()
     {
         List<CharacterBrain> party = new List<CharacterBrain>();
@@ -80,7 +96,22 @@ public class BattlefieldContext
     /// </summary>
     public List<CharacterBrain> Party { get; set; }
 
-    public BattlefieldContext(EnemyManager enemy, List<CharacterBrain> characters)
+    /// <summary>
+    /// The character that will activate the ability after the current one (null if current one is the last)
+    /// </summary>
+    public CharacterBrain NextCharacterInLine { get; set; }
+    /// <summary>
+    /// The character that activated the ability before the current one (null if current one is the first)
+    /// </summary>
+    public CharacterBrain LastCharacterInLine { get; set; }
+
+    public BattlefieldContext(EnemyManager enemy, List<CharacterBrain> characters, CharacterBrain next, CharacterBrain last)
+    {
+        this.EnemyParty = enemy;
+        this.Party = characters;
+    }
+
+        public BattlefieldContext(EnemyManager enemy, List<CharacterBrain> characters)
     {
         this.EnemyParty = enemy;
         this.Party = characters;

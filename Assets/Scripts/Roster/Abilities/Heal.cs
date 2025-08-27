@@ -7,7 +7,10 @@ public class Heal : Ability
     public int BaseHeal => _baseHeal;
     public override void Activate(BattlefieldContext context)
     {
-        Debug.Log("Activated HEAL: " + this.Description);
+        if (context.NextCharacterInLine != null)
+            context.NextCharacterInLine.Heal(_baseHeal + this.Character.Intelligence);
+        else
+            Debug.Log("Heal from " + this.Character.Type + ": no target");
     }
 
     public override Dictionary<string, int> GetSubstitutions()

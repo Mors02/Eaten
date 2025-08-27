@@ -92,7 +92,13 @@ public abstract class CharacterBrain
 
     public void ReceiveDamage(int damage)
     {
-        this.CurrentHP -= damage;
+        this.CurrentHP = Mathf.Max(0, this.CurrentHP -= damage);
+        this._onStatChange.Invoke();
+    }
+
+    public void Heal(int heal)
+    {
+        this.CurrentHP = Mathf.Min(this.MaxHP, this.CurrentHP += heal);
         this._onStatChange.Invoke();
     }
 

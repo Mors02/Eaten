@@ -27,6 +27,12 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
+    public void ReceiveDamage(int damage)
+    {
+        this.EnemyParty.CurrentHP -= damage;
+        this.EnemyParty._onStatsChange.Invoke();   
+    }
+
     public void Attack(BattlefieldContext context)
     {
         Debug.Log("abilities found: " + EnemyParty.Abilities.Count);

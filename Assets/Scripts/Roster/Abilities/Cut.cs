@@ -6,7 +6,7 @@ public class Cut : Ability
 
     public override void Activate(BattlefieldContext context)
     {
-        Debug.Log("Activated CUT: " + this.Description);
+        context.EnemyParty.ReceiveDamage(this.BaseDamage + this.Character.Strength);
     }
 
     public Cut(CharacterData character, CutSO ability) : base(character, ability)

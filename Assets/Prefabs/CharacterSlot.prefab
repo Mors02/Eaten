@@ -603,6 +603,7 @@ MonoBehaviour:
   _smallSlider: {fileID: 5560491908472466211}
   _bigSlider: {fileID: 2338104172800230263}
   _text: {fileID: 1932816155176303361}
+  _visibleSection: {fileID: 2970228138442595314}
 --- !u!1 &6819485132599057453
 GameObject:
   m_ObjectHideFlags: 0

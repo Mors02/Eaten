@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Events;
+using Unity.VisualScripting;
 
 public class EnemyParty
 {
@@ -11,6 +13,11 @@ public class EnemyParty
     {
         get => this._enemyParty.Name;
         //set => this._enemyParty.Name = value;
+    }
+
+    public string Description
+    {
+        get => this._enemyParty.Description; 
     }
 
     public List<Character> Characters { get => this._enemyParty.Characters; }
@@ -46,8 +53,10 @@ public class EnemyParty
 
     public EnemyParty()
     {
-
+        this._onStatsChange = new UnityEvent();
     }
+
+    public UnityEvent _onStatsChange;
 
     public List<EnemyAbility> GetAbilities()
     {

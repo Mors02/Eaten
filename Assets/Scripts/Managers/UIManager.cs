@@ -18,9 +18,29 @@ public class UIManager : MonoBehaviour
         this._dexterity.text = cb.Dexterity.ToString();
         this._intelligence.text = cb.Intelligence.ToString();
         this._hunger.text = cb.Hunger.ToString();
+        this._hunger.gameObject.SetActive(true);
         this._abilityDescription.text = cb.Ability.Description;
         this._name.text = cb.characterName;
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
+    }
+
+    public void SetupEnemy(EnemyParty ep)
+    {
+         this._characterSection.SetActive(true);
+        this._infosection.SetActive(false);
+        this._strength.text = ep.Strength.ToString();
+        this._dexterity.text = ep.Dexterity.ToString();
+        this._intelligence.text = ep.Intelligence.ToString();
+        this._hunger.gameObject.SetActive(false);
+        this._abilityDescription.text = ep.Description;
+        this._name.text = ep.Name;
+        this._health.text = ep.CurrentHP + "/" + ep.MaxHP;
+    }
+
+    public void Clean()
+    {
+        this._infosection.SetActive(false);
+        this._characterSection.SetActive(false);
     }
 
     public void SetupInfoBox(string text)

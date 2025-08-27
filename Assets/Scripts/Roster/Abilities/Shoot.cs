@@ -5,7 +5,7 @@ public class Shoot : Ability
 {
     public override void Activate(BattlefieldContext context)
     {
-        Debug.Log("Activated SHOOT: " + this.Description);
+        context.EnemyParty.ReceiveDamage(this.BaseDamage + this.Character.Dexterity);
     }
 
     public override Dictionary<string, int> GetSubstitutions()
