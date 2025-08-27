@@ -24,18 +24,26 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public CharacterBrain Character => _cb;
 
+    [SerializeField]
+    private GameObject _visibleSection;
+
     private void Awake()
     {
         _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
         //TODO: should be passed by the gameManager
         int id = Int32.Parse(this.gameObject.name);
 
-        this._cb = GameManager.i.Characters[id];
-        
-        this._cb.SetId(id);
+        this._cb = GameManager.GetCharacter(id);
 
-        Debug.Log("ID: " + this._cb.Id);
-        
+
+        // No character means that this square is not used
+        if (this._cb == null)
+        {
+            _visibleSection.SetActive(false);
+            return;
+        }
+
+        this._cb.SetId(id);
         this._image.sprite = this._cb.Sprite;
 
         this._cb._onStatChange.AddListener(UpdateGraphics);

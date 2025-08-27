@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class GameManager
 {
@@ -18,10 +19,10 @@ public class GameManager
                     new Oldman(),
                     new Girl(),
                     new Strongman(),
-                    new Wizard(),
-                    new Cleric(),
-                    new Child(),
-                    new Coolguy()
+                    //new Wizard(),
+                    //new Cleric(),
+                    //new Child(),
+                    //new Coolguy()
                 };
             }
 
@@ -30,4 +31,16 @@ public class GameManager
     }
 
     public List<CharacterBrain> Characters;
+
+    public static CharacterBrain GetCharacter(int id)
+    {
+       
+
+        if (id >= GameManager.i.Characters.Count)
+        {
+            return null;
+        }
+
+        return i.Characters[id];
+    }
 }
