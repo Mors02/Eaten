@@ -92,7 +92,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void UpdateGraphics()
     {
-        this._smallSlider.value = this._bigSlider.value = this._cb.CurrentHP / this._cb.MaxHP;
+        this._smallSlider.value = this._bigSlider.value = (float)this._cb.CurrentHP / this._cb.MaxHP;
         this._text.text = this._cb.CurrentHP.ToString() + "/" + this._cb.MaxHP.ToString();
     }
 }

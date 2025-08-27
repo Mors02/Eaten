@@ -32,6 +32,6 @@ public class EnemyUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         this._name.text = this._em.EnemyParty.Name;
         this._health.text = this._em.EnemyParty.CurrentHP + "/" + this._em.EnemyParty.MaxHP;
-        this._slider.value = this._em.EnemyParty.CurrentHP / this._em.EnemyParty.MaxHP;
+        this._slider.value = (float)this._em.EnemyParty.CurrentHP / this._em.EnemyParty.MaxHP;
     }
 }

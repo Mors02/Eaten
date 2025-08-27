@@ -37,11 +37,9 @@ public class CombatManager : MonoBehaviour
     }
 
     public IEnumerator AnimateCharacters(List<Ability> abilities, Transform partyGraphics) {
-        Debug.Log("There are " + abilities.Count + " abilities");
         //foreach (Ability ability in abilities)
         foreach (var ability in abilities.Select((value, i) => new {i, value}))
         {
-            Debug.Log(ability.value.Name);
             
             ability.value.Activate(new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i-1), GetCharacterInActivatedList(abilities, ability.i+1)));
             foreach (Transform child in partyGraphics)
@@ -58,10 +56,12 @@ public class CombatManager : MonoBehaviour
 
     public CharacterBrain GetCharacterInActivatedList(List<Ability> list, int index)
     {
+        Debug.Log("Index: " + index);
         if (index == -1)
             return null;
         if (index == list.Count)
             return null;
+        Debug.Log("Found: " + list[index].Character);
         return list[index].Character;
     }
 
@@ -109,6 +109,8 @@ public class BattlefieldContext
     {
         this.EnemyParty = enemy;
         this.Party = characters;
+        this.NextCharacterInLine = next;
+        this.LastCharacterInLine = last;
     }
 
         public BattlefieldContext(EnemyManager enemy, List<CharacterBrain> characters)

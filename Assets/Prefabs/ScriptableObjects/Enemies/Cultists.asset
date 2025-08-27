@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cultists
   m_EditorClassIdentifier: 
   _name: Group of blood cultists
+  _description: A gang of blood cultists that scour the streets to get more victims.
   _characters:
   - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
   - {fileID: 11400000, guid: bced9542b3dc7407495fdb39de765588, type: 2}
