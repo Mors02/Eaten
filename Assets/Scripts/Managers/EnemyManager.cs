@@ -22,6 +22,7 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField]
     private Vector2 _area;
+
     void Start()
     {
         this.EnemyParty = new GroupOfCultists();
@@ -37,19 +38,30 @@ public class EnemyManager : MonoBehaviour
     public void ReceiveDamage(int damage)
     {
         this.EnemyParty.CurrentHP -= damage;
+        if (((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 <= _minimumHealthToEat)
+        {
+
+            GameManager.i.CanEat = true;
+        }
         this.EnemyParty._onStatsChange.Invoke();
 
-        if (((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 <= _minimumHealthToEat)
-            GameManager.i.CanEat = true;
+        Debug.Log(((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 + " AND " + _minimumHealthToEat);
+
+            
+
+        
     }
 
     public void Heal(int heal)
     {
         this.EnemyParty.CurrentHP += heal;
-        this.EnemyParty._onStatsChange.Invoke();
-
+        
         if (((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 > _minimumHealthToEat)
             GameManager.i.CanEat = false;
+
+        this.EnemyParty._onStatsChange.Invoke();
+
+
     }
 
     public void Attack(BattlefieldContext context)
