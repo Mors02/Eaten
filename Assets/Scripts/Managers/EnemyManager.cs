@@ -6,6 +6,12 @@ public class EnemyManager : MonoBehaviour
 {
     public EnemyParty EnemyParty { get; set; }
 
+    public List<Transform> EnemyPositions { get; set; }
+
+    [Range(0, 100)]
+    [SerializeField]
+    private int _minimumHealthToEat;
+
     /// <summary>
     /// All the animators of the characters in the enemy party
     /// </summary>
@@ -20,6 +26,7 @@ public class EnemyManager : MonoBehaviour
     {
         this.EnemyParty = new GroupOfCultists();
         this.Animators = new List<Animator>();
+        this.EnemyPositions = new List<Transform>();
         SetupCharacterPrefabs();
         foreach (Transform child in this.transform)
         {
@@ -30,14 +37,24 @@ public class EnemyManager : MonoBehaviour
     public void ReceiveDamage(int damage)
     {
         this.EnemyParty.CurrentHP -= damage;
-        this.EnemyParty._onStatsChange.Invoke();   
+        this.EnemyParty._onStatsChange.Invoke();
+
+        if (((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 <= _minimumHealthToEat)
+            GameManager.i.CanEat = true;
+    }
+
+    public void Heal(int heal)
+    {
+        this.EnemyParty.CurrentHP += heal;
+        this.EnemyParty._onStatsChange.Invoke();
+
+        if (((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 > _minimumHealthToEat)
+            GameManager.i.CanEat = false;
     }
 
     public void Attack(BattlefieldContext context)
-    {
-        Debug.Log("abilities found: " + EnemyParty.Abilities.Count);
+    {        
         int index = Random.Range(0, EnemyParty.Abilities.Count);
-        Debug.Log("Index: " + index);
         this.EnemyParty.Abilities[index].Activate(context);
         GameAssets.i.UiManager.SetupInfoBox(this.EnemyParty.Abilities[index].Description);
     }
@@ -80,6 +97,7 @@ public class EnemyManager : MonoBehaviour
             SpriteRenderer s = prefab.GetComponentInChildren<SpriteRenderer>();
             s.sprite = character.sprite;
             prefabs.Add(s);
+            EnemyPositions.Add(prefab.transform);
         }
         prefabs.Sort(OrderBasedOnY);
         for (int i = 0; i < prefabs.Count; i++)

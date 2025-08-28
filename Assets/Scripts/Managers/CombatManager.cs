@@ -54,6 +54,18 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// A bit clunky but removes all the highlights from the party. Cycles the gameobject and removes the border
+    /// </summary>
+    public void RemoveAllHighlights()
+    {
+        foreach (Transform child in this._party)
+        {
+            Debug.Log(child.GetComponent<Connect>());
+            child.gameObject.GetComponent<Connect>().Highlight(false);
+        }
+    }
+
     public CharacterBrain GetCharacterInActivatedList(List<Ability> list, int index)
     {
         Debug.Log("Index: " + index);

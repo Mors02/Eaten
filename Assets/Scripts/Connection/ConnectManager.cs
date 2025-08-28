@@ -148,6 +148,14 @@ public class ConnectManager : MonoBehaviour
         _abilities = new List<Ability>();
     }
 
+    /// <summary>
+    /// A bit clunky but removes all the highlights from the party
+    /// </summary>
+    public void RemoveAllHighlights()
+    {
+        this._cm.RemoveAllHighlights();
+    }
+
 
     void Update()
     {

@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using System;
-public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler
+public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
 {
     [SerializeField]
     private GameObject _line;
@@ -26,6 +26,9 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     [SerializeField]
     private GameObject _visibleSection;
+
+    [SerializeField]
+    private GameObject _border;
 
     private void Awake()
     {
@@ -94,5 +97,27 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         this._smallSlider.value = this._bigSlider.value = (float)this._cb.CurrentHP / this._cb.MaxHP;
         this._text.text = this._cb.CurrentHP.ToString() + "/" + this._cb.MaxHP.ToString();
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //check if the enemy is low health
+        if (!GameManager.i.CanEat)
+            return;
+
+        this._cm.RemoveAllHighlights();
+        int index = Int32.Parse(this.gameObject.name);
+        if (GameManager.i.SelectedCharacter == index)
+        {
+            GameManager.i.SelectedCharacter = -1;
+            return;
+        }
+        GameManager.i.SelectedCharacter = index;
+        this.Highlight(true);
+    }
+
+    public void Highlight(bool highlight)
+    {
+        this._border.SetActive(highlight);
     }
 }

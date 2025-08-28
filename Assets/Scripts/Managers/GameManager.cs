@@ -24,6 +24,8 @@ public class GameManager
                     //new Child(),
                     //new Coolguy()
                 };
+                instance.SelectedCharacter = -1;
+                instance.CanEat = false;
             }
 
             return instance;
@@ -43,4 +45,8 @@ public class GameManager
 
         return i.Characters[id];
     }
+
+    public int SelectedCharacter;
+
+    public bool CanEat;
 }
