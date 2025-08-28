@@ -6,8 +6,8 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField]
     private Rigidbody2D _rb;
     [SerializeField]
-    [Range(10, 100)]
-    private int _speed = 30;
+    [Range(1, 20)]
+    private int _speed = 5;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,13 +20,14 @@ public class CharacterMovement : MonoBehaviour
     {
         if (_targetPosition != null)
         {
-            Debug.Log(Vector2.Distance(this._targetPosition, this._rb.position));
-            Vector2 direction = this._targetPosition - this._rb.position;
-            this._rb.MovePosition(this._rb.position + (direction.normalized * Time.deltaTime * _speed));
+            
+            Vector3 direction = this._targetPosition - this._rb.position;
+            this.transform.position = this.transform.position + (direction.normalized * Time.deltaTime * _speed);
         }
 
         if (Vector2.Distance(this._targetPosition, this._rb.position) < 0.3f)
         {
+            this.transform.position = _targetPosition;
             this.enabled = false;
         }
     }
@@ -35,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
     {
         this._targetPosition = target;
         Vector2 direction = this._targetPosition - this._rb.position;
-        return Vector2.Distance(_targetPosition, this._rb.position) / (direction.magnitude * Time.deltaTime * _speed);
+        return Vector2.Distance(_targetPosition, this.transform.position) / _speed;
     }
     
     public void WillDieIn(float seconds)

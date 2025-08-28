@@ -35,6 +35,7 @@ public class EatLogic : MonoBehaviour
 
         CharacterMovement movement;
         Animator animator;
+
         //move selected character to position
         foreach (Transform child in _party)
         {
@@ -42,6 +43,7 @@ public class EatLogic : MonoBehaviour
             {
                 movement = child.GetComponentInChildren<CharacterMovement>();
                 _returnPosition = child.parent.transform.position + child.transform.localPosition;
+
                 Debug.Log(_returnPosition);
                 animator = child.GetComponent<Animator>();
 
