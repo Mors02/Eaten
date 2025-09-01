@@ -606,6 +606,9 @@ MonoBehaviour:
   _text: {fileID: 1932816155176303361}
   _visibleSection: {fileID: 2970228138442595314}
   _border: {fileID: 7186641419399980246}
+  _background: {fileID: 7403652236552395485}
+  _fullHunger: {r: 1, g: 1, b: 1, a: 1}
+  _emptyHunger: {r: 0.33962262, g: 0, b: 0, a: 1}
 --- !u!1 &6819485132599057453
 GameObject:
   m_ObjectHideFlags: 0

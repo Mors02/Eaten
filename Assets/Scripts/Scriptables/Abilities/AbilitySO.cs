@@ -12,6 +12,10 @@ public abstract class AbilitySO : ScriptableObject
     [SerializeField] protected AnimationType _animationType;
     public AnimationType AnimationType => _animationType;
 
+    [SerializeField] protected int _hungerConsumption;
+
+    public int HungerConsumption => _hungerConsumption;
+
 /// <summary>
 /// Instantiate the ability class that represents this ability
 /// </summary>

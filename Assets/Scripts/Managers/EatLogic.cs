@@ -18,7 +18,7 @@ public class EatLogic : MonoBehaviour
     [SerializeField]
     private Transform _party;
 
-    private Vector2 _returnPosition;
+    private Vector2 _returnPosition;    
 
 
     public void Start()
@@ -58,6 +58,9 @@ public class EatLogic : MonoBehaviour
 
                 //add eating bonuses
                 Debug.Log("This bitch eated");
+                GameManager.i.Characters[GameManager.i.SelectedCharacter].EatEnemy(_em.EnemyParty);
+
+
             }
         }
     }

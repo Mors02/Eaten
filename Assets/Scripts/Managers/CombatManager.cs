@@ -40,8 +40,8 @@ public class CombatManager : MonoBehaviour
         //foreach (Ability ability in abilities)
         foreach (var ability in abilities.Select((value, i) => new {i, value}))
         {
-            
-            ability.value.Activate(new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i-1), GetCharacterInActivatedList(abilities, ability.i+1)));
+            BattlefieldContext context = new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i - 1), GetCharacterInActivatedList(abilities, ability.i + 1));
+            ability.value.Activate(context);
             foreach (Transform child in partyGraphics)
             {
 

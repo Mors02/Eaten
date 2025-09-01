@@ -40,6 +40,16 @@ public abstract class CharacterBrain
     }*/
 
     /// <summary>
+    /// The current exp the character has
+    /// </summary>
+    public int Exp { get; set; }
+
+    /// <summary>
+    /// The level the character has reached
+    /// </summary>
+    public int Level { get; set; }
+
+    /// <summary>
     /// based on the base strength
     /// </summary>
     public int Strength
@@ -99,6 +109,18 @@ public abstract class CharacterBrain
     public void Heal(int heal)
     {
         this.CurrentHP = Mathf.Min(this.MaxHP, this.CurrentHP += heal);
+        this._onStatChange.Invoke();
+    }
+
+    public void ReduceHunger(int hunger)
+    {
+        this.Hunger -= hunger;
+        this._onStatChange.Invoke();
+    }
+
+    public void EatEnemy(EnemyParty ep)
+    {
+        this.Hunger += 20;
         this._onStatChange.Invoke();
     }
 
