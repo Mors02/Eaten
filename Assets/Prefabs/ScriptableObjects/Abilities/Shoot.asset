@@ -15,4 +15,5 @@ MonoBehaviour:
   abilityName: Shoot
   description: Deals %damage% to enemy party
   _animationType: 1
+  _hungerConsumption: 8
   _baseDamage: 3

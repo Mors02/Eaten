@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   abilityName: Cut
   description: Deals %damage% to enemy party
-  baseDamage: 5
+  _animationType: 0
+  _hungerConsumption: 3
+  _baseDamage: 5

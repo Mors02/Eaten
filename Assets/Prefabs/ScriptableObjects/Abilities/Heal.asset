@@ -15,4 +15,5 @@ MonoBehaviour:
   abilityName: Heal
   description: Heals next in line by %heal%
   _animationType: 1
+  _hungerConsumption: 10
   _healAmount: 3
