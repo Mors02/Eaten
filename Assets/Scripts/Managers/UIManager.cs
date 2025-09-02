@@ -10,6 +10,10 @@ public class UIManager : MonoBehaviour
     private TMP_Text _strength, _intelligence, _dexterity, _hunger, _infobox, _name, _abilityDescription, _health;
     // Start is called once before the first execution of Update after the MonoBehaviour is create
 
+    /// <summary>
+    /// Displays the info of a character on the info box
+    /// </summary>
+    /// <param name="cb">the character information to display</param>
     public void SetupCharacter(CharacterBrain cb)
     {
         this._characterSection.SetActive(true);
@@ -24,6 +28,11 @@ public class UIManager : MonoBehaviour
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
     }
 
+
+    /// <summary>
+    /// displays the info of the enemy on the info box
+    /// </summary>
+    /// <param name="ep">the enemy informations</param>
     public void SetupEnemy(EnemyParty ep)
     {
          this._characterSection.SetActive(true);
@@ -37,16 +46,24 @@ public class UIManager : MonoBehaviour
         this._health.text = ep.CurrentHP + "/" + ep.MaxHP;
     }
 
+    /// <summary>
+    /// clears the textbox
+    /// </summary>
     public void Clean()
     {
         this._infosection.SetActive(false);
         this._characterSection.SetActive(false);
     }
 
+    /// <summary>
+    /// displays a simple text to be rendered on the info box
+    /// </summary>
+    /// <param name="text"></param>
     public void SetupInfoBox(string text)
     {
         this._characterSection.SetActive(false);
         this._infosection.SetActive(true);
         this._infobox.text = text;
     }
+
 }

@@ -5,6 +5,7 @@ public class Shoot : Ability
 {
     public override void Activate(BattlefieldContext context)
     {
+        base.Activate(context);
         context.EnemyParty.ReceiveDamage(this.BaseDamage + this.Character.Dexterity);
     }
 

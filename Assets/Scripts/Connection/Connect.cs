@@ -30,6 +30,12 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     [SerializeField]
     private GameObject _border;
 
+    [SerializeField]
+    private Image _background;
+
+    [SerializeField]
+    private Color _fullHunger, _emptyHunger;
+
     private void Awake()
     {
         _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
@@ -97,6 +103,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         this._smallSlider.value = this._bigSlider.value = (float)this._cb.CurrentHP / this._cb.MaxHP;
         this._text.text = this._cb.CurrentHP.ToString() + "/" + this._cb.MaxHP.ToString();
+        this._background.color = Color.Lerp(_emptyHunger, _fullHunger, (float)this._cb.Hunger/100);
     }
 
     public void OnPointerClick(PointerEventData eventData)

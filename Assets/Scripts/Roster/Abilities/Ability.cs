@@ -7,6 +7,8 @@ public abstract class Ability
     public int BaseDamage => _baseDamage;
     public string Name { get; set; }
 
+    public int HungerConsumption { get; set; }
+
     public AnimationType AnimationType { get; set; }
 
     public string BaseDescription { get; set; }
@@ -16,7 +18,10 @@ public abstract class Ability
 /// <summary>
 /// Activate the ability
 /// </summary>
-    public abstract void Activate(BattlefieldContext context);
+    public virtual void Activate(BattlefieldContext context)
+    {
+        this._character.ReduceHunger(this.HungerConsumption);
+    }
 
     protected CharacterBrain _character;
 
@@ -29,6 +34,7 @@ public abstract class Ability
         this.Name = abilityData.AbilityName;
         this.BaseDescription = abilityData.Description;
         this.AnimationType = abilityData.AnimationType;
+        this.HungerConsumption = abilityData.HungerConsumption;
     }
 
     public int CharacterId { get; set; }
