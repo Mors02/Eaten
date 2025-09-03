@@ -8,7 +8,7 @@ public class Heal : Ability
     public override void Activate(BattlefieldContext context)
     {
         base.Activate(context);
-        Debug.Log(context.NextCharacterInLine);
+        Debug.Log(context.NextCharacterInLine.characterName);
         if (context.NextCharacterInLine != null)
             context.NextCharacterInLine.Heal(_baseHeal + this.Character.Intelligence);
         else

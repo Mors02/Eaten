@@ -17,7 +17,7 @@ public class EnemyParty
 
     public string Description
     {
-        get => this._enemyParty.Description; 
+        get => this._enemyParty.Description;
     }
 
     public List<Character> Characters { get => this._enemyParty.Characters; }

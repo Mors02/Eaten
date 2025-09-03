@@ -41,6 +41,7 @@ public class CombatManager : MonoBehaviour
         foreach (var ability in abilities.Select((value, i) => new {i, value}))
         {
             BattlefieldContext context = new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i - 1), GetCharacterInActivatedList(abilities, ability.i + 1));
+            Debug.Log(GetCharacterInActivatedList(abilities, ability.i - 1));
             ability.value.Activate(context);
             foreach (Transform child in partyGraphics)
             {
@@ -61,7 +62,6 @@ public class CombatManager : MonoBehaviour
     {
         foreach (Transform child in this._party)
         {
-            Debug.Log(child.GetComponent<Connect>());
             child.gameObject.GetComponent<Connect>().Highlight(false);
         }
     }
