@@ -26,6 +26,8 @@ public abstract class CharacterBrain
     /// </summary>
     public string characterName { get; set; }
 
+    public static int _maxLevel = 10;
+
     /// <summary>
     /// Random value
     /// </summary>
@@ -121,6 +123,7 @@ public abstract class CharacterBrain
     public void EatEnemy(EnemyParty ep)
     {
         this.Hunger += 20;
+        this.LevelUp();
         this._onStatChange.Invoke();
     }
 
@@ -151,6 +154,22 @@ public abstract class CharacterBrain
         this.Id = id;
         //this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
         this.Ability.CharacterId = id;
+    }
+
+    public void LevelUp()
+    {
+        this.Level = Math.Min(this.Level + 1, _maxLevel);
+        this.Exp = 0;
+    }
+
+    public void GainExp(int exp)
+    {
+        this.Exp += exp;
+        if (this.Exp > NecessaryExp[this.Level])
+        {
+            this.Exp = this.Exp % NecessaryExp[this.Level];
+            this.Level = Math.Min(this.Level + 1, _maxLevel);
+        }
     }
 
     ///https://discussions.unity.com/t/workflow-for-locating-scriptableobjects-at-runtime/681440/2
@@ -206,6 +225,20 @@ public abstract class CharacterBrain
        "Brunhild",
        "Ermengarde"
     };
+
+    public static int[] NecessaryExp = {
+        0,
+        3,
+        5,
+        9,
+        15,
+        22,
+        30,
+        30,
+        30,
+        30,
+        30
+    };
 }
 
 public class CharacterData
@@ -219,3 +252,4 @@ public class CharacterData
         Id = id;
     }
 }
+
