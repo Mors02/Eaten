@@ -44,11 +44,6 @@ public class EnemyManager : MonoBehaviour
             GameManager.i.CanEat = true;
         }
         this.EnemyParty._onStatsChange.Invoke();
-
-        Debug.Log(((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 + " AND " + _minimumHealthToEat);
-
-            
-
         
     }
 
@@ -81,8 +76,12 @@ public class EnemyManager : MonoBehaviour
     {
         foreach (Animator animator in Animators)
         {
-            animator.SetTrigger(animation);
-            yield return new WaitForSeconds(0.2f);  
+            if (animator != null)
+            {
+                animator.SetTrigger(animation);
+                yield return new WaitForSeconds(0.2f);  
+            }
+                
         }
 
     }

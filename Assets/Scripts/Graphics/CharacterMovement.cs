@@ -9,10 +9,14 @@ public class CharacterMovement : MonoBehaviour
     [Range(1, 20)]
     private int _speed = 5;
     
+    [SerializeField]
+    private Animator _animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //this._rb = GetComponent<Rigidbody2D>();
+        this._animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,12 +45,13 @@ public class CharacterMovement : MonoBehaviour
     
     public void WillDieIn(float seconds)
     {
-        Debug.Log("Will destroy in " + seconds);
+        
         Invoke("DestroyCharacter", seconds);
     }
 
     public void DestroyCharacter()
     {
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
+        this._animator.SetTrigger("Eat");
     }
 }

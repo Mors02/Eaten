@@ -30,8 +30,13 @@ public class EatLogic : MonoBehaviour
     {
         if (GameManager.i.SelectedCharacter == -1)
             return;
+
+        if (_em.EnemyPositions.Count == 0)
+            return;
+
+        int index = UnityEngine.Random.Range(0, _em.EnemyPositions.Count);
         //get random enemy
-        Transform enemy = _em.EnemyPositions[UnityEngine.Random.Range(0, _em.EnemyPositions.Count)];
+        Transform enemy = _em.EnemyPositions[index];
 
         CharacterMovement movement;
         Animator animator;
@@ -57,12 +62,14 @@ public class EatLogic : MonoBehaviour
                 StartCoroutine(GoBack(time, movement, _returnPosition));
 
                 //add eating bonuses
-                Debug.Log("This bitch eated");
+
                 GameManager.i.Characters[GameManager.i.SelectedCharacter].EatEnemy(_em.EnemyParty);
 
-
+                this._em.EnemyPositions.Remove(enemy);
             }
         }
+
+        Debug.Log("Length: " + this._em.EnemyPositions.Count);
     }
 
     private IEnumerator GoBack(float time, CharacterMovement movement, Vector2 position)
