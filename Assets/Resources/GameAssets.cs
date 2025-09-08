@@ -11,7 +11,7 @@ public class GameAssets : MonoBehaviour
             if (_i == null)
             {
                 _i = Instantiate(Resources.Load<GameAssets>("GameAssets"));
-                _i.UiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
+                GameObject.FindGameObjectWithTag("UIManager").TryGetComponent(out _i.UiManager);
             }
 
             return _i;
@@ -33,4 +33,8 @@ public class GameAssets : MonoBehaviour
     public EnemyPartySO cultists;
 
     public UIManager UiManager;
+
+    [Header("Events")]
+    public EventSO RandomCombat;
+    public EventSO LostChild;
 }

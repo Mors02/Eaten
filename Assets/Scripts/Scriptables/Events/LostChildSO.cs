@@ -19,11 +19,13 @@ public class LostChildSO : EventSO
 
     public override void EncounterOptions(int selectedOption)
     {
+        Debug.Log(selectedOption);
         switch (selectedOption)
         {
             ///add it to your party
             case 1:
                 GameManager.i.Characters.Add(new Child());
+                Debug.Log("Added child");
                 break;
 
             ///Eat it
@@ -32,6 +34,7 @@ public class LostChildSO : EventSO
                 {
                     character.Eat(20);
                 }
+                Debug.Log("Child eaten");
                 break;
         }
     }

@@ -3,8 +3,10 @@ using UnityEngine;
 public abstract class EventSO : ScriptableObject
 {
     public MapEventType type;
+    public string title;
+
     [Header("Needed if the type is combat")]
-    public EnemyParty enemyParty;
+    public EnemyPartySO enemyParty;
 
     [TextArea(4, 10)]
     [Header("Needed if the type is an encounter")]

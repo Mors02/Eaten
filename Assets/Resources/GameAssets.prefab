@@ -55,3 +55,5 @@ MonoBehaviour:
   Coolguy: {fileID: 11400000, guid: 8fb92310100ab804ebfd63c3d60b1b15, type: 2}
   cultists: {fileID: 11400000, guid: db8c93d03f9a043439c6c5fd479294c0, type: 2}
   UiManager: {fileID: 0}
+  RandomCombat: {fileID: 11400000, guid: 7a7237d22fc4f3045965d6f1b55f933c, type: 2}
+  LostChild: {fileID: 11400000, guid: 2f672e734b17844a7b75c25f3093c125, type: 2}

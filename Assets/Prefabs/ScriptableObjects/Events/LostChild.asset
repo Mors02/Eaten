@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: LostChild
   m_EditorClassIdentifier: 
   type: 2
+  title: Lost Child
+  enemyParty: {fileID: 0}
   description: You find a little pierino in the hallyway, lost and alone. You could
     bring him with you back to the bar. While you think on it, your stomach trembles
     from the hunger.

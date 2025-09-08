@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Unity.VisualScripting;
 
 public class GameManager
 {
@@ -26,6 +27,7 @@ public class GameManager
                 };
                 instance.SelectedCharacter = -1;
                 instance.CanEat = false;
+                instance.SelectedEvent = GameAssets.i.LostChild;
             }
 
             return instance;
@@ -36,7 +38,7 @@ public class GameManager
 
     public static CharacterBrain GetCharacter(int id)
     {
-       
+
 
         if (id >= i.Characters.Count)
         {
@@ -49,4 +51,6 @@ public class GameManager
     public int SelectedCharacter;
 
     public bool CanEat;
+
+    public EventSO SelectedEvent;
 }
