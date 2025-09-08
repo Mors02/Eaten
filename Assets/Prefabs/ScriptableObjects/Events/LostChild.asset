@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd7eeb64dbaf45cb82d738c6ab6b5dc, type: 3}
   m_Name: LostChild
   m_EditorClassIdentifier: 
-  type: 0
-  description: 
-  options: []
+  type: 2
+  description: You find a little pierino in the hallyway, lost and alone. You could
+    bring him with you back to the bar. While you think on it, your stomach trembles
+    from the hunger.
+  options:
+  - Add him to you party.
+  - Eat him. (+20 hunger to your whole party)
   PLACEHOLDER_FOR_ITEMS: 0
