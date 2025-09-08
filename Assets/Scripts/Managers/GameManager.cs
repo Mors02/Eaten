@@ -38,7 +38,7 @@ public class GameManager
     {
        
 
-        if (id >= GameManager.i.Characters.Count)
+        if (id >= i.Characters.Count)
         {
             return null;
         }

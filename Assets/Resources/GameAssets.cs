@@ -11,7 +11,6 @@ public class GameAssets : MonoBehaviour
             if (_i == null)
             {
                 _i = Instantiate(Resources.Load<GameAssets>("GameAssets"));
-                Debug.Log(GameObject.FindGameObjectWithTag("UIManager").gameObject.name);
                 _i.UiManager = GameObject.FindGameObjectWithTag("UIManager").GetComponent<UIManager>();
             }
 

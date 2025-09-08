@@ -36,9 +36,13 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     [SerializeField]
     private Color _fullHunger, _emptyHunger;
 
+    [SerializeField]
+    private bool _connectionActive;
+
     private void Awake()
     {
-        _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
+        if (_connectionActive)
+            _cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<ConnectManager>();
         //TODO: should be passed by the gameManager
         int id = Int32.Parse(this.gameObject.name);
 
@@ -61,12 +65,13 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        _cm.SelectStartingBlock(this);
+        if (_connectionActive)
+            _cm.SelectStartingBlock(this);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if (_cm.IsClicking() && _cm.CanSelect(gameObject.name))
+        if (_connectionActive && _cm.IsClicking() && _cm.CanSelect(gameObject.name))
         {
             _cm.Connect(this);
 
@@ -79,12 +84,12 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        this._cm.StopClicking();
+        if (_connectionActive)
+            this._cm.StopClicking();
     }
 
     public Ability GetAbility()
     {
-        Debug.Log(_cb.Ability.Name);
         return this._cb.Ability;
     }
 

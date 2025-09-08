@@ -81,6 +81,11 @@ public abstract class CharacterBrain
     public int Hunger
     { get; set; }
 
+    /// <summary>
+    /// represents how much human meat the character has eaten
+    /// </summary>
+    public int Bloodthirst { get; set; }
+
     public string Description
     {
         get => this._character.description;
@@ -97,6 +102,9 @@ public abstract class CharacterBrain
     public CharacterBrain()
     {
         this.Hunger = 100;
+        this.Level = 1;
+        this.Exp = 0;
+        this.Bloodthirst = 0;
         _onStatChange = new UnityEvent();
     }
 
@@ -122,9 +130,15 @@ public abstract class CharacterBrain
 
     public void EatEnemy(EnemyParty ep)
     {
-        this.Hunger += 20;
+        this.Eat(20);
         this.LevelUp();
         this._onStatChange.Invoke();
+    }
+
+    public void Eat(int hunger)
+    {
+        this.Hunger += hunger;
+        this.Bloodthirst++;
     }
 
     /// <summary>
