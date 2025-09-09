@@ -9,6 +9,8 @@ public class MapManager : MonoBehaviour
 
     private List<Transform> _locations;
 
+    private MapEvent _selectedEvent;
+
     [SerializeField]
     [Range(1, 5)]
     private int _activeZones;
@@ -36,5 +38,11 @@ public class MapManager : MonoBehaviour
         {
             _locations[Random.Range(0, _locations.Count)].gameObject.SetActive(true);
         }
+    }
+
+    public void SetEvent(MapEvent mapEvent)
+    {
+        GameManager.i.SelectedEvent = mapEvent.Event;
+        mapEvent.Highlight();
     }
 }

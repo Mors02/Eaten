@@ -27,7 +27,9 @@ public class GameManager
                 };
                 instance.SelectedCharacter = -1;
                 instance.CanEat = false;
-                instance.SelectedEvent = GameAssets.i.LostChild;
+                
+                //for testing purposes
+                instance.SelectedEvent = GameAssets.i.publicEvents[0];
             }
 
             return instance;

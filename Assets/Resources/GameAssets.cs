@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameAssets : MonoBehaviour
@@ -37,4 +38,6 @@ public class GameAssets : MonoBehaviour
     [Header("Events")]
     public EventSO RandomCombat;
     public EventSO LostChild;
+
+    public List<EventSO> publicEvents;
 }

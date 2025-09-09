@@ -23,13 +23,13 @@ public class LostChildSO : EventSO
         switch (selectedOption)
         {
             ///add it to your party
-            case 1:
+            case 0:
                 GameManager.i.Characters.Add(new Child());
                 Debug.Log("Added child");
                 break;
 
             ///Eat it
-            case 2:
+            case 1:
                 foreach (CharacterBrain character in GameManager.i.Characters)
                 {
                     character.Eat(20);

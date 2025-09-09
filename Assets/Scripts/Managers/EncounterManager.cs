@@ -28,7 +28,8 @@ public class EncounterManager : MonoBehaviour
             if (_event.CheckOptionAvailability(i))
             {
                 _buttons[i].GetComponentInChildren<TMP_Text>().text = _event.options[i];
-                _buttons[i].GetComponent<Button>().onClick.AddListener(delegate { _event.EncounterOptions(i); });
+                int index = i;
+                _buttons[i].GetComponent<Button>().onClick.AddListener(delegate { _event.EncounterOptions(index); });
             }
             else
             {

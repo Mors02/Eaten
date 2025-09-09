@@ -5,6 +5,8 @@ public abstract class EventSO : ScriptableObject
     public MapEventType type;
     public string title;
 
+    public Sprite sprite;
+
     [Header("Needed if the type is combat")]
     public EnemyPartySO enemyParty;
 
