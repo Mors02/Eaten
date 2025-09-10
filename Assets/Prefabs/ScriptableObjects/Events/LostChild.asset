@@ -22,4 +22,8 @@ MonoBehaviour:
   options:
   - Add him to you party.
   - Eat him. (+20 hunger to your whole party)
+  results:
+  - The child looks scared to the bone. No one can imagine what he went through.
+  - As you approach him, he immediately understand something is not right. His screams
+    fill the year while you grab him by then and let the party have a feast.
   PLACEHOLDER_FOR_ITEMS: 0

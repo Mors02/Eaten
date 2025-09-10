@@ -25,7 +25,7 @@ public class EnemyManager : MonoBehaviour
 
     void Start()
     {
-        this.EnemyParty = new GroupOfCultists();
+        this.EnemyParty = GameManager.i.SelectedEvent.enemyParty.CreateParty();
         this.Animators = new List<Animator>();
         this.EnemyPositions = new List<Transform>();
         SetupCharacterPrefabs();
@@ -51,7 +51,7 @@ public class EnemyManager : MonoBehaviour
     {
         this.EnemyParty.CurrentHP += heal;
         
-        if (((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 > _minimumHealthToEat)
+        if ((float)EnemyParty.CurrentHP / EnemyParty.MaxHP * 100 > _minimumHealthToEat)
             GameManager.i.CanEat = false;
 
         this.EnemyParty._onStatsChange.Invoke();

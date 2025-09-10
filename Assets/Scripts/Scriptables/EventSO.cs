@@ -15,6 +15,9 @@ public abstract class EventSO : ScriptableObject
     public string description;
     public string[] options;
 
+    [TextArea(4,10)]
+    public string[] results;
+
     [Header("Needed if the type is treasure or food")]
     public int PLACEHOLDER_FOR_ITEMS;
 

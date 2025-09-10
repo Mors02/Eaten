@@ -19,11 +19,19 @@ public class MapEvent : MonoBehaviour
     [SerializeField]
     private Image _image;
 
+    private MapManager _mm;
+
+    [SerializeField]
+    private Button _button;
+
     void Start()
     {
         this._mapEvent = SelectEvent();
 
         this._image.sprite = _mapEvent.sprite;
+
+        this._mm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MapManager>();        
+        this._button.onClick.AddListener(delegate { this._mm.SetEvent(this); });
     }
 
     /// <summary>
@@ -37,8 +45,8 @@ public class MapEvent : MonoBehaviour
         return events[Random.Range(0, events.Count)];
     }
 
-    public void Highlight()
+    public void Highlight(bool Highlight)
     {
-        this.transform.localScale = new Vector2(1.5f, 1.5f);
+        this.transform.localScale = Highlight? new Vector2(1f, 1f) : new Vector2(0.5f, 0.5f);
     }
 }

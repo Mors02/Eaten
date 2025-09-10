@@ -1,8 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-[CreateAssetMenu(fileName = "EnemyPartySO", menuName = "Scriptable Objects/EnemyPartySO")]
-public class EnemyPartySO : ScriptableObject
+//[CreateAssetMenu(fileName = "EnemyPartySO", menuName = "Scriptable Objects/EnemyPartySO")]
+public abstract class EnemyPartySO : ScriptableObject
 {
     [SerializeField]
     private string _name;
@@ -27,4 +27,6 @@ public class EnemyPartySO : ScriptableObject
     public int baseStrength;
     public int baseDexterity;
     public int baseIntelligence;
+
+    public abstract EnemyParty CreateParty();
 }
