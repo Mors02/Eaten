@@ -91,8 +91,11 @@ public class ConnectManager : MonoBehaviour
 
     public void Confirm()
     {
-        ActivateAllAbilities();
-        Restart();
+        if (GameManager.i.CanPlay)
+        {
+            ActivateAllAbilities();
+            Restart();   
+        }        
     }
 
     public bool IsClicking()

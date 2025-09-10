@@ -30,9 +30,6 @@ public class GameAssets : MonoBehaviour
     public Character Child;
     public Character Coolguy;
 
-    [Header("Enemies")]
-    public EnemyPartySO cultists;
-
     public UIManager UiManager;
 
     [Header("Events")]

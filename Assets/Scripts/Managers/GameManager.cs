@@ -27,7 +27,8 @@ public class GameManager
                 };
                 instance.SelectedCharacter = -1;
                 instance.CanEat = false;
-                
+                instance.CanPlay = true;
+
                 //for testing purposes
                 instance.SelectedEvent = GameAssets.i.publicEvents[0];
             }
@@ -40,8 +41,6 @@ public class GameManager
 
     public static CharacterBrain GetCharacter(int id)
     {
-
-
         if (id >= i.Characters.Count)
         {
             return null;
@@ -53,6 +52,8 @@ public class GameManager
     public int SelectedCharacter;
 
     public bool CanEat;
+
+    public bool CanPlay;
 
     public EventSO SelectedEvent;
 }

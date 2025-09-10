@@ -26,22 +26,28 @@ public class CombatManager : MonoBehaviour
     public void EnemyTurn()
     {
         this.EnemyParty.Attack(new BattlefieldContext(EnemyParty, Party));
+        Invoke("CanPlay", 2f);
     }
 
     public void PlayerTurn(List<Ability> abilities, Transform partyGraphics)
     {
-
         IEnumerator coroutine = AnimateCharacters(abilities, partyGraphics);
         StartCoroutine(coroutine);
+        GameManager.i.CanPlay = false;
         Invoke("EnemyTurn", 2f);
     }
 
-    public IEnumerator AnimateCharacters(List<Ability> abilities, Transform partyGraphics) {
+    private void CanPlay()
+    {
+        GameManager.i.CanPlay = true;
+    }
+
+    public IEnumerator AnimateCharacters(List<Ability> abilities, Transform partyGraphics)
+    {
         //foreach (Ability ability in abilities)
-        foreach (var ability in abilities.Select((value, i) => new {i, value}))
+        foreach (var ability in abilities.Select((value, i) => new { i, value }))
         {
-            BattlefieldContext context = new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i - 1), GetCharacterInActivatedList(abilities, ability.i + 1));
-            Debug.Log(GetCharacterInActivatedList(abilities, ability.i - 1));
+            BattlefieldContext context = new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i + 1), GetCharacterInActivatedList(abilities, ability.i - 1));
             ability.value.Activate(context);
             foreach (Transform child in partyGraphics)
             {
@@ -68,12 +74,12 @@ public class CombatManager : MonoBehaviour
 
     public CharacterBrain GetCharacterInActivatedList(List<Ability> list, int index)
     {
-        Debug.Log("Index: " + index);
+        
         if (index == -1)
             return null;
         if (index == list.Count)
             return null;
-        Debug.Log("Found: " + list[index].Character);
+        
         return list[index].Character;
     }
 
