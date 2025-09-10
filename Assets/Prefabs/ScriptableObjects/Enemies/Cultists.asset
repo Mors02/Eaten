@@ -12,11 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1a96612c55edd4db31f5ef4f770438, type: 3}
   m_Name: Cultists
   m_EditorClassIdentifier: 
-  _name: 
-  _description: 
-  _characters: []
-  _abilities: []
-  baseHp: 0
-  baseStrength: 0
-  baseDexterity: 0
-  baseIntelligence: 0
+  _name: Group of cultists
+  _description: A group of cultists scouring the city
+  _characters:
+  - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
+  - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
+  - {fileID: 11400000, guid: bced9542b3dc7407495fdb39de765588, type: 2}
+  - {fileID: 11400000, guid: bced9542b3dc7407495fdb39de765588, type: 2}
+  - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
+  _abilities:
+  - {fileID: 11400000, guid: ae7b14c58c9294283a635c0a87d4002c, type: 2}
+  - {fileID: 11400000, guid: 17da9f5f16d164ca2854621c52879a68, type: 2}
+  baseHp: 30
+  baseStrength: 4
+  baseDexterity: 2
+  baseIntelligence: 3

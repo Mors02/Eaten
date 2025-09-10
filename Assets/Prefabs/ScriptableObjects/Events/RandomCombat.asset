@@ -15,7 +15,8 @@ MonoBehaviour:
   type: 0
   title: 
   sprite: {fileID: 297761703447499198, guid: 63ec0a49f699946b2b6ec3102b8a7a8a, type: 3}
-  enemyParty: {fileID: 11400000, guid: db8c93d03f9a043439c6c5fd479294c0, type: 2}
+  enemyParty: {fileID: 11400000, guid: 7f0a26304e6b98b449d662d9200d5972, type: 2}
   description: 
   options: []
+  results: []
   PLACEHOLDER_FOR_ITEMS: 0
