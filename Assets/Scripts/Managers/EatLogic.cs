@@ -85,5 +85,7 @@ public class EatLogic : MonoBehaviour
     public void ShowButton()
     {
         this._button.gameObject.SetActive(GameManager.i.CanEat);
+        GameAssets.i.UiManager.AddToQueue("The enemies look tasty...");
+        this._em.EnemyParty._onStatsChange.RemoveListener(ShowButton);
     }
 }

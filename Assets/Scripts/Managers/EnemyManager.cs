@@ -42,6 +42,7 @@ public class EnemyManager : MonoBehaviour
         {
 
             GameManager.i.CanEat = true;
+            
         }
         this.EnemyParty._onStatsChange.Invoke();
         
@@ -63,7 +64,7 @@ public class EnemyManager : MonoBehaviour
     {        
         int index = Random.Range(0, EnemyParty.Abilities.Count);
         this.EnemyParty.Abilities[index].Activate(context);
-        GameAssets.i.UiManager.SetupInfoBox(this.EnemyParty.Abilities[index].Description);
+        GameAssets.i.UiManager.AddToQueue(this.EnemyParty.Abilities[index].Description);
     }
 
     public void Animate(string animation)

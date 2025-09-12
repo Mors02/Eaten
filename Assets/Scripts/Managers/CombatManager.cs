@@ -23,12 +23,20 @@ public class CombatManager : MonoBehaviour
         this.EnemyParty = _enemyObject.GetComponent<EnemyManager>();
     }
 
+    /// <summary>
+    /// decides what the enemies will do
+    /// </summary>
     public void EnemyTurn()
     {
         this.EnemyParty.Attack(new BattlefieldContext(EnemyParty, Party));
         Invoke("CanPlay", 2f);
     }
 
+    /// <summary>
+    /// activate what the player decided during their turn
+    /// </summary>
+    /// <param name="abilities">the list of abilities in the order of activation</param>
+    /// <param name="partyGraphics">the transform that contains the party graphics</param>
     public void PlayerTurn(List<Ability> abilities, Transform partyGraphics)
     {
         IEnumerator coroutine = AnimateCharacters(abilities, partyGraphics);

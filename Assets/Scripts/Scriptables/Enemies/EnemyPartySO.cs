@@ -24,6 +24,7 @@ public abstract class EnemyPartySO : ScriptableObject
 
     public List<Character> Characters => _characters;
     public int baseHp;
+    public int baseFear;
     public int baseStrength;
     public int baseDexterity;
     public int baseIntelligence;
