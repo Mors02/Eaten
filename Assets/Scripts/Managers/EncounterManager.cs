@@ -1,6 +1,8 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class EncounterManager : MonoBehaviour
@@ -9,7 +11,10 @@ public class EncounterManager : MonoBehaviour
     private GameObject[] _buttons;
 
     [SerializeField]
-    private TMP_Text _title, _description;
+    private GameObject _eventSection, _resultSection;
+
+    [SerializeField]
+    private TMP_Text _title, _description, _result;
 
     private EventSO _event;
 
@@ -30,6 +35,7 @@ public class EncounterManager : MonoBehaviour
                 _buttons[i].GetComponentInChildren<TMP_Text>().text = _event.options[i];
                 int index = i;
                 _buttons[i].GetComponent<Button>().onClick.AddListener(delegate { _event.EncounterOptions(index); });
+                _buttons[i].GetComponent<Button>().onClick.AddListener(delegate { Continue(index); });
             }
             else
             {
@@ -42,6 +48,18 @@ public class EncounterManager : MonoBehaviour
         {
             _buttons[i].gameObject.SetActive(false);
         }
+    }
+
+    public void Continue(int index)
+    {
+        _eventSection.SetActive(false);
+        _result.text = _event.results[index];
+        _resultSection.SetActive(true);
+    }
+
+    public void Finish()
+    {
+        SceneManager.LoadScene("PartyScene");
     }
 
 }
