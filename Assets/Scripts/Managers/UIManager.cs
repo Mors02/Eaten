@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _characterSection, _infosection;
+    private GameObject _characterSection, _infosection, _itemSection;
 
     [SerializeField]
     private TMP_Text _strength, _intelligence, _dexterity, _hunger, _infobox, _name, _abilityDescription, _health;
@@ -39,6 +39,11 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = cb.Ability.Description;
         this._name.text = cb.characterName;
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
+    }
+
+    public void SetupItem()
+    {
+        
     }
 
 
