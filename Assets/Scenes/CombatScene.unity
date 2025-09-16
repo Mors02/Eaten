@@ -1787,6 +1787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterSection: {fileID: 1875640400}
   _infosection: {fileID: 232729108}
+  _itemSection: {fileID: 368780440}
   _strength: {fileID: 1123451920}
   _intelligence: {fileID: 983491954}
   _dexterity: {fileID: 1262865341}

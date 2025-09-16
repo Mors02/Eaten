@@ -29,8 +29,7 @@ public class UIManager : MonoBehaviour
     /// <param name="cb">the character information to display</param>
     public void SetupCharacter(CharacterBrain cb)
     {
-        this._characterSection.SetActive(true);
-        this._infosection.SetActive(false);
+         this.ShowSection("character");
         this._strength.text = cb.Strength.ToString();
         this._dexterity.text = cb.Dexterity.ToString();
         this._intelligence.text = cb.Intelligence.ToString();
@@ -43,7 +42,7 @@ public class UIManager : MonoBehaviour
 
     public void SetupItem()
     {
-        
+         this.ShowSection("item");
     }
 
 
@@ -53,8 +52,7 @@ public class UIManager : MonoBehaviour
     /// <param name="ep">the enemy informations</param>
     public void SetupEnemy(EnemyParty ep)
     {
-        this._characterSection.SetActive(true);
-        this._infosection.SetActive(false);
+        this.ShowSection("character");
         this._strength.text = ep.Strength.ToString();
         this._dexterity.text = ep.Dexterity.ToString();
         this._intelligence.text = ep.Intelligence.ToString();
@@ -69,8 +67,14 @@ public class UIManager : MonoBehaviour
     /// </summary>
     public void Clean()
     {
-        this._infosection.SetActive(false);
-        this._characterSection.SetActive(false);
+        this.ShowSection("none");
+    }
+
+    private void ShowSection(string section)
+    {
+        this._infosection.SetActive(section == "info");
+        this._characterSection.SetActive(section == "character");
+        this._itemSection.SetActive(section == "item");
     }
 
     /// <summary>
@@ -79,8 +83,7 @@ public class UIManager : MonoBehaviour
     /// <param name="text"></param>
     private void SetupInfoBox(string text)
     {
-        this._characterSection.SetActive(false);
-        this._infosection.SetActive(true);
+         this.ShowSection("info");
         this._infobox.text = text;
     }
 
