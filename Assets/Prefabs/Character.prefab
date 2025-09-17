@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sprite: {fileID: 5592472287106543542}
+  _animator: {fileID: 9174425134513096102}
+  _foodSprite: {fileID: 1265860789310791202}
 --- !u!50 &6279838257228795236
 Rigidbody2D:
   serializedVersion: 5
@@ -228,7 +230,7 @@ Transform:
   m_GameObject: {fileID: 2855105781594032049}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.087, y: 0.3342, z: 0}
+  m_LocalPosition: {x: 0, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -278,12 +280,12 @@ SpriteRenderer:
   m_SortingLayerID: 1092817015
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 6722094434123790897, guid: 103976fe5b8904af4951e5ab6969d852, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 6722094434123790897, guid: e3e667eaba2414006a953f6bd5d36633, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

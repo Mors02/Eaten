@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae03cbd9683394681a6fa9c07891a14c, type: 3}
   m_Name: Meat
   m_EditorClassIdentifier: 
-  Name: Human Meat
+  Name: Human Flesh
   HungerRestore: 40
   Damage: 2
-  Sprite: {fileID: 6722094434123790897, guid: 103976fe5b8904af4951e5ab6969d852, type: 3}
+  Sprite: {fileID: 6722094434123790897, guid: e3e667eaba2414006a953f6bd5d36633, type: 3}
   DescriptionWhenThrown: Restore 40 hunger
   DescriptionWhenEaten: Deals 2 damage

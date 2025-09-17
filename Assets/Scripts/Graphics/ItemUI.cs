@@ -18,6 +18,9 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     [SerializeField]
     private Image _image;
 
+    [SerializeField]
+    private CombatManager _cm;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         this._clicked = true;
@@ -43,6 +46,8 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
             this._childTransform.gameObject.SetActive(false);
             return;
         }
+
+        this._cm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CombatManager>();
 
         this.SetupItem();
     }
@@ -75,10 +80,12 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                     if (target.Action == ActionType.Eat)
                     {
                         _item.Eat(target.Character);
+                        _cm.EatAnimation(target.Character.Id, _item);
                     }
                     else
                     {
                         _item.Throw(target.Enemy);
+                        target.Enemy.ThrowAnimation(_item);
                     }
                     this._childTransform.gameObject.SetActive(false);
                 }

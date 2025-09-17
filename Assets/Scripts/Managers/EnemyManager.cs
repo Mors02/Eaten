@@ -18,6 +18,12 @@ public class EnemyManager : MonoBehaviour
     public List<Animator> Animators { get; set; }
 
     [SerializeField]
+    private Animator _partyAnimator;
+
+    [SerializeField]
+    private SpriteRenderer _foodImage;
+
+    [SerializeField]
     private GameObject _characterPrefab;
 
     [SerializeField]
@@ -60,8 +66,15 @@ public class EnemyManager : MonoBehaviour
 
     }
 
+    public void ThrowAnimation(Item item)
+    {
+        _foodImage.sprite = item.Sprite;
+
+        _partyAnimator.SetTrigger("Throw");
+    }
+
     public void Attack(BattlefieldContext context)
-    {        
+    {
         int index = Random.Range(0, EnemyParty.Abilities.Count);
         this.EnemyParty.Abilities[index].Activate(context);
         GameAssets.i.UiManager.AddToQueue(this.EnemyParty.Abilities[index].Description);

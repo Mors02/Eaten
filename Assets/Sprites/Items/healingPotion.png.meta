@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8498035bdfe1f43b5bbfc18f0c0d683b
+guid: 4cce26065793e4317a27e817dd92aca5
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -116,10 +116,10 @@ TextureImporter:
       name: healingPotion_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 9
-        height: 13
+        x: 2
+        y: 1
+        width: 11
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

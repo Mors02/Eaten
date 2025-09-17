@@ -13,16 +13,31 @@ public class CombatManager : MonoBehaviour
     [SerializeField]
     private GameObject _enemyObject;
 
+    /// <summary>
+    /// Party in the UI
+    /// </summary>
     [SerializeField]
     private Transform _party;
+    
+    /// <summary>
+    /// Party graphics in the gameworld
+    /// </summary>
+    [SerializeField]
+    private Transform _partyGraphics;
+
+    private List<CharacterGraphics> _graphics;
     //    public GameObject EnemyObject { get; set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.Party = GetParty();
         this.EnemyParty = _enemyObject.GetComponent<EnemyManager>();
+        this._graphics = new List<CharacterGraphics>();
+        foreach (Transform child in _partyGraphics)
+        {
+            _graphics.Add(child.GetComponentInChildren<CharacterGraphics>());
+        }
     }
-
     /// <summary>
     /// decides what the enemies will do
     /// </summary>
@@ -37,9 +52,9 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     /// <param name="abilities">the list of abilities in the order of activation</param>
     /// <param name="partyGraphics">the transform that contains the party graphics</param>
-    public void PlayerTurn(List<Ability> abilities, Transform partyGraphics)
+    public void PlayerTurn(List<Ability> abilities)
     {
-        IEnumerator coroutine = AnimateCharacters(abilities, partyGraphics);
+        IEnumerator coroutine = AnimateCharacters(abilities);
         StartCoroutine(coroutine);
         GameManager.i.CanPlay = false;
         Invoke("EnemyTurn", 2f);
@@ -48,25 +63,24 @@ public class CombatManager : MonoBehaviour
     private void CanPlay()
     {
         GameManager.i.CanPlay = true;
-    }
+    } 
 
-    public IEnumerator AnimateCharacters(List<Ability> abilities, Transform partyGraphics)
+    public IEnumerator AnimateCharacters(List<Ability> abilities)
     {
         //foreach (Ability ability in abilities)
         foreach (var ability in abilities.Select((value, i) => new { i, value }))
         {
             BattlefieldContext context = new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i + 1), GetCharacterInActivatedList(abilities, ability.i - 1));
-            ability.value.Activate(context);
-            foreach (Transform child in partyGraphics)
-            {
+            ability.value.Activate(context);            
+            _graphics[ability.value.CharacterId].AttackAnimation(ability.value.AnimationType.ToString());
 
-                if (child.gameObject.name == ability.value.CharacterId.ToString())
-                {
-                    child.GetComponentInChildren<Animator>().SetTrigger(ability.value.AnimationType.ToString());
-                }
-            }
             yield return new WaitForSeconds(0.2f);
         }
+    }
+
+    public void EatAnimation(int Id, Item item)
+    {
+        _graphics[Id].EatAnimation(item);
     }
 
     /// <summary>

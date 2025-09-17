@@ -8,6 +8,12 @@ public class CharacterGraphics : MonoBehaviour
 
     private CharacterBrain _character;
 
+    [SerializeField]
+    private Animator _animator;
+
+    [SerializeField]
+    private SpriteRenderer _foodSprite;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -25,12 +31,23 @@ public class CharacterGraphics : MonoBehaviour
             {
                 this._sprite.sprite = _character.Sprite;
             }
+
+            this._animator = GetComponent<Animator>();
         }
         catch (Exception e)
         {
             //Debug.Log(e);
         }
-            
-            
+    }
+
+    public void AttackAnimation(string animationType)
+    {
+        this._animator.SetTrigger(animationType);
+    }
+
+    public void EatAnimation(Item item)
+    {
+        _foodSprite.sprite = item.Sprite;
+        this._animator.SetTrigger("Consume");
     }
 }

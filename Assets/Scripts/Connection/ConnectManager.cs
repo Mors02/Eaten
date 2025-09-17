@@ -20,8 +20,6 @@ public class ConnectManager : MonoBehaviour
     [SerializeField]
     private CombatManager _cm;
 
-    [SerializeField]
-    private Transform _party;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -146,7 +144,7 @@ public class ConnectManager : MonoBehaviour
     public void ActivateAllAbilities()
     {
 
-        _cm.PlayerTurn(_abilities, _party);
+        _cm.PlayerTurn(_abilities);
 
         _abilities = new List<Ability>();
     }

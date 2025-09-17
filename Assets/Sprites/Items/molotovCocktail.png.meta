@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2c8e1d956a26949e583dfbfc2316cfae
+guid: 53d72043324c240bcb30e0b9203b371b
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -116,10 +116,10 @@ TextureImporter:
       name: molotovCocktail_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 0
+        x: 4
+        y: 1
         width: 10
-        height: 11
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
