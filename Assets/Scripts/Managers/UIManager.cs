@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     private GameObject _characterSection, _infosection, _itemSection;
 
     [SerializeField]
-    private TMP_Text _strength, _intelligence, _dexterity, _hunger, _infobox, _name, _abilityDescription, _health;
+    private TMP_Text _strength, _intelligence, _dexterity, _hunger, _infobox, _name, _abilityDescription, _health, _itemName, _itemThrow, _itemEat;
 
     [SerializeField]
     private Queue<Message> _messages;
@@ -40,9 +40,12 @@ public class UIManager : MonoBehaviour
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
     }
 
-    public void SetupItem()
+    public void SetupItem(Item item)
     {
-         this.ShowSection("item");
+        this.ShowSection("item");
+        this._itemName.text = item.ItemName;
+        this._itemThrow.text = item.ThrowDescription;
+        this._itemEat.text = item.EatDescription;
     }
 
 

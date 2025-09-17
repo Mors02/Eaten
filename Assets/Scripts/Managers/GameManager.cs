@@ -25,6 +25,15 @@ public class GameManager
                     //new Child(),
                     //new Coolguy()
                 };
+
+                instance.Inventory = new List<Item>
+                {
+                    new Item(GameAssets.i.items[0]),
+                    new Item(GameAssets.i.items[0]),
+                    new Item(GameAssets.i.items[0]),
+                    new Item(GameAssets.i.items[0]),
+                };
+
                 instance.SelectedCharacter = -1;
                 instance.CanEat = false;
                 instance.CanPlay = true;
@@ -39,6 +48,8 @@ public class GameManager
 
     public List<CharacterBrain> Characters;
 
+    public List<Item> Inventory;
+
     public static CharacterBrain GetCharacter(int id)
     {
         if (id >= i.Characters.Count)
@@ -49,6 +60,16 @@ public class GameManager
         return i.Characters[id];
     }
 
+    public static Item GetItem(int id)
+    {
+        if (id >= i.Inventory.Count)
+        {
+            return null;
+        }
+
+        return i.Inventory[id];
+    }
+
     public int SelectedCharacter;
 
     public bool CanEat;
@@ -56,4 +77,6 @@ public class GameManager
     public bool CanPlay;
 
     public EventSO SelectedEvent;
+
+    public DroppableTarget Target;    
 }

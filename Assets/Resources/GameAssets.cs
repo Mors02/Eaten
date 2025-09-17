@@ -37,4 +37,6 @@ public class GameAssets : MonoBehaviour
     public EventSO LostChild;
 
     public List<EventSO> publicEvents;
+
+    public List<ItemSO> items;
 }
