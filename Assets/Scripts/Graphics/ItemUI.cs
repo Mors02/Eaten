@@ -116,18 +116,20 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 
             }
         }
-        else
-        {
-            //Debug.Log("Not Clicking");
-        }
 
+    }
+
+    public void Inactive()
+    {
+        this._collider.enabled = false;
+        this._childTransform.gameObject.SetActive(false);
     }
 
     /// <summary>
     /// Setup the graphics;
     /// </summary>
     public void SetupItem()
-    {      
+    {
         this._image.sprite = _item.Sprite;
     }
 

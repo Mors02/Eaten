@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class CombatManager : MonoBehaviour
 {
@@ -18,12 +18,21 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     [SerializeField]
     private Transform _party;
-    
+
     /// <summary>
     /// Party graphics in the gameworld
     /// </summary>
     [SerializeField]
     private Transform _partyGraphics;
+
+    [Range(0, 100)]
+    [SerializeField]
+    private int _dropRate;
+
+    [SerializeField]
+    private Transform _dropParent;
+
+    private int _howManyDrops;
 
     private List<CharacterGraphics> _graphics;
     //    public GameObject EnemyObject { get; set; }
@@ -31,6 +40,9 @@ public class CombatManager : MonoBehaviour
     void Start()
     {
         GameManager.i.CanPlay = true;
+        GameManager.i.EnemiesEaten = 0;
+        GameManager.i.CharactersDead = 0;
+        _howManyDrops = 0;
         this.Party = GetParty();
         this.EnemyParty = _enemyObject.GetComponent<EnemyManager>();
         this._graphics = new List<CharacterGraphics>();
@@ -44,11 +56,15 @@ public class CombatManager : MonoBehaviour
     /// </summary>
     public void EnemyTurn(float delay = 2f)
     {
-        if (this.EnemyParty.EnemyPositions.Count == 0)
-        {
-            
-        }
         GameManager.i.CanPlay = false;
+        
+        if (this.EnemyParty.EnemyPositions.Count == 4)
+        {
+            SetupDrop();
+            return;
+        }
+
+        
         Invoke("EnemyAction", delay);
     }
 
@@ -88,7 +104,7 @@ public class CombatManager : MonoBehaviour
     private void CanPlay()
     {
         GameManager.i.CanPlay = true;
-    } 
+    }
 
     public IEnumerator AnimateCharacters(List<Ability> abilities)
     {
@@ -96,7 +112,7 @@ public class CombatManager : MonoBehaviour
         foreach (var ability in abilities.Select((value, i) => new { i, value }))
         {
             BattlefieldContext context = new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i + 1), GetCharacterInActivatedList(abilities, ability.i - 1));
-            ability.value.Activate(context);            
+            ability.value.Activate(context);
             _graphics[ability.value.CharacterId].AttackAnimation(ability.value.AnimationType.ToString());
 
             yield return new WaitForSeconds(0.2f);
@@ -121,12 +137,12 @@ public class CombatManager : MonoBehaviour
 
     public CharacterBrain GetCharacterInActivatedList(List<Ability> list, int index)
     {
-        
+
         if (index == -1)
             return null;
         if (index == list.Count)
             return null;
-        
+
         return list[index].Character;
     }
 
@@ -143,6 +159,27 @@ public class CombatManager : MonoBehaviour
         }
 
         return party;
+    }
+
+    public void SetupDrop()
+    {
+        foreach (Transform child in _dropParent)
+        {
+            ItemUI ui = child.gameObject.GetComponent<ItemUI>();
+            //see if an item is dropped
+            if (Random.Range(0, 100) < _dropRate)
+            {
+                //generate the new item
+                ui.SetItem(new Item(GameAssets.i.items[Random.Range(0, GameAssets.i.items.Count)]));
+                _howManyDrops++;
+            } else {
+                ui.Inactive();
+            }
+            //halve the drop rate for the followings items;
+            //_dropRate = _dropRate / 2;
+        }
+
+        GameAssets.i.UiManager.SetupEndscreen(_howManyDrops);
     }
 }
 

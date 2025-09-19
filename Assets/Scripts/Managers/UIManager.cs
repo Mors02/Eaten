@@ -12,6 +12,12 @@ public class UIManager : MonoBehaviour
     private TMP_Text _strength, _intelligence, _dexterity, _hunger, _infobox, _name, _abilityDescription, _health, _itemName, _itemThrow, _itemEat;
 
     [SerializeField]
+    private TMP_Text _nothingText, _enemiesEaten, _charactersDead;
+
+    [SerializeField]
+    private Animator _endScreenAnimator;
+
+    [SerializeField]
     private Queue<Message> _messages;
 
     private float _currentTime;
@@ -63,6 +69,19 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = ep.Description;
         this._name.text = ep.Name;
         this._health.text = ep.CurrentHP + "/" + ep.MaxHP;
+    }
+
+    public void SetupEndscreen(int drops)
+    {
+        _charactersDead.text = GameManager.i.CharactersDead.ToString();
+        _enemiesEaten.text = GameManager.i.EnemiesEaten.ToString();
+        if (drops == 0)
+        {
+            _nothingText.gameObject.SetActive(true);
+
+        }
+        _endScreenAnimator.gameObject.SetActive(true);
+        _endScreenAnimator.SetTrigger("Show");
     }
 
     /// <summary>

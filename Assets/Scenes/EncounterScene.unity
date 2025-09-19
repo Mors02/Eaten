@@ -1554,10 +1554,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 640, y: 360}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1622,6 +1622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterSection: {fileID: 0}
   _infosection: {fileID: 0}
+  _itemSection: {fileID: 0}
   _strength: {fileID: 0}
   _intelligence: {fileID: 0}
   _dexterity: {fileID: 0}
@@ -1630,6 +1631,9 @@ MonoBehaviour:
   _name: {fileID: 0}
   _abilityDescription: {fileID: 0}
   _health: {fileID: 0}
+  _itemName: {fileID: 0}
+  _itemThrow: {fileID: 0}
+  _itemEat: {fileID: 0}
 --- !u!1 &1831661816
 GameObject:
   m_ObjectHideFlags: 0

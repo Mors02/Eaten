@@ -76,6 +76,8 @@ public class GameManager
 
     public bool CanPlay;
 
+    public int EnemiesEaten, CharactersDead;
+
     public EventSO SelectedEvent;
 
     public DroppableTarget Target;    

@@ -314,7 +314,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 50, y: 50}
+  m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4568187720677496007
 CanvasRenderer:
@@ -627,6 +627,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetCharacter: {fileID: 8425813180157421534}
   _targetEnemy: {fileID: 0}
+  _itemUI: {fileID: 0}
   _action: 0
 --- !u!61 &8760541713498321825
 BoxCollider2D:
@@ -811,7 +812,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 60, y: 60}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7775764811140178509
 CanvasRenderer:

@@ -72,6 +72,8 @@ public class EatLogic : MonoBehaviour
 
                 GameManager.i.SelectedCharacter = -1;
 
+                GameManager.i.EnemiesEaten++;
+
                 _cm.RemoveAllHighlights();
             }
         }

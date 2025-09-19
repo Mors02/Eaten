@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 using UnityEngine;
 
 public class ItemManager : MonoBehaviour
@@ -7,13 +9,14 @@ public class ItemManager : MonoBehaviour
     private Animator _animator;
 
     [SerializeField]
-    private bool _static;
+    private bool _static;    
 
     private bool _open;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         _open = false;
+
     }
 
     // Update is called once per frame
@@ -21,7 +24,7 @@ public class ItemManager : MonoBehaviour
     {
         if (_static)
             return;
-            
+
         //If it wasnt open and i click on the button, send the open animation
         if (!_open && Input.GetButton("Jump"))
         {
@@ -36,4 +39,6 @@ public class ItemManager : MonoBehaviour
         }
         //if it was open and i stop clicking, send the close animation
     }
+
+   
 }
