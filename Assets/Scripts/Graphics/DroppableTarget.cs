@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DroppableTarget : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class DroppableTarget : MonoBehaviour
 {
     [SerializeField]
     private Connect _targetCharacter;
@@ -15,24 +15,21 @@ public class DroppableTarget : MonoBehaviour, IPointerEnterHandler, IPointerExit
     public EnemyManager Enemy { get => _action == ActionType.Throw? _targetEnemy : null; }
 
     [SerializeField]
+    private ItemUI _itemUI;
+
+    public ItemUI ItemSlot { get => _action == ActionType.Drop ? _itemUI : null; }
+
+    [SerializeField]
     private ActionType _action;
 
     public ActionType Action => _action;
-
-    [SerializeField]
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        GameManager.i.Target = this;
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        GameManager.i.Target = null;
-    }
 }
 
 public enum ActionType
 {
     Eat,
-    Throw
+    Throw,
+    Delete,
+
+    Drop
 }

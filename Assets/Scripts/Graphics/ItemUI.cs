@@ -21,6 +21,11 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     [SerializeField]
     private CombatManager _cm;
 
+    [SerializeField]
+    private Collider2D _collider;
+
+    private int _id;
+
     public void OnPointerDown(PointerEventData eventData)
     {
         this._clicked = true;
@@ -38,12 +43,13 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
         this._clicked = false;
         this._startPosition = this._parentTransform.anchoredPosition;
         //this._childTransform = gameObject.GetComponent<RectTransform>();
-        int id = Int32.Parse(this._parentTransform.gameObject.name);
-        this._item = GameManager.GetItem(id);
+        this._id = Int32.Parse(this._parentTransform.gameObject.name);
+        this._item = GameManager.GetItem(_id);
 
         if (this._item == null)
         {
             this._childTransform.gameObject.SetActive(false);
+            this._collider.enabled = true;
             return;
         }
 
@@ -74,20 +80,35 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                  }*/
                 RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, Vector3.forward);
                 DroppableTarget target;
+                Debug.Log(hit.collider);
 
-                if (hit.collider && hit.collider.gameObject.TryGetComponent<DroppableTarget>(out target))
+                if (hit.collider && hit.collider.gameObject.TryGetComponent(out target))
                 {
-                    if (target.Action == ActionType.Eat)
+                    switch (target.Action)
                     {
-                        _item.Eat(target.Character);
-                        _cm.EatAnimation(target.Character.Id, _item);
+                        case ActionType.Eat:
+                            _item.Eat(target.Character);
+                            _cm.EatAnimation(target.Character.Id, _item);
+                            break;
+
+                        case ActionType.Throw:
+                            _item.Throw(target.Enemy);
+                            target.Enemy.ThrowAnimation(_item);
+                            break;
+
+                        case ActionType.Delete:
+                            Debug.Log("DELETE");
+                            break;
+                        case ActionType.Drop:
+
+                            target.ItemSlot.SetItem(_item);
+
+                            break;
+
                     }
-                    else
-                    {
-                        _item.Throw(target.Enemy);
-                        target.Enemy.ThrowAnimation(_item);
-                    }
+                    GameManager.i.Inventory[_id] = null;
                     this._childTransform.gameObject.SetActive(false);
+                    this._collider.enabled = true;
                 }
 
                 this._childTransform.anchoredPosition = _startPosition;
@@ -102,9 +123,25 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 
     }
 
+    /// <summary>
+    /// Setup the graphics;
+    /// </summary>
     public void SetupItem()
-    {
+    {      
         this._image.sprite = _item.Sprite;
+    }
+
+    /// <summary>
+    /// Set the current item to the one passed
+    /// </summary>
+    /// <param name="item"></param>
+    public void SetItem(Item item)
+    {
+        this._collider.enabled = false;
+        this._childTransform.gameObject.SetActive(true);
+        this._item = item;
+        GameManager.i.Inventory[_id] = this._item;
+        SetupItem();
     }
 
 }

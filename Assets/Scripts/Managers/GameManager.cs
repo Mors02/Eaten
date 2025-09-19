@@ -26,7 +26,7 @@ public class GameManager
                     //new Coolguy()
                 };
 
-                instance.Inventory = new List<Item>
+                instance.Inventory = new Item[]
                 {
                     new Item(GameAssets.i.items[0]),
                     new Item(GameAssets.i.items[0]),
@@ -48,7 +48,7 @@ public class GameManager
 
     public List<CharacterBrain> Characters;
 
-    public List<Item> Inventory;
+    public Item[] Inventory;
 
     public static CharacterBrain GetCharacter(int id)
     {
@@ -62,7 +62,7 @@ public class GameManager
 
     public static Item GetItem(int id)
     {
-        if (id >= i.Inventory.Count)
+        if (id >= i.Inventory.Length)
         {
             return null;
         }

@@ -62,8 +62,6 @@ public class EnemyManager : MonoBehaviour
             GameManager.i.CanEat = false;
 
         this.EnemyParty._onStatsChange.Invoke();
-
-
     }
 
     public void ThrowAnimation(Item item)

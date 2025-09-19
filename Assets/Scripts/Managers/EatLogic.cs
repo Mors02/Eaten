@@ -12,6 +12,9 @@ public class EatLogic : MonoBehaviour
     [SerializeField]
     private EnemyManager _em;
 
+    [SerializeField]
+    private CombatManager _cm;
+
     /// <summary>
     /// Party graphics that contains the characters that can move
     /// </summary>
@@ -66,10 +69,14 @@ public class EatLogic : MonoBehaviour
                 GameManager.i.Characters[GameManager.i.SelectedCharacter].EatEnemy(_em.EnemyParty);
 
                 this._em.EnemyPositions.Remove(enemy);
+
+                GameManager.i.SelectedCharacter = -1;
+
+                _cm.RemoveAllHighlights();
             }
         }
 
-        Debug.Log("Length: " + this._em.EnemyPositions.Count);
+        this._cm.EnemyTurn();
     }
 
     private IEnumerator GoBack(float time, CharacterMovement movement, Vector2 position)

@@ -30,6 +30,7 @@ public class CombatManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameManager.i.CanPlay = true;
         this.Party = GetParty();
         this.EnemyParty = _enemyObject.GetComponent<EnemyManager>();
         this._graphics = new List<CharacterGraphics>();
@@ -41,7 +42,32 @@ public class CombatManager : MonoBehaviour
     /// <summary>
     /// decides what the enemies will do
     /// </summary>
-    public void EnemyTurn()
+    public void EnemyTurn(float delay = 2f)
+    {
+        if (this.EnemyParty.EnemyPositions.Count == 0)
+        {
+            
+        }
+        GameManager.i.CanPlay = false;
+        Invoke("EnemyAction", delay);
+    }
+
+    /// <summary>
+    /// Called when the enemy party cant continue fighting
+    /// </summary>
+    /// <param name="run">True if there are survivors that should run away as an animation</param>
+    public void EnemyOutOfAction(bool run)
+    {
+        GameManager.i.CanPlay = false;
+        for (int i = 0; i < _graphics.Count; i++)
+        {
+            _graphics[i].AttackAnimation("Jump");
+        }
+
+
+    }
+
+    private void EnemyAction()
     {
         this.EnemyParty.Attack(new BattlefieldContext(EnemyParty, Party));
         Invoke("CanPlay", 2f);
@@ -56,8 +82,7 @@ public class CombatManager : MonoBehaviour
     {
         IEnumerator coroutine = AnimateCharacters(abilities);
         StartCoroutine(coroutine);
-        GameManager.i.CanPlay = false;
-        Invoke("EnemyTurn", 2f);
+        EnemyTurn();
     }
 
     private void CanPlay()

@@ -18,5 +18,5 @@ MonoBehaviour:
   baseStrength: 4
   baseDexterity: 4
   baseIntelligence: 6
-  sprite: {fileID: 1012188541264668013, guid: 8c5657c3e6516ae4aac3773a7b5bad68, type: 3}
+  sprite: {fileID: -3137845469996015955, guid: 468c4e52181e24d3d8b33387d7665a7f, type: 3}
   abilityPool: []
