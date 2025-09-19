@@ -9,6 +9,8 @@ public abstract class ItemSO : ScriptableObject
 
     public int Damage;
 
+    public int Heal;
+
     public Sprite Sprite;
 
     [TextArea(3, 4)]

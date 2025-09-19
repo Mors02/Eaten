@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d5172583db6ab4791522631455e833, type: 3}
+  m_Name: Bones
+  m_EditorClassIdentifier: 
+  Name: Human Bones
+  HungerRestore: 10
+  Damage: 7
+  Heal: 3
+  Sprite: {fileID: 1280859772650141007, guid: da4dad81b3a8e437abe7a9859bcc5644, type: 3}
+  DescriptionWhenThrown: Deals 7 damage.
+  DescriptionWhenEaten: Restore 10 hunger and heals 3 health.

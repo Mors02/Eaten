@@ -29,9 +29,9 @@ public class GameManager
                 instance.Inventory = new Item[]
                 {
                     new Item(GameAssets.i.items[0]),
-                    new Item(GameAssets.i.items[0]),
-                    new Item(GameAssets.i.items[0]),
-                    new Item(GameAssets.i.items[0]),
+                    new Item(GameAssets.i.items[1]),
+                    new Item(GameAssets.i.items[2]),
+                    new Item(GameAssets.i.items[3]),
                 };
 
                 instance.SelectedCharacter = -1;

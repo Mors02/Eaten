@@ -87,31 +87,38 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                     switch (target.Action)
                     {
                         case ActionType.Eat:
+                            if (!GameManager.i.CanPlay)
+                                break;
+
                             _item.Eat(target.Character);
                             _cm.EatAnimation(target.Character.Id, _item);
                             break;
 
                         case ActionType.Throw:
+                            if (!GameManager.i.CanPlay)
+                                break;
+
                             _item.Throw(target.Enemy);
                             target.Enemy.ThrowAnimation(_item);
                             break;
 
-                        case ActionType.Delete:
-                            Debug.Log("DELETE");
+                        case ActionType.Delete:                            
                             break;
                         case ActionType.Drop:
-
                             target.ItemSlot.SetItem(_item);
-
                             break;
 
                     }
-                    GameManager.i.Inventory[_id] = null;
-                    this._childTransform.gameObject.SetActive(false);
-                    this._collider.enabled = true;
+                    //can only do this if you can play or you cant play but you only do inventory management
+                    if (GameManager.i.CanPlay || (!GameManager.i.CanPlay && (target.Action == ActionType.Delete || target.Action == ActionType.Drop)))
+                    {
+                        GameManager.i.Inventory[_id] = null;
+                        this._childTransform.gameObject.SetActive(false);
+                        this._collider.enabled = true;
+                    }
                 }
-
-                this._childTransform.anchoredPosition = _startPosition;
+                Debug.Log(_startPosition);
+                this._childTransform.anchoredPosition = Vector2.zero;
 
 
             }
