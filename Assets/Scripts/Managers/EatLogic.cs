@@ -31,7 +31,7 @@ public class EatLogic : MonoBehaviour
 
     public void Eat()
     {
-        if (GameManager.i.SelectedCharacter == -1)
+        if (GameManager.i.SelectedCharacter == -1 || !GameManager.i.CanPlay)
             return;
 
         if (_em.EnemyPositions.Count == 0)

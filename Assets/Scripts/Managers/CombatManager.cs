@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class CombatManager : MonoBehaviour
 {
@@ -57,14 +58,6 @@ public class CombatManager : MonoBehaviour
     public void EnemyTurn(float delay = 2f)
     {
         GameManager.i.CanPlay = false;
-        
-        if (this.EnemyParty.EnemyPositions.Count == 4)
-        {
-            SetupDrop();
-            return;
-        }
-
-        
         Invoke("EnemyAction", delay);
     }
 
@@ -83,8 +76,21 @@ public class CombatManager : MonoBehaviour
 
     }
 
+    public void BackToBar()
+    {
+        SceneManager.LoadScene("PartyScene");
+    }
+
     private void EnemyAction()
     {
+                
+        if (this.EnemyParty.EnemyPositions.Count == 4)
+        {
+            SetupDrop();
+            EnemyOutOfAction(false);
+            GameAssets.i.UiManager.AddToQueue("The enemies are escaping!");
+            return;
+        }
         this.EnemyParty.Attack(new BattlefieldContext(EnemyParty, Party));
         Invoke("CanPlay", 2f);
     }

@@ -4,6 +4,12 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject _partyModal, _mapModal;
+
+    [SerializeField]
+    private Animator _animator;
+
+    [SerializeField]
+    private AnimationClip _showAnimation;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,9 +23,28 @@ public class MenuManager : MonoBehaviour
         this._mapModal.SetActive(false);
     }
 
+    public void AnimateMapVisual()
+    {
+        this._partyModal.SetActive(false);
+
+        if (this._mapModal.activeSelf)
+        {
+            _animator.SetTrigger("Zoom");
+            float time = _animator.GetCurrentAnimatorStateInfo(0).length;
+            Debug.Log("Animation duration: " + time);
+            Invoke("SwitchMapVisual", _showAnimation.length);
+        }
+        else
+        {
+            SwitchMapVisual();
+            _animator.SetTrigger("Open");
+        }
+        
+        
+    }
+
     public void SwitchMapVisual()
     {
         this._mapModal.SetActive(!this._mapModal.activeSelf);
-        this._partyModal.SetActive(false);
     }
 }

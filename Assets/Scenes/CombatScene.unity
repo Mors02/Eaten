@@ -3402,7 +3402,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 491795606}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1649997398}
+        m_TargetAssemblyTypeName: CombatManager, Assembly-CSharp
+        m_MethodName: BackToBar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &491795606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8248,8 +8260,8 @@ RectTransform:
   - {fileID: 317053599}
   - {fileID: 383614490}
   - {fileID: 1146818654}
-  - {fileID: 2021434259}
   - {fileID: 281483264}
+  - {fileID: 2021434259}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
