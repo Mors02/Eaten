@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class CombatManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class CombatManager : MonoBehaviour
 
     private int _howManyDrops;
 
-    private List<CharacterGraphics> _graphics;
+    private CharacterGraphics[] _graphics;
     //    public GameObject EnemyObject { get; set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -46,10 +47,14 @@ public class CombatManager : MonoBehaviour
         _howManyDrops = 0;
         this.Party = GetParty();
         this.EnemyParty = _enemyObject.GetComponent<EnemyManager>();
-        this._graphics = new List<CharacterGraphics>();
+        this._graphics = new CharacterGraphics[_partyGraphics.childCount];
         foreach (Transform child in _partyGraphics)
         {
-            _graphics.Add(child.GetComponentInChildren<CharacterGraphics>());
+            _graphics[Int32.Parse(child.name)] = child.GetComponentInChildren<CharacterGraphics>();
+        }
+
+        foreach(CharacterGraphics graph in _graphics) {
+            Debug.Log(graph);
         }
     }
     /// <summary>
@@ -68,8 +73,10 @@ public class CombatManager : MonoBehaviour
     public void EnemyOutOfAction(bool run)
     {
         GameManager.i.CanPlay = false;
-        for (int i = 0; i < _graphics.Count; i++)
+        Debug.Log(Party.Count);
+        for (int i = 0; i < Party.Count; i++)
         {
+            Debug.Log(_graphics[i]);
             _graphics[i].AttackAnimation("Jump");
         }
 
@@ -161,7 +168,11 @@ public class CombatManager : MonoBehaviour
         List<CharacterBrain> party = new List<CharacterBrain>();
         foreach (Transform transform in _party)
         {
-            party.Add(transform.gameObject.GetComponentInChildren<Connect>().Character);
+            Connect connect = transform.gameObject.GetComponentInChildren<Connect>();
+            if (connect.Character != null) {
+                party.Add(connect.Character);
+            }
+            
         }
 
         return party;
@@ -173,10 +184,10 @@ public class CombatManager : MonoBehaviour
         {
             ItemUI ui = child.gameObject.GetComponent<ItemUI>();
             //see if an item is dropped
-            if (Random.Range(0, 100) < _dropRate)
+            if (UnityEngine.Random.Range(0, 100) < _dropRate)
             {
                 //generate the new item
-                ui.SetItem(new Item(GameAssets.i.items[Random.Range(0, GameAssets.i.items.Count)]));
+                ui.SetItem(new Item(GameAssets.i.items[UnityEngine.Random.Range(0, GameAssets.i.items.Count)]));
                 _howManyDrops++;
             } else {
                 ui.Inactive();

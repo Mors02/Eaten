@@ -80,5 +80,17 @@ public class GameManager
 
     public EventSO SelectedEvent;
 
-    public DroppableTarget Target;    
+    public DroppableTarget Target;
+
+    public static void PrintInventory()
+    {
+        string s = "Inventory Length: " + GameManager.i.Inventory.Length + "\n";
+        for (int i = 0; i < GameManager.i.Inventory.Length; i++)
+        {
+            Item item = GameManager.i.Inventory[i];
+            s += i + ": " + (item != null? item.ItemName : "empty") + "\n";
+        }
+
+        Debug.Log(s);
+    }
 }

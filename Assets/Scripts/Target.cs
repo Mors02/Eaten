@@ -38,7 +38,7 @@ public class Target : MonoBehaviour
                 {
                     //Debug.Log(Index + ": Looking for " + i + "; " + (characters.ElementAt(i) == null? "Not found" : "Found"));
                     //what happens if the row is not full? idk
-                    CharacterBrain ch = characters.ElementAt(i);
+                    CharacterBrain ch = i >= characters.Count? null : characters.ElementAt(i);
                     if (ch != null)
                         this.Characters.Add(ch);
                 }
@@ -49,7 +49,7 @@ public class Target : MonoBehaviour
                 {
                     // Debug.Log("Looking for " + i + "; " + (characters.ElementAt(i) == null? "Not found" : "Found"));
                     //what happens if the column is not full? idk
-                    CharacterBrain ch = characters.ElementAt(i);
+                    CharacterBrain ch = i >= characters.Count? null : characters.ElementAt(i);
                     if (ch != null)
                         this.Characters.Add(ch);
                 }

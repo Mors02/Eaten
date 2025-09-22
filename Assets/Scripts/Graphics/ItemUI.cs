@@ -42,9 +42,12 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     {
         this._clicked = false;
         this._startPosition = this._parentTransform.anchoredPosition;
-        //this._childTransform = gameObject.GetComponent<RectTransform>();
-        this._id = Int32.Parse(this._parentTransform.gameObject.name);
-        this._item = GameManager.GetItem(_id);
+        GameManager.PrintInventory();
+        if (_parentTransform.name != "Drop")
+        {
+            this._id = Int32.Parse(this._parentTransform.gameObject.name);
+            this._item = GameManager.GetItem(_id);    
+        }
 
         if (this._item == null)
         {
@@ -112,12 +115,13 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                     //can only do this if you can play or you cant play but you only do inventory management
                     if (GameManager.i.CanPlay || (!GameManager.i.CanPlay && (target.Action == ActionType.Delete || target.Action == ActionType.Drop)))
                     {
-                        GameManager.i.Inventory[_id] = null;
+                        if (_parentTransform.gameObject.name != "Drop")
+                            GameManager.i.Inventory[_id] = null;
                         this._childTransform.gameObject.SetActive(false);
                         this._collider.enabled = true;
                     }
                 }
-                Debug.Log(_startPosition);
+                GameManager.PrintInventory();
                 this._childTransform.anchoredPosition = Vector2.zero;
 
 

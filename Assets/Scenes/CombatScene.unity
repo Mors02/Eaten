@@ -213,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930291866213166636, guid: d77dd47ae34634a5caae79fdb1d5ea73, type: 3}
       propertyPath: m_Name
-      value: 0
+      value: Drop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6868,7 +6868,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8930291866213166636, guid: d77dd47ae34634a5caae79fdb1d5ea73, type: 3}
       propertyPath: m_Name
-      value: 1
+      value: Drop
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
