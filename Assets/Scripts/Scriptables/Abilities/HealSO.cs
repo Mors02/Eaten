@@ -7,7 +7,7 @@ public class HealSO : AbilitySO
     [SerializeField] private int _healAmount = 5;
 
     public int Heal => _healAmount;
-    public override Ability CreateAbility(CharacterData character)
+    public override Ability CreateAbility(CharacterBrain character)
     {
         return new Heal(character, this);
     }

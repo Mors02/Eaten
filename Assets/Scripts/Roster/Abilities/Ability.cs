@@ -27,9 +27,9 @@ public abstract class Ability
 
     public CharacterBrain Character => _character;
 
-    public Ability(CharacterData character, AbilitySO abilityData)
+    public Ability(CharacterBrain character, AbilitySO abilityData)
     {
-        this._character = character.characterBrain;
+        this._character = character;
         this.CharacterId = character.Id;
         this.Name = abilityData.AbilityName;
         this.BaseDescription = abilityData.Description;

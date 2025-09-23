@@ -7,7 +7,7 @@ public class ShootSO : AbilitySO
     [SerializeField] private int _baseDamage = 5;
     public int Damage => _baseDamage;
     
-    public override Ability CreateAbility(CharacterData character)
+    public override Ability CreateAbility(CharacterBrain character)
     {
         return new Shoot(character, this);
     }

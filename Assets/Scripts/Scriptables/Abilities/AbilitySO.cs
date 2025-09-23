@@ -21,7 +21,7 @@ public abstract class AbilitySO : ScriptableObject
 /// </summary>
 /// <param name="character">The character that will use this ability</param>
 /// <returns>the ability class instantiated with the correct values</returns>
-    public abstract Ability CreateAbility(CharacterData character);
+    public abstract Ability CreateAbility(CharacterBrain character);
 }
 
 public enum AnimationType

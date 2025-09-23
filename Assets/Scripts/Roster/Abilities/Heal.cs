@@ -23,7 +23,7 @@ public class Heal : Ability
         return subs;
     }
 
-    public Heal(CharacterData character, HealSO ability) : base(character, ability)
+    public Heal(CharacterBrain character, HealSO ability) : base(character, ability)
     {
         this._baseHeal = ability.Heal;
         this.Description = Tools.Parametrize(this.BaseDescription, GetSubstitutions());

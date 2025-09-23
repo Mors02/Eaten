@@ -10,7 +10,7 @@ public class Cut : Ability
         context.EnemyParty.ReceiveDamage(this.BaseDamage + this.Character.Strength);
     }
 
-    public Cut(CharacterData character, CutSO ability) : base(character, ability)
+    public Cut(CharacterBrain character, CutSO ability) : base(character, ability)
     {
         this._baseDamage = ability.Damage;
         this.Description = Tools.Parametrize(this.BaseDescription, GetSubstitutions());

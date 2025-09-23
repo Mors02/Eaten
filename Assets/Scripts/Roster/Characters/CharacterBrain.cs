@@ -147,16 +147,25 @@ public abstract class CharacterBrain
     public void SetupCharacter()
     {
         //set up stats
-        this.Strength = this._character.baseStrength;
-        this.Dexterity = this._character.baseDexterity;
-        this.Intelligence = this._character.baseIntelligence;
-        this.CurrentHP = this.MaxHP = this._character.baseHp;
+        /* this.Strength = this._character.baseStrength;
+         this.Dexterity = this._character.baseDexterity;
+         this.Intelligence = this._character.baseIntelligence;
+         this.CurrentHP = this.MaxHP = this._character.baseHp;*/
+        RandomizeStats();
 
         //TODO: this should be random
-        this.characterName = CharacterBrain.Names[UnityEngine.Random.Range(0, CharacterBrain.Names.Count)];
+        this.characterName = Names[UnityEngine.Random.Range(0, Names.Count)];
 
         //this.AbilityId = CharacterBrain.GetAbilityFromPool(this.AbilityPool);
-        this.Ability = this._character.GetRandomAbility().CreateAbility(new CharacterData(this, this.Id));
+        this.Ability = this._character.GetRandomAbility().CreateAbility(this);
+    }
+
+    public void RandomizeStats()
+    {
+        this.Strength = this._character.baseStrength + (UnityEngine.Random.Range(0, _character.MaxStatChange) - _character.MaxStatChange/2);
+        this.Dexterity = this._character.baseDexterity + (UnityEngine.Random.Range(0, _character.MaxStatChange) - _character.MaxStatChange/2);
+        this.Intelligence = this._character.baseIntelligence + (UnityEngine.Random.Range(0, _character.MaxStatChange) - _character.MaxStatChange/2);
+        this.CurrentHP = this.MaxHP = this._character.baseHp + (UnityEngine.Random.Range(0, _character.MaxHealthChange) - _character.MaxHealthChange/2);
     }
 
     /// <summary>
@@ -253,17 +262,5 @@ public abstract class CharacterBrain
         30,
         30
     };
-}
-
-public class CharacterData
-{
-    public CharacterBrain characterBrain;
-    public int Id;
-
-    public CharacterData(CharacterBrain cb, int id)
-    {
-        characterBrain = cb;
-        Id = id;
-    }
 }
 

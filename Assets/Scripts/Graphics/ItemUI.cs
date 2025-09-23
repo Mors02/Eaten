@@ -94,7 +94,8 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                                 break;
 
                             _item.Eat(target.Character);
-                            _cm.EatAnimation(target.Character.Id, _item);
+                            if (_cm != null)
+                                _cm.EatAnimation(target.Character.Id, _item);
                             break;
 
                         case ActionType.Throw:
