@@ -16,6 +16,6 @@ MonoBehaviour:
   HungerRestore: 10
   Damage: 7
   Heal: 3
-  Sprite: {fileID: 1280859772650141007, guid: da4dad81b3a8e437abe7a9859bcc5644, type: 3}
+  Sprite: {fileID: 4968895403179710591, guid: 9b747a7d7714940e4ba3071f79e4c505, type: 3}
   DescriptionWhenThrown: Deals 7 damage.
   DescriptionWhenEaten: Restore 10 hunger and heals 3 health.

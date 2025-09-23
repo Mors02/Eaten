@@ -16,7 +16,7 @@ MonoBehaviour:
   title: Lost Child
   sprite: {fileID: -1045181238759104467, guid: 0575201f3357043538a41e8a481eb135, type: 3}
   enemyParty: {fileID: 0}
-  description: You find a little pierino in the hallyway, lost and alone. You could
+  description: You find a little child in the hallway, lost and alone. You could
     bring him with you back to the bar. While you think on it, your stomach trembles
     from the hunger.
   options:
