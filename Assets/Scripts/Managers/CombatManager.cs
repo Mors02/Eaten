@@ -52,10 +52,6 @@ public class CombatManager : MonoBehaviour
         {
             _graphics[Int32.Parse(child.name)] = child.GetComponentInChildren<CharacterGraphics>();
         }
-
-        foreach(CharacterGraphics graph in _graphics) {
-            Debug.Log(graph);
-        }
     }
     /// <summary>
     /// decides what the enemies will do
@@ -73,10 +69,8 @@ public class CombatManager : MonoBehaviour
     public void EnemyOutOfAction(bool run)
     {
         GameManager.i.CanPlay = false;
-        Debug.Log(Party.Count);
         for (int i = 0; i < Party.Count; i++)
         {
-            Debug.Log(_graphics[i]);
             _graphics[i].AttackAnimation("Jump");
         }
 
@@ -90,7 +84,7 @@ public class CombatManager : MonoBehaviour
 
     private void EnemyAction()
     {
-                
+
         if (this.EnemyParty.EnemyPositions.Count == 4)
         {
             SetupDrop();

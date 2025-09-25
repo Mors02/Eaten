@@ -24,9 +24,15 @@ public class UIManager : MonoBehaviour
 
     private Message _currentMessage;
 
+    private bool _showingRecap;
+
+    [SerializeField]
+    private GameObject _combatButtons, _recapButtons;
+
     private void Start()
     {
         this._messages = new Queue<Message>();
+        _showingRecap = true;
     }
 
     /// <summary>
@@ -81,7 +87,23 @@ public class UIManager : MonoBehaviour
 
         }
         _endScreenAnimator.gameObject.SetActive(true);
+        _combatButtons.gameObject.SetActive(false);
+        _recapButtons.gameObject.SetActive(true);
         _endScreenAnimator.SetTrigger("Show");
+    }
+
+    public void SwitchScreenInfo()
+    {
+        if (_showingRecap)
+        {
+            _endScreenAnimator.SetTrigger("Right");
+        }
+        else
+        {
+            _endScreenAnimator.SetTrigger("Left");
+        }
+
+        _showingRecap = !_showingRecap;
     }
 
     /// <summary>
