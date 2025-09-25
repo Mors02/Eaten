@@ -18,7 +18,7 @@ public class EnemyUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        GameAssets.i.UiManager.Clean();
+       // GameAssets.i.UiManager.Clean();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
