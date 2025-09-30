@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
     /// <param name="cb">the character information to display</param>
     public void SetupCharacter(CharacterBrain cb)
     {
-         this.ShowSection("character");
+        this.ShowSection("character");
         this._strength.text = cb.Strength.ToString();
         this._dexterity.text = cb.Dexterity.ToString();
         this._intelligence.text = cb.Intelligence.ToString();
@@ -50,6 +50,7 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = cb.Ability.Description;
         this._name.text = cb.characterName;
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
+        
     }
 
     public void SetupItem(Item item)

@@ -42,7 +42,7 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     {
         this._clicked = false;
         this._startPosition = this._parentTransform.anchoredPosition;
-        GameManager.PrintInventory();
+
         if (_parentTransform.name != "Drop")
         {
             this._id = Int32.Parse(this._parentTransform.gameObject.name);
@@ -122,7 +122,7 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                         this._collider.enabled = true;
                     }
                 }
-                GameManager.PrintInventory();
+                
                 this._childTransform.anchoredPosition = Vector2.zero;
 
 

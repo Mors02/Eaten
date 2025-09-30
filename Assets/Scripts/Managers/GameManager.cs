@@ -78,6 +78,9 @@ public class GameManager
 
     public int EnemiesEaten, CharactersDead;
 
+    public EnemyParty ShownEnemy;
+    public CharacterBrain ShownCharacter;
+
     public EventSO SelectedEvent;
 
     public DroppableTarget Target;
