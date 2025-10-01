@@ -95,7 +95,13 @@ public class EnemyManager : MonoBehaviour
             }
                 
         }
+    }
 
+
+    public void AddStatus(StatusSO info, int duration, int value)
+    {
+        this.EnemyParty._statuses.Add(info.Name, new Status(info, duration, value));
+        this.EnemyParty._onStatusChange.Invoke();
     }
 
     void OnDrawGizmosSelected()

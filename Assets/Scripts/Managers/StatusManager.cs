@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +13,9 @@ public class StatusManager : MonoBehaviour
     [SerializeField]
     private Color _lightColor, _darkColor;
 
+    [SerializeField]
+    private Transform _statusContainer;
+
     private bool _isStatsOpen;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,17 +28,15 @@ public class StatusManager : MonoBehaviour
     {
         //Debug.Log(_isStatsOpen);
         //Debug.Log(Input.GetButton("D"));
-       // Debug.Log(Input.GetButton("A"));
+        // Debug.Log(Input.GetButton("A"));
         if (_isStatsOpen && Input.GetButton("D"))
         {
-            Debug.Log("OPEN STATS");
             ShowStatus();
             return;
         }
 
         if (!_isStatsOpen && Input.GetButton("A"))
         {
-            Debug.Log("OPEN STATUS");
             ShowStats();
         }
     }
@@ -70,8 +73,22 @@ public class StatusManager : MonoBehaviour
 
                 break;
             case "Status":
-                
+
                 break;
+        }
+    }
+
+    public void SetupStatus(List<Status> statuses)
+    {
+        foreach (Transform child in _statusContainer)
+        {
+            Destroy(child.gameObject);
+        }
+        foreach (Status status in statuses)
+        {
+            GameObject prefab = Instantiate(GameAssets.i.StatusUIPrefab, _statusContainer);
+            prefab.GetComponentInChildren<Image>().sprite = status.Info.Sprite;
+            prefab.GetComponentInChildren<TMP_Text>().text = status.Description;
         }
     }
 }

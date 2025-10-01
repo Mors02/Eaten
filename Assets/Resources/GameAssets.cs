@@ -19,6 +19,14 @@ public class GameAssets : MonoBehaviour
         }
     }
 
+    public GameObject StatusUIPrefab;
+    public GameObject StatusCharacterPrefab;
+
+    [Header("Statuses")]
+    public StatusSO Bleeding;
+    public StatusSO Confusion;
+    public StatusSO Healing;
+
     [Header("Characters")]
     public Character Peasant;
     public Character Dog;

@@ -51,12 +51,17 @@ public class EnemyParty
     public int CurrentHP
     { get; set; }
 
+    public Dictionary<StatusName, Status> _statuses;
+
     public EnemyParty()
     {
         this._onStatsChange = new UnityEvent();
+        this._onStatusChange = new UnityEvent();
+        this._statuses = new Dictionary<StatusName, Status>();
     }
 
     public UnityEvent _onStatsChange;
+    public UnityEvent _onStatusChange;
 
     public List<EnemyAbility> GetAbilities()
     {
@@ -67,5 +72,16 @@ public class EnemyParty
         }
 
         return list;
+    }
+
+    public List<Status> GetStatuses()
+    {
+        List<Status> statuses = new List<Status>();
+        foreach (Status status in _statuses.Values)
+        {
+            statuses.Add(status);
+        }
+
+        return statuses;
     }
 }

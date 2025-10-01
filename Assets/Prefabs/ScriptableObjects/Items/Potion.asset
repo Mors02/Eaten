@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: Healing Potion
   HungerRestore: 0
   Damage: 0
-  Heal: 10
+  Heal: 5
   Sprite: {fileID: 6767474617931673295, guid: 4cce26065793e4317a27e817dd92aca5, type: 3}
-  DescriptionWhenThrown: Heals 10 health.
+  DescriptionWhenThrown: Heals 5. Gives Healing 5.
   DescriptionWhenEaten: Heals 10 health.

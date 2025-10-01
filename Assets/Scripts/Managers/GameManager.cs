@@ -78,8 +78,7 @@ public class GameManager
 
     public int EnemiesEaten, CharactersDead;
 
-    public EnemyParty ShownEnemy;
-    public CharacterBrain ShownCharacter;
+    public List<Status> ShownStatus;
 
     public EventSO SelectedEvent;
 

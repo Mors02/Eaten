@@ -29,10 +29,13 @@ public class UIManager : MonoBehaviour
     [SerializeField]
     private GameObject _combatButtons, _recapButtons;
 
+    private StatusManager _sm;
+
     private void Start()
     {
         this._messages = new Queue<Message>();
         _showingRecap = true;
+        this._sm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<StatusManager>();
     }
 
     /// <summary>
@@ -50,7 +53,7 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = cb.Ability.Description;
         this._name.text = cb.characterName;
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
-        
+        _sm.SetupStatus(cb.GetStatuses());
     }
 
     public void SetupItem(Item item)
@@ -76,6 +79,7 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = ep.Description;
         this._name.text = ep.Name;
         this._health.text = ep.CurrentHP + "/" + ep.MaxHP;
+        _sm.SetupStatus(ep.GetStatuses());
     }
 
     public void SetupEndscreen(int drops)

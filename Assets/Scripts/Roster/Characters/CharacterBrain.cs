@@ -3,6 +3,7 @@ using System;
 using UnityEngine.Events;
 using Unity.VisualScripting;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 public abstract class CharacterBrain
 {
@@ -81,6 +82,8 @@ public abstract class CharacterBrain
     public int Hunger
     { get; set; }
 
+    private Dictionary<StatusName, Status> _statuses;
+
     /// <summary>
     /// represents how much human meat the character has eaten
     /// </summary>
@@ -96,7 +99,12 @@ public abstract class CharacterBrain
     {
         this.Id = Int32.Parse(id);
         this.Hunger = 100;
+        this.Level = 1;
+        this.Exp = 0;
+        this.Bloodthirst = 0;
         _onStatChange = new UnityEvent();
+        _onStatusChange = new UnityEvent();
+        _statuses = new Dictionary<StatusName, Status>();
     }
 
     public CharacterBrain()
@@ -106,33 +114,58 @@ public abstract class CharacterBrain
         this.Exp = 0;
         this.Bloodthirst = 0;
         _onStatChange = new UnityEvent();
+        _onStatusChange = new UnityEvent();
+        _statuses = new Dictionary<StatusName, Status>();
     }
 
     public UnityEvent _onStatChange;
+    public UnityEvent _onStatusChange;
 
+    /// <summary>
+    /// Damage the character
+    /// </summary>
+    /// <param name="damage">Damage amount</param>
     public void ReceiveDamage(int damage)
     {
         this.CurrentHP = Mathf.Max(0, this.CurrentHP -= damage);
         this._onStatChange.Invoke();
     }
 
+    /// <summary>
+    /// Heal the character
+    /// </summary>
+    /// <param name="heal">Healing amount</param>
     public void Heal(int heal)
     {
         this.CurrentHP = Mathf.Min(this.MaxHP, this.CurrentHP += heal);
         this._onStatChange.Invoke();
     }
 
+    /// <summary>
+    /// Reduce the total hunger
+    /// </summary>
+    /// <param name="hunger">How much hunger to replenish</param>
     public void ReduceHunger(int hunger)
     {
         this.Hunger -= hunger;
         this._onStatChange.Invoke();
     }
 
+    /// <summary>
+    /// Eat the enemy
+    /// </summary>
+    /// <param name="ep">Enemy eaten</param>
     public void EatEnemy(EnemyParty ep)
     {
         this.Eat(20);
         this.LevelUp();
         this._onStatChange.Invoke();
+    }
+
+    public void AddStatus(StatusSO info, int duration, int value)
+    {
+        this._statuses.Add(info.Name, new Status(info, duration, value));
+        this._onStatusChange.Invoke();
     }
 
     public void Eat(int hunger)
@@ -193,6 +226,17 @@ public abstract class CharacterBrain
             this.Exp = this.Exp % NecessaryExp[this.Level];
             this.Level = Math.Min(this.Level + 1, _maxLevel);
         }
+    }
+
+    public List<Status> GetStatuses()
+    {
+        List<Status> statuses = new List<Status>();
+        foreach (Status status in _statuses.Values)
+        {
+            statuses.Add(status);
+        }
+
+        return statuses;
     }
 
     ///https://discussions.unity.com/t/workflow-for-locating-scriptableobjects-at-runtime/681440/2

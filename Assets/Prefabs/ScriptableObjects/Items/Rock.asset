@@ -17,5 +17,5 @@ MonoBehaviour:
   Damage: 7
   Heal: 0
   Sprite: {fileID: 4805965051644743631, guid: dd3c84e5b90c443e7805f50ff152c2e2, type: 3}
-  DescriptionWhenThrown: Deals 7 damage.
+  DescriptionWhenThrown: Deals 7 damage. Gives Bleeding 4.
   DescriptionWhenEaten: Restore 5 hunger but deals 5 damage.
