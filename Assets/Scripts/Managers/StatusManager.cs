@@ -79,16 +79,16 @@ public class StatusManager : MonoBehaviour
     }
 
     public void SetupStatus(List<Status> statuses)
-    {
+    { 
         foreach (Transform child in _statusContainer)
         {
             Destroy(child.gameObject);
         }
+
         foreach (Status status in statuses)
         {
             GameObject prefab = Instantiate(GameAssets.i.StatusUIPrefab, _statusContainer);
-            prefab.GetComponentInChildren<Image>().sprite = status.Info.Sprite;
-            prefab.GetComponentInChildren<TMP_Text>().text = status.Description;
+            prefab.GetComponent<StatusUI>().Setup(status);
         }
     }
 }

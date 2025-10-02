@@ -28,6 +28,9 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     private GameObject _visibleSection;
 
     [SerializeField]
+    private Transform _statusContainer;
+
+    [SerializeField]
     private GameObject _border;
 
     [SerializeField]
@@ -61,6 +64,8 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
         this._cb._onStatChange.AddListener(UpdateGraphics);
         this._cb._onStatChange.Invoke();
+
+        this._cb._onStatusChange.AddListener(SetupStatuses);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -76,7 +81,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             _cm.Connect(this);
 
         }
-        
+
         GameAssets.i.UiManager.SetupCharacter(this._cb);
         this.ChangeSlider(true);
 
@@ -108,7 +113,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         this._smallSlider.value = this._bigSlider.value = (float)this._cb.CurrentHP / this._cb.MaxHP;
         this._text.text = this._cb.CurrentHP.ToString() + "/" + this._cb.MaxHP.ToString();
-        this._background.color = Color.Lerp(_emptyHunger, _fullHunger, (float)this._cb.Hunger/100);
+        this._background.color = Color.Lerp(_emptyHunger, _fullHunger, (float)this._cb.Hunger / 100);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -131,5 +136,19 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void Highlight(bool highlight)
     {
         this._border.SetActive(highlight);
+    }
+
+    public void SetupStatuses()
+    {
+        foreach (Transform child in _statusContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Status status in _cb.GetStatuses())
+        {
+            GameObject prefab = Instantiate(GameAssets.i.StatusCharacterPrefab, _statusContainer);
+            prefab.GetComponent<Image>().sprite = status.Info.Sprite;
+        }
     }
 }

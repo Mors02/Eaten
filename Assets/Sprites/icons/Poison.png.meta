@@ -116,12 +116,12 @@ TextureImporter:
       name: Poison_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 12
-        height: 15
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 175f3a900a92a4489ba1df4e3c5fb633
     internalID: 0
     vertices: []
     indices: 

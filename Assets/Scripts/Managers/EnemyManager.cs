@@ -100,8 +100,24 @@ public class EnemyManager : MonoBehaviour
 
     public void AddStatus(StatusSO info, int duration, int value)
     {
-        this.EnemyParty._statuses.Add(info.Name, new Status(info, duration, value));
-        this.EnemyParty._onStatusChange.Invoke();
+        this.EnemyParty.AddStatus(info, duration, value);
+        
+    }
+
+    public void ActivateStatuses()
+    {
+        Status status;
+        if (EnemyParty.Has(StatusName.Healing, out status))
+        {
+            this.Heal(status.Value);
+        }
+
+        if (EnemyParty.Has(StatusName.Bleeding, out status))
+        {
+            this.ReceiveDamage(status.Value);
+        }
+
+        EnemyParty.TickDownStatuses();
     }
 
     void OnDrawGizmosSelected()

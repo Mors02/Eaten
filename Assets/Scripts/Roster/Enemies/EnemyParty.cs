@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using Unity.VisualScripting;
+using System;
 
 public class EnemyParty
 {
@@ -51,7 +52,7 @@ public class EnemyParty
     public int CurrentHP
     { get; set; }
 
-    public Dictionary<StatusName, Status> _statuses;
+    private Dictionary<StatusName, Status> _statuses;
 
     public EnemyParty()
     {
@@ -83,5 +84,49 @@ public class EnemyParty
         }
 
         return statuses;
+    }
+
+
+    public bool Has(StatusName name, out Status status)
+    {
+         try
+        {
+            status = _statuses[name];
+            return _statuses[name] != null;
+        }
+        catch (Exception e)
+        {
+            status = null;
+            return false;
+        }
+    }
+    
+
+    public void AddStatus(StatusSO info, int duration, int value)
+    {
+        this._statuses.Add(info.Name, new Status(info, duration, value));
+        this._onStatusChange.Invoke();
+    }
+
+    public void RemoveStatus(StatusName name)
+    {
+        this._statuses.Remove(name);
+        this._onStatusChange.Invoke();
+    }
+
+    public void TickDownStatuses()
+    {
+        List<StatusName> statusesToRemove = new List<StatusName>();
+        foreach (Status status in _statuses.Values)
+        {
+            status.TickDown();
+            if (status.Duration <= 0)
+                statusesToRemove.Add(status.Info.Name);
+        }
+
+        foreach (StatusName name in statusesToRemove)
+        {
+            RemoveStatus(name);
+        }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using Unity.VisualScripting;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using NUnit.Framework;
 
 public abstract class CharacterBrain
 {
@@ -168,6 +169,12 @@ public abstract class CharacterBrain
         this._onStatusChange.Invoke();
     }
 
+    public void RemoveStatus(StatusName name)
+    {
+        this._statuses.Remove(name);
+        this._onStatusChange.Invoke();
+    }
+
     public void Eat(int hunger)
     {
         this.Hunger += hunger;
@@ -216,6 +223,52 @@ public abstract class CharacterBrain
     {
         this.Level = Math.Min(this.Level + 1, _maxLevel);
         this.Exp = 0;
+    }
+
+    public void ActivateStatuses()
+    {
+        Status status;
+        if (Has(StatusName.Healing, out status))
+        {
+            this.Heal(status.Value);
+        }
+
+        if (Has(StatusName.Bleeding, out status))
+        {
+            this.ReceiveDamage(status.Value);
+        }
+
+        TickDownStatuses();
+    }
+
+    public bool Has(StatusName name, out Status status) {
+        try
+        {
+            status = _statuses[name];
+            return _statuses[name] != null;
+        }
+        catch (Exception e)
+        {
+            status = null;
+            return false;
+        }
+        
+    }
+
+    public void TickDownStatuses()
+    {
+        List<StatusName> statusesToRemove = new List<StatusName>();
+        foreach (Status status in _statuses.Values)
+        {
+            status.TickDown();
+            if (status.Duration <= 0)
+                statusesToRemove.Add(status.Info.Name);
+        }
+
+        foreach (StatusName name in statusesToRemove)
+        {
+            RemoveStatus(name);
+        }
     }
 
     public void GainExp(int exp)

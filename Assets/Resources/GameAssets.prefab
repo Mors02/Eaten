@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatusUIPrefab: {fileID: 7301840293002705278, guid: 7af19db9810954ea790a217befded839, type: 3}
-  StatusCharacterPrefab: {fileID: 0}
+  StatusCharacterPrefab: {fileID: 8883585170597876028, guid: 6ee9bc76faf93409caadc565b36b59b0, type: 3}
   Bleeding: {fileID: 11400000, guid: 8569743ba2884435e86b97bf49200262, type: 2}
   Confusion: {fileID: 11400000, guid: d2a1a6626656548f987ab3b0aab58fb7, type: 2}
   Healing: {fileID: 11400000, guid: 134ace099315144879dd4c5b4a7a3f51, type: 2}

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd6c19f605b2449295fdcd6a4ed8421, type: 3}
   m_Name: Confusion
   m_EditorClassIdentifier: 
-  BaseDescription: Cannot attack. %duration% turns.
+  BaseDescription: Cannot attack.
   Name: 2
   Sprite: {fileID: 594318413343068850, guid: 8d644b3b1921c45ca913d5537c739e0d, type: 3}

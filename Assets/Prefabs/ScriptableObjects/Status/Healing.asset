@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd6c19f605b2449295fdcd6a4ed8421, type: 3}
   m_Name: Healing
   m_EditorClassIdentifier: 
-  BaseDescription: Heals %value% at the start of the turn. %duration% turns.
+  BaseDescription: Heals %value% at the start of the turn.
   Name: 0
   Sprite: {fileID: -4456225766891094810, guid: 8ad0d8798fdad4edfbd6c61368107da2, type: 3}

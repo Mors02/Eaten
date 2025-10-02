@@ -111,6 +111,11 @@ public class CombatManager : MonoBehaviour
     private void CanPlay()
     {
         GameManager.i.CanPlay = true;
+        foreach (CharacterBrain character in Party)
+        {
+            character.ActivateStatuses();
+            EnemyParty.ActivateStatuses();
+        }
     }
 
     public IEnumerator AnimateCharacters(List<Ability> abilities)

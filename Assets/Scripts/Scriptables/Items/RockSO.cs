@@ -12,5 +12,6 @@ public class RockSO : ItemSO
     public override void Throw(EnemyManager enemy)
     {
         enemy.ReceiveDamage(Damage);
+        enemy.AddStatus(GameAssets.i.Bleeding, 4, 4);
     }
 }
