@@ -119,6 +119,7 @@ public class EnemyParty
         List<StatusName> statusesToRemove = new List<StatusName>();
         foreach (Status status in _statuses.Values)
         {
+            Debug.Log(status + " " + status.Duration);
             status.TickDown();
             if (status.Duration <= 0)
                 statusesToRemove.Add(status.Info.Name);

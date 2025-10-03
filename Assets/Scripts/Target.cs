@@ -63,7 +63,6 @@ public class Target : MonoBehaviour
         foreach (CharacterBrain ch in Characters)
         {
             ch.ReceiveDamage(damage);
-            Debug.Log(ch.Id + " received damage");
         }
     }
 

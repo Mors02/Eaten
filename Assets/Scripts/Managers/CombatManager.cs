@@ -114,8 +114,8 @@ public class CombatManager : MonoBehaviour
         foreach (CharacterBrain character in Party)
         {
             character.ActivateStatuses();
-            EnemyParty.ActivateStatuses();
         }
+        EnemyParty.ActivateStatuses();
     }
 
     public IEnumerator AnimateCharacters(List<Ability> abilities)
