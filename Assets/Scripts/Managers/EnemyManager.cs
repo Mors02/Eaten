@@ -27,7 +27,7 @@ public class EnemyManager : MonoBehaviour
     private GameObject _characterPrefab;
 
     [SerializeField]
-    private Vector2 _area;
+    private Vector2[] _areas;
 
     void Start()
     {
@@ -125,7 +125,8 @@ public class EnemyManager : MonoBehaviour
 
 #if UNITY_EDITOR
         Gizmos.color = Color.red;
-        Gizmos.DrawCube(new Vector3(this.transform.position.x, this.transform.position.y, 0), _area);
+        foreach (Vector2 _area in _areas)
+            Gizmos.DrawCube(new Vector3(this.transform.position.x + _area.x, this.transform.position.y + _area.y, 0), new Vector2(1, 1));
 
         Gizmos.color = Color.white;
 #endif
@@ -134,18 +135,23 @@ public class EnemyManager : MonoBehaviour
     void SetupCharacterPrefabs()
     {
         List<SpriteRenderer> prefabs = new List<SpriteRenderer>();
+        int i = 0;
         foreach (Character character in EnemyParty.Characters)
         {
-            Vector3 randomPos = new Vector3(Random.Range(-(_area.x / 2), _area.x / 2), Random.Range(-(_area.y / 2), _area.y / 2), 0);
+            i = i % _areas.Length;
+            Vector2 _area = _areas[i];
+            Vector3 randomPos = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0) + (Vector3)_area;
+
             GameObject prefab = Instantiate(_characterPrefab, this.transform.position + randomPos, Quaternion.identity, this.transform);
             prefab.transform.localScale = new Vector3(-1, 1, 1);
             SpriteRenderer s = prefab.GetComponentInChildren<SpriteRenderer>();
             s.sprite = character.sprite;
             prefabs.Add(s);
             EnemyPositions.Add(prefab.transform);
+            i++;
         }
         prefabs.Sort(OrderBasedOnY);
-        for (int i = 0; i < prefabs.Count; i++)
+        for (i = 0; i < prefabs.Count; i++)
         {
             prefabs[i].sortingOrder = i;
         }

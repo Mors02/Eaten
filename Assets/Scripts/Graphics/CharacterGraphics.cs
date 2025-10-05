@@ -4,7 +4,7 @@ using System;
 public class CharacterGraphics : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer _sprite;
+    private SpriteRenderer _sprite, _spirit;
 
     private CharacterBrain _character;
 
@@ -30,6 +30,7 @@ public class CharacterGraphics : MonoBehaviour
             else
             {
                 this._sprite.sprite = _character.Sprite;
+                this._spirit.sprite = _character.Sprite;
             }
 
             this._animator = GetComponent<Animator>();

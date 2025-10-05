@@ -12299,7 +12299,11 @@ MonoBehaviour:
   _partyAnimator: {fileID: 1913282087}
   _foodImage: {fileID: 1753670732}
   _characterPrefab: {fileID: 105360352945634331, guid: 72d990be3dea84772a8b790fc7e97927, type: 3}
-  _area: {x: 1, y: 3}
+  _areas:
+  - {x: 0, y: 1.24}
+  - {x: 1.31, y: 0}
+  - {x: 0.27, y: -1.34}
+  - {x: -0.37, y: -0.09}
 --- !u!95 &1913282087
 Animator:
   serializedVersion: 7
