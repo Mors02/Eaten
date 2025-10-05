@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 2403154874168488417}
   - component: {fileID: 8760541713498321825}
   - component: {fileID: 5001139111537971888}
+  - component: {fileID: 5723102091024750766}
   m_Layer: 5
   m_Name: SmallCharacterSlot
   m_TagString: Untagged
@@ -615,6 +616,7 @@ MonoBehaviour:
   _fullHunger: {r: 1, g: 1, b: 1, a: 1}
   _emptyHunger: {r: 0.33962262, g: 0, b: 0, a: 1}
   _connectionActive: 0
+  _animator: {fileID: 5723102091024750766}
 --- !u!114 &2403154874168488417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +706,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &5723102091024750766
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6234661144364393928}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dae3a4c08b9aa6a4da2ba70e540f4c01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6819485132599057453
 GameObject:
   m_ObjectHideFlags: 0

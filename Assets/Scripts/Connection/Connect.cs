@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using Unity.VisualScripting;
 public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
 {
     [SerializeField]
@@ -41,6 +42,9 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     [SerializeField]
     private bool _connectionActive;
+
+    [SerializeField]
+    private Animator _animator;
 
     private void Awake()
     {
@@ -83,6 +87,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         }
 
         GameAssets.i.UiManager.SetupCharacter(this._cb);
+        _animator.SetTrigger("Enter");
         this.ChangeSlider(true);
 
     }
@@ -107,6 +112,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void OnPointerExit(PointerEventData eventData)
     {
         this.ChangeSlider(false);
+        _animator.SetTrigger("Exit");
     }
 
     public void UpdateGraphics()
