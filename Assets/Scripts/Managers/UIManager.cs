@@ -53,7 +53,8 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = cb.Ability.Description;
         this._name.text = cb.characterName;
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
-        _sm.SetupStatus(cb.GetStatuses());
+        if (_sm)
+            _sm.SetupStatus(cb.GetStatuses());
     }
 
     public void SetupItem(Item item)
