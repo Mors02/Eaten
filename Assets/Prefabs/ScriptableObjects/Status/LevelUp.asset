@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd6c19f605b2449295fdcd6a4ed8421, type: 3}
   m_Name: LevelUp
   m_EditorClassIdentifier: 
-  BaseDescription: 
-  Name: 0
-  Sprite: {fileID: 0}
+  BaseDescription: Is now level %value%.
+  Name: 3
+  Sprite: {fileID: 8004441024442600637, guid: 84dd1220b7ceb8c438493d01608319cb, type: 3}

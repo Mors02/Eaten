@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cd6c19f605b2449295fdcd6a4ed8421, type: 3}
   m_Name: Injury
   m_EditorClassIdentifier: 
-  BaseDescription: 
-  Name: 0
-  Sprite: {fileID: 0}
+  BaseDescription: '%text% is now %value%.'
+  Name: 4
+  Sprite: {fileID: -6628706027686434186, guid: a337aa19a961b0d42b64518bf1e80fe0, type: 3}
