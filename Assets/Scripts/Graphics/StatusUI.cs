@@ -12,7 +12,11 @@ public class StatusUI : MonoBehaviour
     public void Setup(Status status)
     {
         _image.sprite = status.Info.Sprite;
-        _timer.text = status.Duration + "t";
+        if (status.Duration >= 0)
+            _timer.text = status.Duration + "t";
+        else
+            //If the value if less then 0 then do not remove it;
+            _timer.gameObject.SetActive(false);    
         _effect.text = status.Description;
     }
 }

@@ -26,6 +26,8 @@ public class GameAssets : MonoBehaviour
     public StatusSO Bleeding;
     public StatusSO Confusion;
     public StatusSO Healing;
+    public StatusSO LevelUp;
+    public StatusSO Injured;
 
     [Header("Characters")]
     public Character Peasant;

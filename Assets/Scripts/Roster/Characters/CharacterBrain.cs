@@ -1,10 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.Events;
-using Unity.VisualScripting;
 using System.Collections.Generic;
-using System.Security.Cryptography;
-using NUnit.Framework;
 
 public abstract class CharacterBrain
 {
@@ -83,6 +80,10 @@ public abstract class CharacterBrain
     public int Hunger
     { get; set; }
 
+    public bool HasLeveledUp { get; set; }
+
+    private int _injuryProb = 0;
+
     private Dictionary<StatusName, Status> _statuses;
 
     /// <summary>
@@ -103,6 +104,7 @@ public abstract class CharacterBrain
         this.Level = 1;
         this.Exp = 0;
         this.Bloodthirst = 0;
+        this._injuryProb = 0;
         _onStatChange = new UnityEvent();
         _onStatusChange = new UnityEvent();
         _statuses = new Dictionary<StatusName, Status>();
@@ -114,6 +116,7 @@ public abstract class CharacterBrain
         this.Level = 1;
         this.Exp = 0;
         this.Bloodthirst = 0;
+        this._injuryProb = 0;
         _onStatChange = new UnityEvent();
         _onStatusChange = new UnityEvent();
         _statuses = new Dictionary<StatusName, Status>();
@@ -128,6 +131,11 @@ public abstract class CharacterBrain
     /// <param name="damage">Damage amount</param>
     public void ReceiveDamage(int damage)
     {
+        Debug.Log(this.CurrentHP);
+        if (this.CurrentHP <= 0)
+        {
+            RollForInjury();
+        }
         this.CurrentHP = Mathf.Max(0, this.CurrentHP -= damage);
         this._onStatChange.Invoke();
     }
@@ -163,9 +171,9 @@ public abstract class CharacterBrain
         this._onStatChange.Invoke();
     }
 
-    public void AddStatus(StatusSO info, int duration, int value)
+    public void AddStatus(StatusSO info, int duration, int value, string text="")
     {
-        this._statuses.Add(info.Name, new Status(info, duration, value));
+        this._statuses.Add(info.Name, new Status(info, duration, value, text));
         this._onStatusChange.Invoke();
     }
 
@@ -175,10 +183,56 @@ public abstract class CharacterBrain
         this._onStatusChange.Invoke();
     }
 
+    public void RollForInjury()
+    {
+        Debug.Log("ROlling injury");
+        //Roll percentage
+        int prob = UnityEngine.Random.Range(0, 100);
+        if (prob <= _injuryProb)
+        {
+            //Reduce stats
+            switch (UnityEngine.Random.Range(0, 4))
+            {
+                case 0:
+                    this.Strength--;
+                    AddStatus(GameAssets.i.Injured, -1, this.Strength, "strength");
+                    break;
+                case 1:
+                    this.Dexterity--;
+                    AddStatus(GameAssets.i.Injured, -1, this.Dexterity, "dexterity");
+                    break;
+                case 2:
+                    this.Intelligence--;
+                    AddStatus(GameAssets.i.Injured, -1, this.Intelligence, "intelligence");
+                    break;
+                case 3:
+                    this.MaxHP -= 3;
+                    AddStatus(GameAssets.i.Injured, -1, this.CurrentHP, "health");
+                    break;
+            }
+        }
+        else
+        {
+            //Else increase injuryProbability
+            this._injuryProb += 60;
+        }
+            
+    }
+
     public void Eat(int hunger)
     {
         this.Hunger += hunger;
         this.Bloodthirst++;
+    }
+
+    public void EndCombatChecks()
+    {
+        if (HasLeveledUp)
+        {
+            this.AddStatus(GameAssets.i.LevelUp, -1, this.Level);
+            this.HasLeveledUp = false;
+        }
+            
     }
 
     /// <summary>
@@ -223,6 +277,7 @@ public abstract class CharacterBrain
     {
         this.Level = Math.Min(this.Level + 1, _maxLevel);
         this.Exp = 0;
+        this.HasLeveledUp = true;
     }
 
     public void ActivateStatuses()
@@ -261,7 +316,7 @@ public abstract class CharacterBrain
         foreach (Status status in _statuses.Values)
         {
             status.TickDown();
-            if (status.Duration <= 0)
+            if (status.Duration == 0)
                 statusesToRemove.Add(status.Info.Name);
         }
 

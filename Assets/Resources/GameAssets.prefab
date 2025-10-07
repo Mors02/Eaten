@@ -49,6 +49,8 @@ MonoBehaviour:
   Bleeding: {fileID: 11400000, guid: 8569743ba2884435e86b97bf49200262, type: 2}
   Confusion: {fileID: 11400000, guid: d2a1a6626656548f987ab3b0aab58fb7, type: 2}
   Healing: {fileID: 11400000, guid: 134ace099315144879dd4c5b4a7a3f51, type: 2}
+  LevelUp: {fileID: 11400000, guid: b31aa33b9c535eb47aacf51d464e0989, type: 2}
+  Injured: {fileID: 11400000, guid: f0388aed97268184d8a1f4ac688e3caf, type: 2}
   Peasant: {fileID: 11400000, guid: aa72878b0aa3fcf4fa2fac82fef7aa70, type: 2}
   Dog: {fileID: 11400000, guid: 74e9555d9229847e99abd38ea22c95ae, type: 2}
   Oldman: {fileID: 11400000, guid: 250dee8be58cd4959830659e3280530e, type: 2}

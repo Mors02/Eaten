@@ -88,6 +88,7 @@ public class CombatManager : MonoBehaviour
         if (this.EnemyParty.EnemyPositions.Count == 4)
         {
             SetupDrop();
+            EndCombatChecks();
             EnemyOutOfAction(false);
             GameAssets.i.UiManager.AddToQueue("The enemies are escaping!");
             return;
@@ -177,6 +178,13 @@ public class CombatManager : MonoBehaviour
         return party;
     }
 
+    public void EndCombatChecks()
+    {
+        foreach (CharacterBrain brain in Party)
+        {
+            brain.EndCombatChecks();
+        }
+    }
     public void SetupDrop()
     {
         foreach (Transform child in _dropParent)
@@ -188,7 +196,9 @@ public class CombatManager : MonoBehaviour
                 //generate the new item
                 ui.SetItem(new Item(GameAssets.i.items[UnityEngine.Random.Range(0, GameAssets.i.items.Count)]));
                 _howManyDrops++;
-            } else {
+            }
+            else
+            {
                 ui.Inactive();
             }
             //halve the drop rate for the followings items;
