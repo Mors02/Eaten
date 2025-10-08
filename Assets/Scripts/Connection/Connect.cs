@@ -75,7 +75,11 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         if (_connectionActive)
+        {
+            _cm.Restart();
             _cm.SelectStartingBlock(this);
+        }
+            
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -83,10 +87,10 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         if (_connectionActive && _cm.IsClicking() && _cm.CanSelect(gameObject.name))
         {
             _cm.Connect(this);
-
         }
 
         GameAssets.i.UiManager.SetupCharacter(this._cb);
+        ResetTriggers();
         _animator.SetTrigger("Enter");
         this.ChangeSlider(true);
 
@@ -112,6 +116,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void OnPointerExit(PointerEventData eventData)
     {
         this.ChangeSlider(false);
+        ResetTriggers();
         _animator.SetTrigger("Exit");
     }
 
@@ -156,5 +161,11 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
             GameObject prefab = Instantiate(GameAssets.i.StatusCharacterPrefab, _statusContainer);
             prefab.GetComponent<Image>().sprite = status.Info.Sprite;
         }
+    }
+
+    public void ResetTriggers()
+    {
+        _animator.ResetTrigger("Exit");
+        _animator.ResetTrigger("Enter");
     }
 }
