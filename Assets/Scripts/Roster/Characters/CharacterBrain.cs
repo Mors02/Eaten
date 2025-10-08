@@ -84,6 +84,8 @@ public abstract class CharacterBrain
 
     private int _injuryProb = 0;
 
+    private int _selectedStat = -1;
+
     private Dictionary<StatusName, Status> _statuses;
 
     /// <summary>
@@ -173,6 +175,13 @@ public abstract class CharacterBrain
 
     public void AddStatus(StatusSO info, int duration, int value, string text="")
     {
+        Status status;
+        if (Has(info.Name, out status))
+        {
+            //If it already has a status then refresh it with different stats
+            RemoveStatus(info.Name);    
+        }
+
         this._statuses.Add(info.Name, new Status(info, duration, value, text));
         this._onStatusChange.Invoke();
     }
@@ -185,31 +194,22 @@ public abstract class CharacterBrain
 
     public void RollForInjury()
     {
-        Debug.Log("ROlling injury");
+        
         //Roll percentage
         int prob = UnityEngine.Random.Range(0, 100);
         if (prob <= _injuryProb)
         {
             //Reduce stats
-            switch (UnityEngine.Random.Range(0, 4))
+            if (_selectedStat != -1)
             {
-                case 0:
-                    this.Strength--;
-                    AddStatus(GameAssets.i.Injured, -1, this.Strength, "strength");
-                    break;
-                case 1:
-                    this.Dexterity--;
-                    AddStatus(GameAssets.i.Injured, -1, this.Dexterity, "dexterity");
-                    break;
-                case 2:
-                    this.Intelligence--;
-                    AddStatus(GameAssets.i.Injured, -1, this.Intelligence, "intelligence");
-                    break;
-                case 3:
-                    this.MaxHP -= 3;
-                    AddStatus(GameAssets.i.Injured, -1, this.CurrentHP, "health");
-                    break;
+                ReduceStat(_selectedStat);
             }
+            else
+            {
+                ReduceStat(UnityEngine.Random.Range(0, 4));
+            }
+            //reset probability
+            this._injuryProb = 0;
         }
         else
         {
@@ -217,6 +217,30 @@ public abstract class CharacterBrain
             this._injuryProb += 60;
         }
             
+    }
+
+    public void ReduceStat(int stat)
+    {
+        switch (stat)
+        {
+            case 0:
+                this.Strength--;
+                AddStatus(GameAssets.i.Injured, -1, this.Strength, "strength");
+                break;
+            case 1:
+                this.Dexterity--;
+                AddStatus(GameAssets.i.Injured, -1, this.Dexterity, "dexterity");
+                break;
+            case 2:
+                this.Intelligence--;
+                AddStatus(GameAssets.i.Injured, -1, this.Intelligence, "intelligence");
+                break;
+            case 3:
+                this.MaxHP -= 3;
+                AddStatus(GameAssets.i.Injured, -1, this.CurrentHP, "health");
+                break;
+        }
+        _selectedStat = stat;
     }
 
     public void Eat(int hunger)
@@ -232,6 +256,8 @@ public abstract class CharacterBrain
             this.AddStatus(GameAssets.i.LevelUp, -1, this.Level);
             this.HasLeveledUp = false;
         }
+
+        this._selectedStat = -1;
             
     }
 
@@ -309,6 +335,7 @@ public abstract class CharacterBrain
         }
         
     }
+    
 
     public void TickDownStatuses()
     {
