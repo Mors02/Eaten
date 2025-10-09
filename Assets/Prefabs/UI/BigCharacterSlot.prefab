@@ -833,11 +833,13 @@ MonoBehaviour:
   _bigSlider: {fileID: 9085349650990744549}
   _text: {fileID: 1138784360781789698}
   _visibleSection: {fileID: 107228736020636897}
+  _statusContainer: {fileID: 0}
   _border: {fileID: 3053663541674564770}
   _background: {fileID: 7034550273570139520}
   _fullHunger: {r: 1, g: 1, b: 1, a: 1}
   _emptyHunger: {r: 0.33962262, g: 0, b: 0, a: 1}
   _connectionActive: 0
+  _animator: {fileID: 0}
 --- !u!114 &85939714983707783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,7 +900,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 50, y: 50}
+  m_Size: {x: 160, y: 160}
   m_EdgeRadius: 0
 --- !u!50 &5032480671788471616
 Rigidbody2D:
