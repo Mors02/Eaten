@@ -145,7 +145,7 @@ public class EnemyManager : MonoBehaviour
             GameObject prefab = Instantiate(_characterPrefab, this.transform.position + randomPos, Quaternion.identity, this.transform);
             prefab.transform.localScale = new Vector3(-1, 1, 1);
             SpriteRenderer s = prefab.GetComponentInChildren<SpriteRenderer>();
-            s.sprite = character.sprite;
+            prefab.GetComponent<CharacterGraphics>().Setup(true, character.sprite);
             prefabs.Add(s);
             EnemyPositions.Add(prefab.transform);
             i++;

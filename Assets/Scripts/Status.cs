@@ -17,6 +17,7 @@ public class Status
     {
         this._duration = duration;
         this._value = value;
+        this._text = "";
     }
 
     public Status(StatusSO status, int duration, int value)
@@ -24,6 +25,7 @@ public class Status
         this._info = status;
         this._duration = duration;
         this._value = value;
+        this._text = "";
     }
 
     public Status(StatusSO status, int duration, int value, string text)

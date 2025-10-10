@@ -57,13 +57,13 @@ public class EatLogic : MonoBehaviour
 
                 movement.enabled = true;
                 float time = movement.SetPosition(enemy.position);
-
+                
                 //animator.GetCurrentAnimatorStateInfo(0).normalizedTime
                 //remove enemy
                 enemy.GetComponent<CharacterMovement>().WillDieIn(time);
 
                 StartCoroutine(GoBack(time, movement, _returnPosition));
-
+                Camera.main.gameObject.GetComponent<ZoomOnEaten>().CenterOn(enemy.position, time);
                 //add eating bonuses
 
                 GameManager.i.Characters[GameManager.i.SelectedCharacter].EatEnemy(_em.EnemyParty);

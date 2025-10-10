@@ -85,7 +85,7 @@ public class CombatManager : MonoBehaviour
     private void EnemyAction()
     {
 
-        if (this.EnemyParty.EnemyPositions.Count == 4)
+        if (this.EnemyParty.EnemyPositions.Count == 0)
         {
             SetupDrop();
             EndCombatChecks();
