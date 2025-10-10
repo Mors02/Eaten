@@ -9947,7 +9947,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 20, y: 20}
+  m_CellSize: {x: 20, y: 15}
   m_Spacing: {x: 60, y: 60}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -9964,7 +9964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2264151, g: 0.2264151, b: 0.2264151, a: 1}
+  m_Color: {r: 0.5188679, g: 0.38087267, b: 0.3450961, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -14534,6 +14534,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8425813180157421534, guid: e6506bbd47d57a844a8216680676fe17, type: 3}
       propertyPath: _connectionActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571004087301452611, guid: e6506bbd47d57a844a8216680676fe17, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
