@@ -52,7 +52,7 @@ public class EatLogic : MonoBehaviour
                 movement = child.GetComponentInChildren<CharacterMovement>();
                 _returnPosition = child.parent.transform.position + child.transform.localPosition;
 
-                Debug.Log(_returnPosition);
+                
                 animator = child.GetComponent<Animator>();
 
                 movement.enabled = true;
@@ -75,6 +75,8 @@ public class EatLogic : MonoBehaviour
                 GameManager.i.EnemiesEaten++;
 
                 _cm.RemoveAllHighlights();
+
+                
             }
         }
 
@@ -88,7 +90,9 @@ public class EatLogic : MonoBehaviour
             yield return new WaitForSeconds(time);
             movement.enabled = true;
             movement.SetPosition(position);
+            StopAllCoroutines();
         }
+        
     }
 
     public void ShowButton()

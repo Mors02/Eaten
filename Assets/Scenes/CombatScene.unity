@@ -5037,12 +5037,8 @@ MonoBehaviour:
   _animator: {fileID: 519420033}
   _canvas: {fileID: 1649997395}
   _volume: {fileID: 1666474233}
-  _intensity:
-    m_OverrideState: 0
-    m_Value: 0.8
-  _distortion:
-    m_OverrideState: 0
-    m_Value: 0.35
+  _intensity: 1
+  _distortion: 0.35
 --- !u!224 &524776740 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7961249318115769065, guid: c791e7c446b5c400da969300a3c78f61, type: 3}

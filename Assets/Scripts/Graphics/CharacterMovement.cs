@@ -33,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
         {
             this.transform.position = _targetPosition;
             this.enabled = false;
+            _animator.SetBool("Walk", false);
         }
     }
 
@@ -40,6 +41,7 @@ public class CharacterMovement : MonoBehaviour
     {
         this._targetPosition = target;
         Vector2 direction = this._targetPosition - this._rb.position;
+        _animator.SetBool("Walk", true);
         return Vector2.Distance(_targetPosition, this.transform.position) / _speed;
     }
     

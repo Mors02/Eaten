@@ -14,31 +14,32 @@ public class ZoomOnEaten : MonoBehaviour
     [SerializeField]
     private Volume _volume;
 
-    //[Range(0f, 1f)]
+    [Range(0f, 1f)]
     [SerializeField]
-    private ClampedFloatParameter _intensity, _distortion;
+    private float _intensity, _distortion;
 
     private Vignette _vignette;
     private LensDistortion _lens;
 
-    private ClampedFloatParameter _defaultIntensity, _defaultDistortion;
+    private float _defaultIntensity, _defaultDistortion;
 
 
     public void Start()
     {
         _volume.profile.TryGet(out _vignette);
-        _defaultIntensity = _vignette.intensity;
+        _defaultIntensity = (float)_vignette.intensity;
+        Debug.Log(_vignette.name);
 
         _volume.profile.TryGet(out _lens);
-        _defaultDistortion = _lens.intensity;
+        _defaultDistortion = (float)_lens.intensity;
     }
     public void CenterOn(Vector2 target, float duration)
     {
         _animator.SetTrigger("Zoom");
         this.transform.position = new Vector3(target.x, target.y, -10);
         _canvas.enabled = false;
-        _vignette.intensity = _intensity;
-        _lens.intensity = _distortion;
+        _vignette.intensity.Override( _intensity);
+        _lens.intensity.Override(_distortion);
         Invoke("Reset", duration);
     }
     
@@ -46,8 +47,8 @@ public class ZoomOnEaten : MonoBehaviour
     {
         this.transform.position = new Vector3(0, 0, -10);
         _canvas.enabled = true;
-         _vignette.intensity = _defaultIntensity;
-        _lens.intensity = _defaultDistortion;
+        _vignette.intensity.Override(_defaultIntensity);
+        _lens.intensity.Override(_defaultDistortion);
         _animator.SetTrigger("Reset");
     }
 }
