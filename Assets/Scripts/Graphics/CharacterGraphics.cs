@@ -31,6 +31,15 @@ public class CharacterGraphics : MonoBehaviour
         this._animator.SetTrigger("Consume");
     }
 
+    public void InvisibleAnimation(bool active)
+    {
+        Color color = _sprite.color;
+        //_animator.SetBool("Invisible", active); 
+        color.a = active ? 0.1f : 1f;
+        _sprite.color = color;
+        Debug.Log(this._sprite.color);
+    }
+
     public void Setup(bool isEnemy, Sprite sprite)
     {
         try
@@ -50,12 +59,13 @@ public class CharacterGraphics : MonoBehaviour
                     this._sprite.sprite = _character.Sprite;
                     this._spirit.sprite = _character.Sprite;
                 }
-            } else
+            }
+            else
             {
                 this._spirit.sprite = sprite;
                 this._sprite.sprite = sprite;
             }
-            
+
 
             this._animator = GetComponent<Animator>();
         }

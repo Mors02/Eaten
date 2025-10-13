@@ -8014,6 +8014,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5592472287106543542, guid: 72d990be3dea84772a8b790fc7e97927, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592472287106543542, guid: 72d990be3dea84772a8b790fc7e97927, type: 3}
       propertyPath: m_SortingOrder
       value: 6
       objectReference: {fileID: 0}

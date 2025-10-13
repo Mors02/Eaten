@@ -41,6 +41,14 @@ public class EatLogic : MonoBehaviour
         //get random enemy
         Transform enemy = _em.EnemyPositions[index];
 
+        foreach (Transform graphic in _em.EnemyPositions)
+        {
+            if (graphic != enemy)
+            {
+                graphic.GetComponent<CharacterGraphics>().InvisibleAnimation(true);
+            }
+        }
+
         CharacterMovement movement;
         Animator animator;
 
@@ -74,9 +82,7 @@ public class EatLogic : MonoBehaviour
 
                 GameManager.i.EnemiesEaten++;
 
-                _cm.RemoveAllHighlights();
-
-                
+                _cm.RemoveAllHighlights();                
             }
         }
 
@@ -90,6 +96,10 @@ public class EatLogic : MonoBehaviour
             yield return new WaitForSeconds(time);
             movement.enabled = true;
             movement.SetPosition(position);
+            foreach (Transform graphic in _em.EnemyPositions)
+            {
+                graphic.GetComponent<CharacterGraphics>().InvisibleAnimation(false);
+            }
             StopAllCoroutines();
         }
         
