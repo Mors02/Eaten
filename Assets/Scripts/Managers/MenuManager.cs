@@ -3,7 +3,7 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _partyModal, _mapModal;
+    private GameObject _partyModal, _mapModal, _partyGraphics;
 
     [SerializeField]
     private Animator _animator;
@@ -15,6 +15,7 @@ public class MenuManager : MonoBehaviour
     {
         this._partyModal.SetActive(false);
         this._mapModal.SetActive(false);
+        this._partyGraphics.SetActive(true);
     }
 
     public void SwitchPartyVisual()

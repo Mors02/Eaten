@@ -52,7 +52,8 @@ public class GameManager
 
     public static CharacterBrain GetCharacter(int id)
     {
-        if (id >= i.Characters.Count)
+        Debug.Log("PIERO: " + GameManager.i.Characters.Count);
+        if (id >= GameManager.i.Characters.Count)
         {
             return null;
         }
