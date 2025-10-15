@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: b412cbc537b934bfa9e239c2a1528899
+guid: ccdf8fb6bd76f144e90a55499baf8188
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2252379806506117126
-    second: ui_background_0
+      213: 5572421574961305509
+    second: UI_bg2_0
+  - first:
+      213: 8058217124853480309
+    second: UI_bg2_1
+  - first:
+      213: -2000339864414712161
+    second: UI_bg2_2
+  - first:
+      213: -1130797321470121619
+    second: UI_bg2_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,9 +49,9 @@ TextureImporter:
     filterMode: 0
     aniso: 1
     mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -52,7 +61,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 16
-  spriteBorder: {x: 13, y: 11, z: 18, w: 18}
+  spriteBorder: {x: 28, y: 28, z: 29, w: 26}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -96,30 +105,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ui_background_0
+      name: UI_bg2_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 320
-        height: 70
+        y: 37
+        width: 29
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: af790f5ef70fdb0e0800000000000000
-      internalID: -2252379806506117126
+      spriteID: 5a79a4206e7355d40800000000000000
+      internalID: 5572421574961305509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_bg2_1
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 37
+        width: 30
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57b7cd1e7c984df60800000000000000
+      internalID: 8058217124853480309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_bg2_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9e0287dd7d5d34e0800000000000000
+      internalID: -2000339864414712161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_bg2_3
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 0
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d696fccc3d99e40f0800000000000000
+      internalID: -1130797321470121619
       vertices: []
       indices: 
       edges: []
@@ -148,7 +210,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ui_background_0: -2252379806506117126
+      UI_bg2_0: 5572421574961305509
+      UI_bg2_1: 8058217124853480309
+      UI_bg2_2: -2000339864414712161
+      UI_bg2_3: -1130797321470121619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
