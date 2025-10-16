@@ -20,10 +20,10 @@ public class GameManager
                     new Oldman(),
                     new Girl(),
                     new Strongman(),
-                    //new Wizard(),
-                    //new Cleric(),
-                    //new Child(),
-                    //new Coolguy()
+                    new Wizard(),
+                    new Cleric(),
+                    new Child(),
+                    new Coolguy()
                 };
 
                 instance.Inventory = new Item[]
@@ -52,7 +52,6 @@ public class GameManager
 
     public static CharacterBrain GetCharacter(int id)
     {
-        Debug.Log("PIERO: " + GameManager.i.Characters.Count);
         if (id >= GameManager.i.Characters.Count)
         {
             return null;

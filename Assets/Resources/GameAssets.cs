@@ -40,6 +40,26 @@ public class GameAssets : MonoBehaviour
     public Character Child;
     public Character Coolguy;
 
+    public static CharacterBrain RandomCharacter()
+    {
+        List<CharacterBrain> characters = new List<CharacterBrain>
+        {
+            new Peasant(),
+            new Dog(),
+            new Oldman(),
+            new Girl(),
+            new Strongman(),
+            new Wizard(),
+            new Cleric(),
+            new Child(),
+            new Coolguy()
+        };
+
+        int id = Random.Range(0, characters.Count);
+
+        return characters[id];
+    }
+
     public UIManager UiManager;
 
     [Header("Events")]

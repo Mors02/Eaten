@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 2
   title: Lost Child
-  sprite: {fileID: -1045181238759104467, guid: 0575201f3357043538a41e8a481eb135, type: 3}
+  sprite: {fileID: 4293804540270710596, guid: 0235f1a21b36a4b3a91b770c0520f361, type: 3}
   enemyParty: {fileID: 0}
   description: You find a little child in the hallway, lost and alone. You could
     bring him with you back to the bar. While you think on it, your stomach trembles
