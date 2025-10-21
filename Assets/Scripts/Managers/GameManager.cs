@@ -37,6 +37,7 @@ public class GameManager
                 instance.SelectedCharacter = -1;
                 instance.CanEat = false;
                 instance.CanPlay = true;
+                instance.Title = true;
 
                 //for testing purposes
                 instance.SelectedEvent = GameAssets.i.publicEvents[0];
@@ -47,6 +48,8 @@ public class GameManager
     }
 
     public List<CharacterBrain> Characters;
+
+    public bool Title;
 
     public Item[] Inventory;
 

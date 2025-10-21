@@ -5,6 +5,10 @@ public class MenuManager : MonoBehaviour
     [SerializeField]
     private GameObject _partyModal, _mapModal, _partyGraphics;
 
+
+    [SerializeField]
+    private GameObject _gameSection, _titleSection;
+
     [SerializeField]
     private Animator _animator;
 
@@ -14,8 +18,28 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         this._partyModal.SetActive(false);
-        this._mapModal.SetActive(false);
-        this._partyGraphics.SetActive(true);
+        if (GameManager.i.Title)
+        {
+            _gameSection.SetActive(false);
+            _titleSection.SetActive(true);
+        }
+        else
+        {
+            this._mapModal.SetActive(false);
+            this._partyGraphics.SetActive(true);
+            _gameSection.SetActive(false);
+        }
+
+    }
+
+    public void StartGame()
+    {
+        this._titleSection.SetActive(false);
+        GameManager.i.Title = false;
+        _animator.SetTrigger("Zoom");
+        float time = _animator.GetCurrentAnimatorStateInfo(0).length;
+        Debug.Log("Animation duration: " + time);
+        Invoke("SwitchMapVisual", _showAnimation.length);
     }
 
     public void SwitchPartyVisual()
@@ -40,12 +64,13 @@ public class MenuManager : MonoBehaviour
             SwitchMapVisual();
             _animator.SetTrigger("Open");
         }
-        
-        
+
+
     }
 
     public void SwitchMapVisual()
     {
         this._mapModal.SetActive(!this._mapModal.activeSelf);
+        this._gameSection.SetActive(true);
     }
 }

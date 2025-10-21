@@ -8,6 +8,7 @@ public class MapManager : MonoBehaviour
 {
     [SerializeField]
     private Transform _locationsParent;
+
     private List<MapEvent> _locations;
     [SerializeField]
     [Range(1, 5)]
