@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using TMPro;
 using System;
 using Unity.VisualScripting;
+using System.Collections.Generic;
+using System.Linq;
 public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerDownHandler, IPointerClickHandler
 {
     [SerializeField]
@@ -46,6 +48,8 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     [SerializeField]
     private Animator _animator;
 
+    private bool _active;
+
     private void Awake()
     {
         if (_connectionActive)
@@ -59,6 +63,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         // No character means that this square is not used
         if (this._cb == null)
         {
+            _active = false;
             _visibleSection.SetActive(false);
             return;
         }
@@ -70,10 +75,17 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         this._cb._onStatChange.Invoke();
 
         this._cb._onStatusChange.AddListener(SetupStatuses);
+        _active = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        //We want to avoid connecting when hovering the line clone
+        List<GameObject> hovered = eventData.hovered;
+        hovered = hovered.Where(item =>{ Debug.Log(item.name);  return item.name == "Visible"; }).ToList();
+        if (hovered.Count == 0)
+            return;
+
         if (_connectionActive)
         {
             _cm.Restart();
@@ -84,6 +96,13 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        //We want to avoid connecting when hovering the line clone
+        List<GameObject> hovered = eventData.hovered;
+        hovered = hovered.Where(item =>{ Debug.Log(item.name);  return item.name == "Visible"; }).ToList();
+        if (hovered.Count == 0)
+            return;
+
+        //else connect
         if (_connectionActive && _cm.IsClicking() && _cm.CanSelect(gameObject.name))
         {
             _cm.Connect(this);
@@ -167,5 +186,10 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         _animator.ResetTrigger("Exit");
         _animator.ResetTrigger("Enter");
+    }
+
+    public bool IsActive()
+    {
+        return _active;
     }
 }

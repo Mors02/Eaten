@@ -21,9 +21,9 @@ public class GameManager
                     new Girl(),
                     new Strongman(),
                     new Wizard(),
-                    new Cleric(),
-                    new Child(),
-                    new Coolguy()
+                    //new Cleric(),
+                    //new Child(),
+                    //new Coolguy()
                 };
 
                 instance.Inventory = new Item[]

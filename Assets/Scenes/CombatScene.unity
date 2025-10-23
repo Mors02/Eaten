@@ -11002,6 +11002,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _line: {fileID: 6974106623148199244, guid: 9c43d763d6c4b554fa4fb6b5d4929783, type: 3}
   _cm: {fileID: 1649997398}
+  _connectparent: {fileID: 1529909048}
+  _lastChild: {fileID: 0}
 --- !u!114 &1649997398
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class ConnectManager : MonoBehaviour
 {
@@ -12,13 +12,15 @@ public class ConnectManager : MonoBehaviour
     private GameObject _line;
     private Vector2 _defaultPosition, _dotStartPosition;
     private int _currentBlock = -1;
-    private Vector2 _offset;
     private int[] _selectedBlocks;
     private int _howManyBlocks = 0;
-    private int _MAXBLOCKS = 4;
+    private int _MAXBLOCKS = 100;
     private List<Ability> _abilities;
     [SerializeField]
     private CombatManager _cm;
+
+    [SerializeField]
+    private Transform _connectparent, _lastChild;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,6 +29,27 @@ public class ConnectManager : MonoBehaviour
         _selectedBlocks = new int[_MAXBLOCKS];
         _howManyBlocks = 0;
         _abilities = new List<Ability>();
+        _lastChild = GetLastActiveConnect();
+    }
+
+    public Transform GetLastActiveConnect()
+    {
+        int activeChildren = 0;
+        Transform[] children = new Transform[9];
+        //cycle to find the number of active connection        
+        foreach (Transform child in _connectparent)
+        {
+            if (child.gameObject.GetComponent<Connect>().IsActive())
+            {
+                activeChildren++;
+            }
+            children[Int32.Parse(child.name)] = child;
+        }
+
+        //cycle again to find the gameobject at the correct position. We are not using an array becau
+
+        Debug.Log("Last child: " + children[activeChildren - 1].name);
+        return children[activeChildren - 1];
     }
 
     public void SelectStartingBlock(Connect connect)
@@ -59,6 +82,9 @@ public class ConnectManager : MonoBehaviour
 
         _selectedBlocks[_howManyBlocks++] = _currentBlock;
         _abilities.Add(connect.GetAbility());
+                
+        //for visualization porpusses  
+        _lineTransform.SetParent(_lastChild);
     }
 
     public void StopClicking()
@@ -139,6 +165,7 @@ public class ConnectManager : MonoBehaviour
 
         //add to the selected blocks
         SelectStartingBlock(connect);
+
     }
 
     public void ActivateAllAbilities()
