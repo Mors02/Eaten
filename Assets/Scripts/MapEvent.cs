@@ -47,6 +47,6 @@ public class MapEvent : MonoBehaviour
 
     public void Highlight(bool Highlight)
     {
-        this.transform.localScale = Highlight? new Vector2(1f, 1f) : new Vector2(0.5f, 0.5f);
+        this.transform.localScale = Highlight? new Vector2(1f, 1f) : new Vector2(0.75f, 0.75f);
     }
 }

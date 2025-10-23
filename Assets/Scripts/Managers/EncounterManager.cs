@@ -16,6 +16,9 @@ public class EncounterManager : MonoBehaviour
     [SerializeField]
     private TMP_Text _title, _description, _result;
 
+    [SerializeField]
+    private Animator _animator;
+
     private EventSO _event;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -30,15 +33,17 @@ public class EncounterManager : MonoBehaviour
         ///setup the options available
         for (; i < _event.options.Count(); i++)
         {
+            TMP_Text text = _buttons[i].GetComponentInChildren<TMP_Text>();
+            text.text = _event.options[i];
             if (_event.CheckOptionAvailability(i))
             {
-                _buttons[i].GetComponentInChildren<TMP_Text>().text = _event.options[i];
                 int index = i;
                 _buttons[i].GetComponent<Button>().onClick.AddListener(delegate { _event.EncounterOptions(index); });
                 _buttons[i].GetComponent<Button>().onClick.AddListener(delegate { Continue(index); });
             }
             else
             {
+                text.text = "[Blocked] " + text.text;
                 _buttons[i].GetComponent<Button>().interactable = false;
             }
         }
@@ -59,6 +64,13 @@ public class EncounterManager : MonoBehaviour
 
     public void Finish()
     {
+        _animator.SetTrigger("Exit");
+        Debug.Log(_animator.GetCurrentAnimatorStateInfo(0).length);
+        Invoke("ChangeScene", _animator.GetCurrentAnimatorStateInfo(0).length);
+    }
+
+    public void ChangeScene() {
+
         SceneManager.LoadScene("PartyScene");
     }
 

@@ -40,7 +40,7 @@ public class GameManager
                 instance.Title = true;
 
                 //for testing purposes
-                instance.SelectedEvent = GameAssets.i.publicEvents[0];
+                instance.SelectedEvent = GameAssets.i.publicEvents[1];
             }
 
             return instance;

@@ -28,6 +28,7 @@ public class MenuManager : MonoBehaviour
             this._mapModal.SetActive(false);
             this._partyGraphics.SetActive(true);
             _gameSection.SetActive(false);
+            _titleSection.SetActive(false);
         }
 
     }
@@ -40,6 +41,10 @@ public class MenuManager : MonoBehaviour
         float time = _animator.GetCurrentAnimatorStateInfo(0).length;
         Debug.Log("Animation duration: " + time);
         Invoke("SwitchMapVisual", _showAnimation.length);
+    }
+
+    public void ExitGame() {
+        Application.Quit();
     }
 
     public void SwitchPartyVisual()

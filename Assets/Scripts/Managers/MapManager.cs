@@ -17,6 +17,9 @@ public class MapManager : MonoBehaviour
     [SerializeField]
     private Button _embarkButton;
 
+    [SerializeField]
+    private Animator _animator;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -40,7 +43,8 @@ public class MapManager : MonoBehaviour
         {
             int index = -1;
             //loop through the indices until i find a place that is not already selected
-            do {
+            do
+            {
                 index = Random.Range(0, _locations.Count);
             } while (_locations[index].gameObject.activeInHierarchy);
             //make it visible
@@ -61,6 +65,13 @@ public class MapManager : MonoBehaviour
     }
 
     public void Embark()
+    {
+        _animator.SetTrigger("Exit");
+        Debug.Log(_animator.GetCurrentAnimatorStateInfo(0).length);
+        Invoke("ChangeScene", 0.5f);
+    }
+
+    public void ChangeScene()
     {
         if (GameManager.i.SelectedEvent.type == MapEventType.Encounter)
             SceneManager.LoadScene("EncounterScene");
