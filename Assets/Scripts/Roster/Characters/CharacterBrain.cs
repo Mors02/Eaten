@@ -133,7 +133,6 @@ public abstract class CharacterBrain
     /// <param name="damage">Damage amount</param>
     public void ReceiveDamage(int damage)
     {
-        Debug.Log(this.CurrentHP);
         if (this.CurrentHP <= 0)
         {
             RollForInjury();

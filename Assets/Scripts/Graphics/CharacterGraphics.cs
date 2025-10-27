@@ -20,7 +20,7 @@ public class CharacterGraphics : MonoBehaviour
         this.Setup(false, null);
     }
 
-    public void AttackAnimation(string animationType)
+    public void PlayAnimation(string animationType)
     {
         this._animator.SetTrigger(animationType);
     }

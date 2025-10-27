@@ -37,6 +37,7 @@ public class CombatManager : MonoBehaviour
     private int _howManyDrops;
 
     private CharacterGraphics[] _graphics;
+    public CharacterGraphics[] Graphics => _graphics;
     //    public GameObject EnemyObject { get; set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,7 +72,7 @@ public class CombatManager : MonoBehaviour
         GameManager.i.CanPlay = false;
         for (int i = 0; i < Party.Count; i++)
         {
-            _graphics[i].AttackAnimation("Jump");
+            _graphics[i].PlayAnimation("Jump");
         }
 
 
@@ -126,7 +127,7 @@ public class CombatManager : MonoBehaviour
         {
             BattlefieldContext context = new BattlefieldContext(EnemyParty, Party, GetCharacterInActivatedList(abilities, ability.i + 1), GetCharacterInActivatedList(abilities, ability.i - 1));
             ability.value.Activate(context);
-            _graphics[ability.value.CharacterId].AttackAnimation(ability.value.AnimationType.ToString());
+            _graphics[ability.value.CharacterId].PlayAnimation(ability.value.AnimationType.ToString());
 
             yield return new WaitForSeconds(0.2f);
         }

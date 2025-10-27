@@ -14,13 +14,13 @@ public class Target : MonoBehaviour
 
     public List<CharacterBrain> Characters { get; set; }
 
-    public CombatManager party { get; set; }
+    public CombatManager Party { get; set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         this.Index = Int32.Parse(this.gameObject.name);
         this.Characters = new List<CharacterBrain>();
-        this.party = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CombatManager>();
+        this.Party = GameObject.FindGameObjectWithTag("Canvas").GetComponent<CombatManager>();
         this.PopulateTarget();
         this._animator = GetComponent<Animator>();
     }
@@ -30,7 +30,7 @@ public class Target : MonoBehaviour
     /// </summary>
     public void PopulateTarget()
     {
-        List<CharacterBrain> characters = party.GetParty();
+        List<CharacterBrain> characters = Party.GetParty();
         switch (this.TargetType)
         {
             case AnimationType.Row:
@@ -62,6 +62,7 @@ public class Target : MonoBehaviour
         //Debug.Log("Row " + Index + ", " + Characters.Count + " characters");
         foreach (CharacterBrain ch in Characters)
         {
+            Party.Graphics[ch.Id].PlayAnimation("Hit");
             ch.ReceiveDamage(damage);
         }
     }
