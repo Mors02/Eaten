@@ -105,7 +105,9 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                             _item.Throw(target.Enemy);
                             target.Enemy.ThrowAnimation(_item);
                             break;
-
+                        case ActionType.Hire:                        
+                            _item.Hire(target.Character);
+                            break;
                         case ActionType.Delete:                            
                             break;
                         case ActionType.Drop:
@@ -113,8 +115,12 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                             break;
 
                     }
-                    //can only do this if you can play or you cant play but you only do inventory management
-                    if (GameManager.i.CanPlay || (!GameManager.i.CanPlay && (target.Action == ActionType.Delete || target.Action == ActionType.Drop)))
+                    //remove from the inventory (basically apply the effect) only if
+                    //you can play
+                    if (GameManager.i.CanPlay
+                    //you cant play but you only do inventory management
+                    || (!GameManager.i.CanPlay && (target.Action == ActionType.Delete || target.Action == ActionType.Drop))
+                    )
                     {
                         if (_parentTransform.gameObject.name != "Drop")
                             GameManager.i.Inventory[_id] = null;

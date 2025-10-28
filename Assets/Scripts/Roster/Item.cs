@@ -25,4 +25,9 @@ public class Item
     {
         this._item.Throw(enemy);
     }
+
+    public void Hire(CharacterBrain character)
+    {
+        character.RestoreHunger(this._item.HungerRestore * 2);
+    }
 }

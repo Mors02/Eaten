@@ -10,6 +10,8 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private CharacterBrain _character;
 
+    public CharacterBrain Character => _character;
+
     [SerializeField]
     private Image _image;
 

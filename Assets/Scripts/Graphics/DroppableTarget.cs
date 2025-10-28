@@ -7,7 +7,10 @@ public class DroppableTarget : MonoBehaviour
     [SerializeField]
     private Connect _targetCharacter;
 
-    public CharacterBrain Character { get => _action == ActionType.Eat? _targetCharacter.Character : null; }
+    [SerializeField]
+    private BarCharacter _targetBarCharacter;
+
+    public CharacterBrain Character { get => _action == ActionType.Eat ? _targetCharacter.Character : _targetBarCharacter.Character; }
 
     [SerializeField]
     private EnemyManager _targetEnemy;
@@ -31,5 +34,6 @@ public enum ActionType
     Throw,
     Delete,
 
-    Drop
+    Drop,
+    Hire
 }

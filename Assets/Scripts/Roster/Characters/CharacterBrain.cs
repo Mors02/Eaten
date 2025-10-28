@@ -154,8 +154,18 @@ public abstract class CharacterBrain
     /// <summary>
     /// Reduce the total hunger
     /// </summary>
-    /// <param name="hunger">How much hunger to replenish</param>
+    /// <param name="hunger">How much hunger to remove</param>
     public void ReduceHunger(int hunger)
+    {
+        this.Hunger -= hunger;
+        this._onStatChange.Invoke();
+    }
+
+    // <summary>
+    /// Restore the total hunger
+    /// </summary>
+    /// <param name="hunger">How much hunger to add</param>
+    public void RestoreHunger(int hunger)
     {
         this.Hunger -= hunger;
         this._onStatChange.Invoke();

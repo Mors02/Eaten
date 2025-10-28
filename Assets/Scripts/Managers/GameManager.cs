@@ -63,6 +63,15 @@ public class GameManager
         return i.Characters[id];
     }
 
+    public static bool AddCharacter(CharacterBrain character)
+    {
+        if (i.Characters.Count >= 9)
+            return false;
+
+        i.Characters.Add(character);
+        return true;
+    } 
+
     public static Item GetItem(int id)
     {
         if (id >= i.Inventory.Length)

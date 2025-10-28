@@ -18,5 +18,5 @@ public abstract class ItemSO : ScriptableObject
 
     public abstract void Eat(CharacterBrain character);
 
-    public abstract void Throw(EnemyManager enemy);
+    public abstract void Throw(EnemyManager enemy);    
 }

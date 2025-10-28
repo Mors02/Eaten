@@ -24,7 +24,7 @@ public class LostChildSO : EventSO
         {
             ///add it to your party
             case 0:
-                GameManager.i.Characters.Add(new Child());
+                GameManager.AddCharacter(new Child());
                 Debug.Log("Added child");
                 break;
 
