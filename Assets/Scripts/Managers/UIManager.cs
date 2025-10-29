@@ -2,11 +2,12 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _characterSection, _infosection, _itemSection;
+    private GameObject _characterSection, _infosection, _itemSection, _stomachSection;
 
     [SerializeField]
     private TMP_Text _strength, _intelligence, _dexterity, _hunger, _infobox, _name, _abilityDescription, _health, _itemName, _itemThrow, _itemEat;
@@ -27,9 +28,12 @@ public class UIManager : MonoBehaviour
     private bool _showingRecap;
 
     [SerializeField]
-    private GameObject _combatButtons, _recapButtons;
+    private GameObject _combatButtons, _recapButtons, _characterButtons;
 
     private StatusManager _sm;
+
+    [SerializeField]
+    private Slider _hungerMeter;
 
     private void Start()
     {
@@ -42,9 +46,10 @@ public class UIManager : MonoBehaviour
     /// Displays the info of a character on the info box
     /// </summary>
     /// <param name="cb">the character information to display</param>
-    public void SetupCharacter(CharacterBrain cb)
+    public void SetupCharacter(CharacterBrain cb, bool inParty = true)
     {
         this.ShowSection("character");
+        this._characterButtons.SetActive(true);
         this._strength.text = cb.Strength.ToString();
         this._dexterity.text = cb.Dexterity.ToString();
         this._intelligence.text = cb.Intelligence.ToString();
@@ -53,6 +58,13 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = cb.Ability.Description;
         this._name.text = cb.characterName;
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
+        if (!inParty)
+        {
+            this._hungerMeter.value = cb.Hunger / 100;
+            this._characterButtons.SetActive(false);
+            this._stomachSection.SetActive(true);
+        }
+            
         if (_sm)
             _sm.SetupStatus(cb.GetStatuses());
     }

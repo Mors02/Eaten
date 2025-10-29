@@ -28,14 +28,15 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         try
         {
-            GameAssets.i.UiManager.SetupCharacter(this._character);
+            GameAssets.i.UiManager.SetupCharacter(this._character, true);
             ResetTriggers();
             _animator.SetTrigger("Zoom");
         }
         catch (Exception e)
         {
 
-        };
+        }
+        ;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -48,7 +49,8 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         catch (Exception e)
         {
 
-        };
+        }
+        ;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -75,6 +77,10 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             //if they spawn, randomize them
             this._character = GameAssets.RandomCharacter();
             this._image.sprite = _character.Sprite;
+            this._character.Hunger = 0;
+
+            //set the listener on hunger changes.
+            this._character._onStatChange.AddListener(Hire);
         }
         else
         {
@@ -92,5 +98,16 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public void OnPointerClick(PointerEventData eventData)
     {
         this._mm.SwitchPartyVisual();
+    }
+
+    private void Hire()
+    {
+        //if the hunger meter is full
+        if (_character.Hunger >= 100)
+        {
+            //the character is added to the party
+            GameManager.AddCharacter(this._character);
+            this.gameObject.SetActive(false);
+        }
     }
 }
