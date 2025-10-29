@@ -62,6 +62,8 @@ public class Target : MonoBehaviour
         //Debug.Log("Row " + Index + ", " + Characters.Count + " characters");
         foreach (CharacterBrain ch in Characters)
         {
+            //animation params
+            Party.Graphics[ch.Id].SetDamage(damage);
             Party.Graphics[ch.Id].PlayAnimation("Hit");
             ch.ReceiveDamage(damage);
         }

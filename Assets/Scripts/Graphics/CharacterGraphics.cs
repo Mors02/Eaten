@@ -1,10 +1,14 @@
 using UnityEngine;
 using System;
+using TMPro;
 
 public class CharacterGraphics : MonoBehaviour
 {
     [SerializeField]
     private SpriteRenderer _sprite, _spirit;
+
+    [SerializeField]
+    private SpriteMask _mask;
 
     private CharacterBrain _character;
 
@@ -13,6 +17,9 @@ public class CharacterGraphics : MonoBehaviour
 
     [SerializeField]
     private SpriteRenderer _foodSprite;
+
+    [SerializeField]
+    private TMP_Text _text;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,7 +55,6 @@ public class CharacterGraphics : MonoBehaviour
             {
                 int id = Int32.Parse(transform.parent.gameObject.name);
                 this._character = GameManager.GetCharacter(id);
-
                 // if the character is null means that the party is smaller than the maximum, remove the graphics.
                 if (this._character == null)
                 {
@@ -58,12 +64,14 @@ public class CharacterGraphics : MonoBehaviour
                 {
                     this._sprite.sprite = _character.Sprite;
                     this._spirit.sprite = _character.Sprite;
+                    this._mask.sprite = _character.Sprite;
                 }
             }
             else
             {
                 this._spirit.sprite = sprite;
                 this._sprite.sprite = sprite;
+                this._mask.sprite = sprite;
             }
 
 
@@ -73,5 +81,10 @@ public class CharacterGraphics : MonoBehaviour
         {
             //Debug.Log(e);
         }
+    }
+    
+    public void SetDamage(int damage)
+    {
+        this._text.text = damage.ToString();
     }
 }

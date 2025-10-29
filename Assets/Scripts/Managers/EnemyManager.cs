@@ -43,7 +43,7 @@ public class EnemyManager : MonoBehaviour
 
     public void ReceiveDamage(int damage)
     {
-        this.EnemyParty.CurrentHP -= damage;
+        this.EnemyParty.CurrentHP = Mathf.Max(0, this.EnemyParty.CurrentHP -= damage);
         if (((float)EnemyParty.CurrentHP / EnemyParty.MaxHP) * 100 <= _minimumHealthToEat)
         {
 

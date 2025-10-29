@@ -345,7 +345,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1475153469922548008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -884,6 +884,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetCharacter: {fileID: 8425813180157421534}
+  _targetBarCharacter: {fileID: 0}
   _targetEnemy: {fileID: 0}
   _itemUI: {fileID: 0}
   _action: 0

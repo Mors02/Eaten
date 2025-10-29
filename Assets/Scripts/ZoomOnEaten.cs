@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,8 +9,8 @@ public class ZoomOnEaten : MonoBehaviour
     [SerializeField]
     private Animator _animator;
 
-    [SerializeField]
-    private Canvas _canvas;
+    //[SerializeField]
+    private Canvas[] _canvas;
 
     [SerializeField]
     private Volume _volume;
@@ -32,23 +33,33 @@ public class ZoomOnEaten : MonoBehaviour
 
         _volume.profile.TryGet(out _lens);
         _defaultDistortion = (float)_lens.intensity;
+
+        _canvas = FindObjectsByType<Canvas>(FindObjectsInactive.Include, FindObjectsSortMode.None);
     }
     public void CenterOn(Vector2 target, float duration)
     {
         _animator.SetTrigger("Zoom");
         this.transform.position = new Vector3(target.x, target.y, -10);
-        _canvas.enabled = false;
+        SetCanvases(false);
         _vignette.intensity.Override( _intensity);
         _lens.intensity.Override(_distortion);
         Invoke("Reset", duration);
     }
-    
+
     public void Reset()
     {
         this.transform.position = new Vector3(0, 0, -10);
-        _canvas.enabled = true;
+        SetCanvases(true);
         _vignette.intensity.Override(_defaultIntensity);
         _lens.intensity.Override(_defaultDistortion);
         _animator.SetTrigger("Reset");
+    }
+    
+    public void SetCanvases(bool enabled)
+    {
+        foreach (Canvas canvas in _canvas)
+        {
+            canvas.enabled = enabled;
+        }
     }
 }
