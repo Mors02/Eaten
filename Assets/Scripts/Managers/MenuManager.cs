@@ -18,6 +18,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         this._partyModal.SetActive(false);
+        GameManager.i.CanPlay = true;
         if (GameManager.i.Title)
         {
             _gameSection.SetActive(false);

@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
         if (!inParty)
         {
-            this._hungerMeter.value = cb.Hunger / 100;
+            this._hungerMeter.value = (float)cb.Hunger / 100;
             this._characterButtons.SetActive(false);
             this._stomachSection.SetActive(true);
         }

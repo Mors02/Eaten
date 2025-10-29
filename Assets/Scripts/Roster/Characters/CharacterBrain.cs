@@ -167,7 +167,7 @@ public abstract class CharacterBrain
     /// <param name="hunger">How much hunger to add</param>
     public void RestoreHunger(int hunger)
     {
-        this.Hunger -= hunger;
+        this.Hunger += hunger;
         this._onStatChange.Invoke();
     }
 

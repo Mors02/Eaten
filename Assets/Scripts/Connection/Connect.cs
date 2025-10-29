@@ -82,7 +82,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         //We want to avoid connecting when hovering the line clone
         List<GameObject> hovered = eventData.hovered;
-        hovered = hovered.Where(item =>{ Debug.Log(item.name);  return item.name == "Visible"; }).ToList();
+        hovered = hovered.Where(item =>{ return item.name == "Visible"; }).ToList();
         if (hovered.Count == 0)
             return;
 
@@ -98,7 +98,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     {
         //We want to avoid connecting when hovering the line clone
         List<GameObject> hovered = eventData.hovered;
-        hovered = hovered.Where(item =>{ Debug.Log(item.name);  return item.name == "Visible"; }).ToList();
+        hovered = hovered.Where(item =>{ return item.name == "Visible"; }).ToList();
         if (hovered.Count == 0)
             return;
 

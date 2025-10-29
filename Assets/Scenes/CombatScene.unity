@@ -2903,6 +2903,7 @@ MonoBehaviour:
   _characterSection: {fileID: 1875640400}
   _infosection: {fileID: 232729108}
   _itemSection: {fileID: 368780440}
+  _stomachSection: {fileID: 0}
   _strength: {fileID: 1123451920}
   _intelligence: {fileID: 983491954}
   _dexterity: {fileID: 1262865341}
@@ -2920,6 +2921,8 @@ MonoBehaviour:
   _endScreenAnimator: {fileID: 281483265}
   _combatButtons: {fileID: 841366991}
   _recapButtons: {fileID: 149042150}
+  _characterButtons: {fileID: 175048102}
+  _hungerMeter: {fileID: 0}
 --- !u!224 &327485796 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7787726135577538573, guid: e6506bbd47d57a844a8216680676fe17, type: 3}

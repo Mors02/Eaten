@@ -14,7 +14,7 @@ public class ConnectManager : MonoBehaviour
     private int _currentBlock = -1;
     private int[] _selectedBlocks;
     private int _howManyBlocks = 0;
-    private int _MAXBLOCKS = 100;
+    private int _MAXBLOCKS = 4;
     private List<Ability> _abilities;
     [SerializeField]
     private CombatManager _cm;

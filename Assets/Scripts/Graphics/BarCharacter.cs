@@ -28,13 +28,13 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         try
         {
-            GameAssets.i.UiManager.SetupCharacter(this._character, true);
+            GameAssets.i.UiManager.SetupCharacter(this._character, !_static);
             ResetTriggers();
             _animator.SetTrigger("Zoom");
         }
         catch (Exception e)
         {
-
+            Debug.Log(e);
         }
         ;
     }

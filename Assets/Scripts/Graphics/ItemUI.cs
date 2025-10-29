@@ -66,10 +66,8 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
 
         if (_clicked)
         {
-            Debug.Log(Input.GetMouseButton(0));
             if (Input.GetMouseButton(0))
             {
-                Debug.Log("Clicking");
                 this._childTransform.position = Input.mousePosition;
             }
             else
@@ -84,7 +82,7 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                 RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, Vector3.forward);
                 DroppableTarget target;
                 Debug.Log(hit.collider);
-
+                Debug.Log("Manager:" + GameManager.i.CanPlay);
                 if (hit.collider && hit.collider.gameObject.TryGetComponent(out target))
                 {
                     switch (target.Action)

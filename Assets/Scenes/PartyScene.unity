@@ -453,6 +453,10 @@ PrefabInstance:
       propertyPath: _action
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6812255862711562090, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
+      propertyPath: _action
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7637437980163263326, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
       propertyPath: _static
       value: 1
@@ -1133,6 +1137,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 933207932}
     m_Modifications:
     - target: {fileID: 4199545036607387079, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
+      propertyPath: _action
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812255862711562090, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
       propertyPath: _action
       value: 4
       objectReference: {fileID: 0}
@@ -5137,7 +5145,7 @@ MonoBehaviour:
   _characterSection: {fileID: 1650274237}
   _infosection: {fileID: 237574939}
   _itemSection: {fileID: 1960004865}
-  _stomachSection: {fileID: 0}
+  _stomachSection: {fileID: 917820085}
   _strength: {fileID: 1534073771}
   _intelligence: {fileID: 1709577591}
   _dexterity: {fileID: 1194730332}
@@ -5155,8 +5163,8 @@ MonoBehaviour:
   _endScreenAnimator: {fileID: 0}
   _combatButtons: {fileID: 0}
   _recapButtons: {fileID: 0}
-  _characterButtons: {fileID: 0}
-  _hungerMeter: {fileID: 0}
+  _characterButtons: {fileID: 1112655843}
+  _hungerMeter: {fileID: 16502313}
 --- !u!114 &896021181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6868,6 +6876,10 @@ PrefabInstance:
       propertyPath: _action
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6812255862711562090, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
+      propertyPath: _action
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7637437980163263326, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
       propertyPath: _static
       value: 1
@@ -7455,6 +7467,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 933207932}
     m_Modifications:
     - target: {fileID: 4199545036607387079, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
+      propertyPath: _action
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812255862711562090, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
       propertyPath: _action
       value: 4
       objectReference: {fileID: 0}
@@ -9565,7 +9581,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1701016732
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10473,6 +10489,10 @@ PrefabInstance:
       propertyPath: _action
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6812255862711562090, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
+      propertyPath: _action
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7637437980163263326, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
       propertyPath: _static
       value: 1
@@ -10813,6 +10833,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 933207932}
     m_Modifications:
     - target: {fileID: 4199545036607387079, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
+      propertyPath: _action
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812255862711562090, guid: df3567d8588f94a60916584fbe8dd442, type: 3}
       propertyPath: _action
       value: 4
       objectReference: {fileID: 0}
@@ -11347,6 +11371,7 @@ GameObject:
   - component: {fileID: 1967665401}
   - component: {fileID: 1967665403}
   - component: {fileID: 1967665402}
+  - component: {fileID: 1967665404}
   m_Layer: 5
   m_Name: Bg
   m_TagString: Untagged
@@ -11412,6 +11437,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1967665400}
   m_CullTransparentMesh: 1
+--- !u!114 &1967665404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1967665400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.48235294}
+  m_EffectDistance: {x: 0, y: -8}
+  m_UseGraphicAlpha: 1
 --- !u!224 &1974936661 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1002776723215924848, guid: 98b451f79063e476abb16d04b649d20e, type: 3}
