@@ -11,6 +11,7 @@ public class Character : ScriptableObject
     public int baseDexterity;
     public int baseIntelligence;
     public Sprite sprite;
+    public Sprite shadowSprite;
 
     [Range(0, 4)]
     public int MaxStatChange = 2;

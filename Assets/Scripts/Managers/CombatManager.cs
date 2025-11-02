@@ -38,10 +38,19 @@ public class CombatManager : MonoBehaviour
 
     private CharacterGraphics[] _graphics;
     public CharacterGraphics[] Graphics => _graphics;
+
+    [SerializeField]
+    private GameObject _mist;
+    [SerializeField]
+    private Animator _cameraAnimator;
+
+    [SerializeField]
+    private Vector3 _defaultCameraPosition, _tiltedPosition, _rotation;
     //    public GameObject EnemyObject { get; set; }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         GameManager.i.CanPlay = true;
         GameManager.i.EnemiesEaten = 0;
         GameManager.i.CharactersDead = 0;
@@ -104,12 +113,48 @@ public class CombatManager : MonoBehaviour
     /// <param name="abilities">the list of abilities in the order of activation</param>
     /// <param name="partyGraphics">the transform that contains the party graphics</param>
     public void PlayerTurn(List<Ability> abilities)
-    {
-        IEnumerator coroutine = AnimateCharacters(abilities);
+    {   
+        IEnumerator coroutine = StopAttackAnimation(abilities);
         StartCoroutine(coroutine);
+        StartAttackAnimation(abilities);
         EnemyTurn();
     }
 
+    /// <summary>
+    /// Zoom and highlight the attacking characters
+    /// </summary>
+    /// <param name="abilities"></param>
+    public void StartAttackAnimation(List<Ability> abilities)
+    {
+        Camera.main.gameObject.GetComponent<ZoomOnEaten>().SetCanvases(false);
+        _cameraAnimator.SetTrigger("CharactersAttack");
+        _mist.SetActive(true);
+        foreach (var ability in abilities.Select((value, i) => new { i, value }))
+        {
+            _graphics[ability.value.CharacterId].Highlight(true);
+        }
+    }
+    
+    /// <summary>
+    /// Stop the highlight and show the single attacks
+    /// </summary>
+    /// <param name="abilities"></param>
+    /// <returns></returns>
+    public IEnumerator StopAttackAnimation(List<Ability> abilities)
+    {
+        
+        yield return new WaitForSeconds(0.4f);
+        //_camera.position = _defaultCameraPosition;
+        //_camera.Rotate(-_rotation);
+        _mist.SetActive(false);
+        foreach (var ability in abilities.Select((value, i) => new { i, value }))
+        {
+            _graphics[ability.value.CharacterId].Highlight(false);
+        }
+        IEnumerator coroutine = AnimateCharacters(abilities);
+        Camera.main.gameObject.GetComponent<ZoomOnEaten>().SetCanvases(true);
+        StartCoroutine(coroutine);
+    }
     private void CanPlay()
     {
         GameManager.i.CanPlay = true;
@@ -129,7 +174,7 @@ public class CombatManager : MonoBehaviour
             ability.value.Activate(context);
             _graphics[ability.value.CharacterId].PlayAnimation(ability.value.AnimationType.ToString());
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

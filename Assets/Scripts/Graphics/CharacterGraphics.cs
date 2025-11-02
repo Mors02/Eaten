@@ -5,7 +5,7 @@ using TMPro;
 public class CharacterGraphics : MonoBehaviour
 {
     [SerializeField]
-    private SpriteRenderer _sprite, _spirit;
+    private SpriteRenderer _sprite, _spirit, _highlight;
 
     [SerializeField]
     private SpriteMask _mask;
@@ -62,9 +62,7 @@ public class CharacterGraphics : MonoBehaviour
                 }
                 else
                 {
-                    this._sprite.sprite = _character.Sprite;
-                    this._spirit.sprite = _character.Sprite;
-                    this._mask.sprite = _character.Sprite;
+                    SetupSprites();
                 }
             }
             else
@@ -72,6 +70,7 @@ public class CharacterGraphics : MonoBehaviour
                 this._spirit.sprite = sprite;
                 this._sprite.sprite = sprite;
                 this._mask.sprite = sprite;
+                this._highlight.sprite = _character.ShadowSprite;
             }
 
 
@@ -82,9 +81,23 @@ public class CharacterGraphics : MonoBehaviour
             //Debug.Log(e);
         }
     }
-    
+
+    public void SetupSprites()
+    {
+         this._sprite.sprite = _character.Sprite;
+        this._spirit.sprite = _character.Sprite;
+        this._mask.sprite = _character.Sprite;
+        this._highlight.sprite = _character.ShadowSprite;
+    }
+
     public void SetDamage(int damage)
     {
         this._text.text = damage.ToString();
+    }
+    
+    public void Highlight(bool active)
+    {
+        _highlight.enabled = active;
+        this._sprite.sortingLayerName = active? "Overlay" : "Default";
     }
 }

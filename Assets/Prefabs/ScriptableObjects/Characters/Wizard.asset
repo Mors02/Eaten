@@ -19,6 +19,9 @@ MonoBehaviour:
   baseDexterity: 4
   baseIntelligence: 7
   sprite: {fileID: 887718808532382070, guid: 3809cfcd090f2364eb975c91ca6a793a, type: 3}
+  shadowSprite: {fileID: 4003810721110794545, guid: 10735237a3eef09428c53a1a23ca6732, type: 3}
+  MaxStatChange: 2
+  MaxHealthChange: 5
   abilityPool:
   - {fileID: 11400000, guid: 998f93eb7ed54474295d482593f19b14, type: 2}
   - {fileID: 11400000, guid: c73180fc41450844e8d0b512303dd1b3, type: 2}

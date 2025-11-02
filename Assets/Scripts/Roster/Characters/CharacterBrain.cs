@@ -18,6 +18,8 @@ public abstract class CharacterBrain
         set => this._character.sprite = value;
     }
 
+    public Sprite ShadowSprite => this._character.shadowSprite;
+
     public int Id { get; set; }
 
     /// <summary>
