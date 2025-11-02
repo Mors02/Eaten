@@ -11194,7 +11194,7 @@ MonoBehaviour:
   _dropRate: 100
   _dropParent: {fileID: 1925220875}
   _mist: {fileID: 109341037}
-  _camera: {fileID: 519420032}
+  _cameraAnimator: {fileID: 519420033}
   _defaultCameraPosition: {x: 0, y: 0, z: 0}
   _tiltedPosition: {x: -1.5, y: 1, z: -10}
   _rotation: {x: 0, y: 0, z: 9}
