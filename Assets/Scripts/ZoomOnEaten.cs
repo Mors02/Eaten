@@ -41,7 +41,7 @@ public class ZoomOnEaten : MonoBehaviour
         _animator.SetTrigger("Zoom");
         this.transform.position = new Vector3(target.x, target.y, -10);
         SetCanvases(false);
-        _vignette.intensity.Override( _intensity);
+        _vignette.intensity.Override(_intensity);
         _lens.intensity.Override(_distortion);
         Invoke("Reset", duration);
     }
@@ -54,7 +54,7 @@ public class ZoomOnEaten : MonoBehaviour
         _lens.intensity.Override(_defaultDistortion);
         _animator.SetTrigger("Reset");
     }
-    
+
     public void SetCanvases(bool enabled)
     {
         foreach (Canvas canvas in _canvas)
