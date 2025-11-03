@@ -43,7 +43,7 @@ public class ZoomOnEaten : MonoBehaviour
         SetCanvases(false);
         _vignette.intensity.Override(_intensity);
         _lens.intensity.Override(_distortion);
-        Invoke("Reset", duration);
+        Invoke("Reset", duration+0.5f);
     }
 
     public void Reset()

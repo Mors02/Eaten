@@ -67,7 +67,7 @@ public class CharacterGraphics : MonoBehaviour
             }
             else
             {
-                this._spirit.sprite = sprite;
+                //this._spirit.sprite = sprite;
                 this._sprite.sprite = sprite;
                 this._mask.sprite = sprite;
                 this._highlight.sprite = _character.ShadowSprite;
@@ -85,7 +85,7 @@ public class CharacterGraphics : MonoBehaviour
     public void SetupSprites()
     {
          this._sprite.sprite = _character.Sprite;
-        this._spirit.sprite = _character.Sprite;
+        //this._spirit.sprite = _character.Sprite;
         this._mask.sprite = _character.Sprite;
         this._highlight.sprite = _character.ShadowSprite;
     }
