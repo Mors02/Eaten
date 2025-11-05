@@ -11,6 +11,8 @@ public class Item
 
     public Sprite Sprite => _item.Sprite;
 
+    public int HungerRestore => _item.HungerRestore;
+
     public Item(ItemSO item)
     {
         this._item = item;

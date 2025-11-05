@@ -10,7 +10,11 @@ public class DroppableTarget : MonoBehaviour
     [SerializeField]
     private BarCharacter _targetBarCharacter;
 
-    public CharacterBrain Character { get => _action == ActionType.Eat ? _targetCharacter.Character : _targetBarCharacter.Character; }
+    public BarCharacter BarCharacter => _targetBarCharacter;
+
+    public CharacterBrain Character { get => _action == ActionType.Eat && _targetCharacter ? _targetCharacter.Character : _targetBarCharacter.Character; }
+
+    public bool InBar { get => _targetBarCharacter != null; }
 
     [SerializeField]
     private EnemyManager _targetEnemy;

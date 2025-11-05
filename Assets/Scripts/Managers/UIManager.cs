@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
     public void SetupCharacter(CharacterBrain cb, bool inParty = true)
     {
         this.ShowSection("character");
+        
         this._characterButtons.SetActive(true);
         this._strength.text = cb.Strength.ToString();
         this._dexterity.text = cb.Dexterity.ToString();
@@ -58,6 +59,10 @@ public class UIManager : MonoBehaviour
         this._abilityDescription.text = cb.Ability.Description;
         this._name.text = cb.characterName;
         this._health.text = cb.CurrentHP + "/" + cb.MaxHP;
+
+        if (this._stomachSection)
+            this._stomachSection.SetActive(false);
+
         if (!inParty)
         {
             this._hungerMeter.value = (float)cb.Hunger / 100;

@@ -22,6 +22,9 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
     private CombatManager _cm;
 
     [SerializeField]
+    private MenuManager _mm;
+
+    [SerializeField]
     private Collider2D _collider;
 
     private int _id;
@@ -81,8 +84,7 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                  }*/
                 RaycastHit2D hit = Physics2D.Raycast(Input.mousePosition, Vector3.forward);
                 DroppableTarget target;
-                Debug.Log(hit.collider);
-                Debug.Log("Manager:" + GameManager.i.CanPlay);
+
                 if (hit.collider && hit.collider.gameObject.TryGetComponent(out target))
                 {
                     switch (target.Action)
@@ -92,8 +94,12 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                                 break;
 
                             _item.Eat(target.Character);
+                            //if in combat scene
                             if (_cm != null)
                                 _cm.EatAnimation(target.Character.Id, _item);
+                            
+                            if (target.InBar)
+                                target.BarCharacter.Eat(_item.HungerRestore);
                             break;
 
                         case ActionType.Throw:
@@ -105,6 +111,7 @@ public class ItemUI : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler
                             break;
                         case ActionType.Hire:                        
                             _item.Hire(target.Character);
+                            target.BarCharacter.Eat(_item.HungerRestore * 2);
                             break;
                         case ActionType.Delete:                            
                             break;

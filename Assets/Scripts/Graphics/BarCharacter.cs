@@ -2,6 +2,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
@@ -13,10 +14,12 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     public CharacterBrain Character => _character;
 
     [SerializeField]
-    private Image _image;
+    private Animator _animator;
+    [SerializeField]
+    private TMP_Text _eatText;
 
     [SerializeField]
-    private Animator _animator;
+    private Image _image;
 
     private MenuManager _mm;
 
@@ -57,20 +60,11 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     void Start()
     {
         this._mm = GameObject.FindGameObjectWithTag("Canvas").GetComponent<MenuManager>();
+
         if (!_static)
         {
-            int id = Int32.Parse(gameObject.name);
-            this._character = GameManager.GetCharacter(id);
-
-            // if the character is null means that the party is smaller than the maximum, remove the graphics.
-            if (this._character == null)
-            {
-                this.gameObject.SetActive(false);
-            }
-            else
-            {
-                this._image.sprite = _character.Sprite;
-            }
+            Setup();
+            this._mm.partyChanged.AddListener(Setup);
         }
         else if (UnityEngine.Random.Range(0, 100f) < _spawnProbability)
         {
@@ -86,6 +80,23 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         {
             //if they are not spawned, then remove
             this.gameObject.SetActive(false);
+        }
+    }
+
+    public void Setup()
+    {
+        this.gameObject.SetActive(true);
+        int id = Int32.Parse(gameObject.name);
+        this._character = GameManager.GetCharacter(id);
+
+        // if the character is null means that the party is smaller than the maximum, remove the graphics.
+        if (this._character == null)
+        {
+            this.gameObject.SetActive(false);
+        }
+        else
+        {
+            this._image.sprite = _character.Sprite;
         }
     }
 
@@ -108,6 +119,19 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             //the character is added to the party
             GameManager.AddCharacter(this._character);
             this.gameObject.SetActive(false);
+            _mm.partyChanged.Invoke();
         }
+    }
+
+    /// <summary>
+    /// Trigger the animation to show how much its been eaten
+    /// </summary>
+    /// <param name="amount"></param>
+    public void Eat(int amount)
+    {
+        Debug.Log("CALLED");
+        _eatText.text = amount.ToString();
+        ResetTriggers();
+        _animator.SetTrigger("Eat");
     }
 }

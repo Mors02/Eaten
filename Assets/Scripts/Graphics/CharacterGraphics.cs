@@ -35,6 +35,7 @@ public class CharacterGraphics : MonoBehaviour
     public void EatAnimation(Item item)
     {
         _foodSprite.sprite = item.Sprite;
+        _text.text = item.HungerRestore.ToString();
         this._animator.SetTrigger("Consume");
     }
 

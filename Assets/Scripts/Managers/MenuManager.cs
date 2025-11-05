@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,9 +15,12 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField]
     private AnimationClip _showAnimation;
+
+    public UnityEvent partyChanged;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        partyChanged = new UnityEvent();
         this._partyModal.SetActive(false);
         GameManager.i.CanPlay = true;
         if (GameManager.i.Title)
@@ -44,7 +48,8 @@ public class MenuManager : MonoBehaviour
         Invoke("SwitchMapVisual", _showAnimation.length);
     }
 
-    public void ExitGame() {
+    public void ExitGame()
+    {
         Application.Quit();
     }
 
@@ -79,4 +84,5 @@ public class MenuManager : MonoBehaviour
         this._mapModal.SetActive(!this._mapModal.activeSelf);
         this._gameSection.SetActive(true);
     }
+
 }
