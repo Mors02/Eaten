@@ -37,7 +37,7 @@ public class GameManager
                 instance.SelectedCharacter = -1;
                 instance.CanEat = false;
                 instance.CanPlay = true;
-                instance.Title = false;
+                instance.Title = true;
 
                 //for testing purposes
                 instance.SelectedEvent = GameAssets.i.publicEvents[0];
