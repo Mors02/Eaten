@@ -16,10 +16,7 @@ MonoBehaviour:
   _description: A group of cultists scouring the city
   _characters:
   - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
-  - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
   - {fileID: 11400000, guid: bced9542b3dc7407495fdb39de765588, type: 2}
-  - {fileID: 11400000, guid: bced9542b3dc7407495fdb39de765588, type: 2}
-  - {fileID: 11400000, guid: 9df72ea6c8de64c64a1ef7948ef1b920, type: 2}
   _abilities:
   - {fileID: 11400000, guid: ae7b14c58c9294283a635c0a87d4002c, type: 2}
   baseHp: 30

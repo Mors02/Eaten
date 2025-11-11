@@ -66,6 +66,9 @@ MonoBehaviour:
   publicEvents:
   - {fileID: 11400000, guid: 7a7237d22fc4f3045965d6f1b55f933c, type: 2}
   - {fileID: 11400000, guid: 2f672e734b17844a7b75c25f3093c125, type: 2}
+  - {fileID: 11400000, guid: db0812d09dd61b949915527234033e75, type: 2}
+  - {fileID: 11400000, guid: 5f78df1baa3ae8346a8b802492489c18, type: 2}
+  - {fileID: 11400000, guid: c820fa655b7d66a498e9482856d0224b, type: 2}
   items:
   - {fileID: 11400000, guid: 84f07dc9bbe8243c597b07ca6be20705, type: 2}
   - {fileID: 11400000, guid: 6d8e88ae5ae36b9429cab33fa34a9e5c, type: 2}

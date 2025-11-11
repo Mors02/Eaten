@@ -24,7 +24,7 @@ public class CharacterGraphics : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        this.Setup(false, null);
+        this.Setup(false, null, null);
     }
 
     public void PlayAnimation(string animationType)
@@ -48,7 +48,7 @@ public class CharacterGraphics : MonoBehaviour
         Debug.Log(this._sprite.color);
     }
 
-    public void Setup(bool isEnemy, Sprite sprite)
+    public void Setup(bool isEnemy, Sprite sprite, Sprite shadowSprite)
     {
         try
         {
@@ -71,7 +71,7 @@ public class CharacterGraphics : MonoBehaviour
                 //this._spirit.sprite = sprite;
                 this._sprite.sprite = sprite;
                 this._mask.sprite = sprite;
-                this._highlight.sprite = _character.ShadowSprite;
+                this._highlight.sprite = shadowSprite;
             }
 
 
@@ -98,7 +98,10 @@ public class CharacterGraphics : MonoBehaviour
     
     public void Highlight(bool active)
     {
-        _highlight.enabled = active;
+        //_highlight.enabled = active;
+        //_highlight.color = new Color(147, 0, 0);
+
+        if (active) _animator.SetTrigger("Highlight");
         this._sprite.sortingLayerName = active? "Overlay" : "Default";
     }
 }

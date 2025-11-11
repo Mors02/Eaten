@@ -10242,7 +10242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _locationsParent: {fileID: 1714831430}
-  _activeZones: 1
+  _activeZones: 5
   _embarkButton: {fileID: 826156607}
   _animator: {fileID: 929557724}
 --- !u!1 &1722148438

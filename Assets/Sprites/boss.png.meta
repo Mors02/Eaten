@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f221aaee63ab5874f960f6bdfa03b164
+guid: 300d5a82c0ed838488b8488446fd1895
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1079592413777952622
-    second: cannibal2_0
+      213: -2424553518018739129
+    second: boss_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -74,7 +74,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cannibal2_0
+      name: boss_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 16
-        height: 24
+        width: 32
+        height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e6ff075949b7bfe00800000000000000
-      internalID: 1079592413777952622
+      spriteID: 744c193db614a5ed0800000000000000
+      internalID: -2424553518018739129
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 6c959b4c95f685041885929efa6e033b
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      cannibal2_0: 1079592413777952622
+      boss_0: -2424553518018739129
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
