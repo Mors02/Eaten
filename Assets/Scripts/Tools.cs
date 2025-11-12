@@ -15,4 +15,17 @@ public class Tools
         return result;
 
     }
+
+    public static string Parametrize(string baseString, Dictionary<string, string> substitutions)
+    {
+        string result = "";
+
+        foreach (KeyValuePair<string, string> substitution in substitutions)
+        {
+            result = baseString.Replace(substitution.Key, substitution.Value.ToString());
+        }
+
+        return result;
+
+    }
 }

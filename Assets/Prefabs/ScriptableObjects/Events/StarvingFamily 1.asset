@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd7eeb64dbaf45cb82d738c6ab6b5dc, type: 3}
-  m_Name: StarvingFamily
+  m_Script: {fileID: 11500000, guid: 80f18fe6d68a54631bba8dec70d51aaa, type: 3}
+  m_Name: StarvingFamily 1
   m_EditorClassIdentifier: 
   type: 2
   title: Starving Family
@@ -19,9 +19,12 @@ MonoBehaviour:
   description: A man tells you to follow him, his family needs food urgently. You
     have a bad feeling
   options:
-  - Go away.
+  - Go away
   - Follow him
   results:
-  - WORK IN PROGRESS
-  - WORK IN PROGRESS
+  - You don't trust his erratic behaviour. The party leaves him alone, screaming
+    for help.
+  - You follow him and arrive in front of a collapsed house. "My family is inside,
+    please feed them", he says. His distant gaze tells you he's gone. You retrieve
+    several rocks from the rubble.
   PLACEHOLDER_FOR_ITEMS: 0

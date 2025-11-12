@@ -40,7 +40,7 @@ public class GameManager
                 instance.Title = false;
 
                 //for testing purposes
-                instance.SelectedEvent = GameAssets.i.publicEvents[0];
+                instance.SelectedEvent = GameAssets.i.publicEvents[2];
             }
 
             return instance;
@@ -80,6 +80,21 @@ public class GameManager
         }
 
         return i.Inventory[id];
+    }
+
+    /// <summary>
+    /// Check whether the inventory contains the searched item
+    /// </summary>
+    /// <param name="name">name of the item searched</param>
+    /// <returns>index of the item if found, -1 otherwise</returns>
+    public static int InventoryContains(string name)
+    {
+        for (int j = 0; j < i.Inventory.Length; j++)
+        {
+            if (i.Inventory[j].ItemName == name)
+                return j;
+        }
+        return -1;
     }
 
     public int SelectedCharacter;

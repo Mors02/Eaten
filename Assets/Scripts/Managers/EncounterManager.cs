@@ -64,8 +64,7 @@ public class EncounterManager : MonoBehaviour
 
     public void Finish()
     {
-        _animator.SetTrigger("Exit");
-        Debug.Log(_animator.GetCurrentAnimatorStateInfo(0).length);
+        _animator.SetTrigger("Exit");        
         Invoke("ChangeScene", _animator.GetCurrentAnimatorStateInfo(0).length);
     }
 

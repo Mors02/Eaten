@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd7eeb64dbaf45cb82d738c6ab6b5dc, type: 3}
+  m_Script: {fileID: 11500000, guid: 47dbc2dafe5aa42348a170c51325d703, type: 3}
   m_Name: HolyBanquet
   m_EditorClassIdentifier: 
   type: 2
   title: Holy Church Banquet
   sprite: {fileID: 4293804540270710596, guid: 0235f1a21b36a4b3a91b770c0520f361, type: 3}
-  enemyParty: {fileID: 0}
+  enemyParty: {fileID: 11400000, guid: cb4b5969cf28c49e688a4a43e2f3d12b, type: 2}
   description: "\rIn the town square, the Sacred Church decided to hold a banquet
     for the people. A small crowd gathered to end the hunger."
   options:
   - Murder everyone. (Start fight)
   - Eat at the banquet. (+5 hunger to the whole party)
   results:
-  - WORK IN PROGRESS
-  - WORK IN PROGRESS
+  - Fight!
+  - Eating that meager meal with those people makes you realize there's still something
+    good in the city. A faint hope to cling to.
   PLACEHOLDER_FOR_ITEMS: 0

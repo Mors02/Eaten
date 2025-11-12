@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dd7eeb64dbaf45cb82d738c6ab6b5dc, type: 3}
-  m_Name: CrazyParty
+  m_Script: {fileID: 11500000, guid: cb7b6f531113a46408a7f49a3c935cd8, type: 3}
+  m_Name: HungerMadness
   m_EditorClassIdentifier: 
   type: 2
   title: Hunger Madness
@@ -20,8 +20,10 @@ MonoBehaviour:
     verge of a crazy murder spree.
   options:
   - Feed him. (-1 Human Flesh)
-  - Kill him. (Remove Gugnir from the party)
+  - Kill him. (Remove %character% from the party)
   results:
-  - WORK IN PROGRESS
-  - WORK IN PROGRESS
+  - They begin to bite into the meat like a madman, the bones crunching between their
+    teeth. Their bloodshot gaze begins to calm, giving way to a deep sadness.
+  - You did what you had to do. They had lost their humanity by now; nothing could
+    put them back on the right path.
   PLACEHOLDER_FOR_ITEMS: 0
