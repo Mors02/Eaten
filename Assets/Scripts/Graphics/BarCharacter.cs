@@ -34,6 +34,7 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             GameAssets.i.UiManager.SetupCharacter(this._character, !_static);
             ResetTriggers();
             _animator.SetTrigger("Zoom");
+            GameManager.i.OverlayedCharacter = this._character;
         }
         catch (Exception e)
         {
@@ -108,7 +109,16 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        this._mm.SwitchPartyVisual();
+        if (_mm.CharacterEaten == null)
+            this._mm.SwitchPartyVisual();
+        else
+        {
+            this._character.Eat(100);
+            this.Eat(100);
+            _mm.Invoke("EatPartyMember", 0.5f);            
+            if (_static)
+                Hire();
+        }
     }
 
     private void Hire()
@@ -116,20 +126,24 @@ public class BarCharacter : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
         //if the hunger meter is full
         if (_character.Hunger >= 100)
         {
+            Invoke("AddCharacter", 0.5f);
             //the character is added to the party
-            GameManager.AddCharacter(this._character);
-            this.gameObject.SetActive(false);
-            _mm.partyChanged.Invoke();
+
         }
     }
 
+    private void AddCharacter()
+    {
+        GameManager.AddCharacter(this._character);
+        this.gameObject.SetActive(false);
+        _mm.partyChanged.Invoke();
+    }
     /// <summary>
     /// Trigger the animation to show how much its been eaten
     /// </summary>
     /// <param name="amount"></param>
     public void Eat(int amount)
     {
-        Debug.Log("CALLED");
         _eatText.text = amount.ToString();
         ResetTriggers();
         _animator.SetTrigger("Eat");

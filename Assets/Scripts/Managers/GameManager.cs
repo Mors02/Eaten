@@ -49,6 +49,8 @@ public class GameManager
 
     public List<CharacterBrain> Characters;
 
+    public CharacterBrain OverlayedCharacter;
+
     public bool Title;
 
     public Item[] Inventory;

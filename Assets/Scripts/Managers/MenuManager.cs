@@ -17,12 +17,18 @@ public class MenuManager : MonoBehaviour
     private AnimationClip _showAnimation;
 
     public UnityEvent partyChanged;
+
+    public CharacterBrain CharacterEaten;
+
+    [SerializeField]
+    private GameObject _undoButton;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         partyChanged = new UnityEvent();
         this._partyModal.SetActive(false);
         GameManager.i.CanPlay = true;
+        CharacterEaten = null;
         if (GameManager.i.Title)
         {
             _gameSection.SetActive(false);
@@ -53,6 +59,27 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void Release()
+    {
+        GameManager.i.Characters.Remove(GameManager.i.OverlayedCharacter);
+        partyChanged.Invoke();
+    }
+
+    public void StartEating()
+    {
+        this.CharacterEaten = GameManager.i.OverlayedCharacter;
+        this._undoButton.SetActive(true);
+
+    }
+
+    public void EatPartyMember()
+    {
+        GameManager.i.Characters.Remove(CharacterEaten);
+        partyChanged.Invoke();
+        CharacterEaten = null;
+        this._undoButton.SetActive(false);
+    }
+
     public void SwitchPartyVisual()
     {
         this._partyModal.SetActive(!this._partyModal.activeSelf);
@@ -67,7 +94,6 @@ public class MenuManager : MonoBehaviour
         {
             _animator.SetTrigger("Zoom");
             float time = _animator.GetCurrentAnimatorStateInfo(0).length;
-            Debug.Log("Animation duration: " + time);
             Invoke("SwitchMapVisual", _showAnimation.length);
         }
         else
