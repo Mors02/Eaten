@@ -110,11 +110,11 @@ public class CombatManager : MonoBehaviour
         foreach (CharacterBrain character in GameManager.i.Characters)
         {
             //to test
-            charactersAlmostDead.Add(character);
-            /*if (character.CurrentHP <= 0 && character.Has(StatusName.Injured))
+            //charactersAlmostDead.Add(character);
+            if (character.CurrentHP <= 0 && character.Has(StatusName.Injured) && !character.Killed)
             {
                 charactersAlmostDead.Add(character);
-            }*/
+            }
         }
 
         //check if there is at least one
@@ -250,14 +250,25 @@ public class CombatManager : MonoBehaviour
 
     public void EndCombatChecks()
     {
+        List<CharacterBrain> brainsToRemove = new List<CharacterBrain>();
         foreach (CharacterBrain brain in Party)
         {
-            brain.EndCombatChecks();
+            if (brain.Killed)
+                brainsToRemove.Add(brain);
+            else
+                brain.EndCombatChecks();
+        }
+
+        //remove all at the end
+        foreach (CharacterBrain brain in brainsToRemove)
+        {
+            GameManager.i.Characters.Remove(brain);
         }
     }
 
     public void EnemyEat(CharacterBrain ch)
     {
+        GameAssets.i.UiManager.AddToQueue(ch.characterName + " is getting devoured.", 2f);
         _cn.Restart();
         //get a random enemy
         int enemyIndex = UnityEngine.Random.Range(0, EnemyParty.EnemyPositions.Count);
@@ -290,7 +301,7 @@ public class CombatManager : MonoBehaviour
                 if (child.name == ch.Id.ToString())
                 {
                     child.GetComponent<Connect>().Kill();
-                    GameManager.i.Characters.Remove(ch);
+                   // GameManager.i.Characters.Remove(ch);
                 }
             }
            /* foreach (Transform graphic in _em.EnemyPositions)

@@ -82,6 +82,8 @@ public abstract class CharacterBrain
     public int Hunger
     { get; set; }
 
+    public bool Killed { get; set; }
+
     public bool HasLeveledUp { get; set; }
 
     private int _injuryProb = 0;
@@ -109,6 +111,7 @@ public abstract class CharacterBrain
         this.Exp = 0;
         this.Bloodthirst = 0;
         this._injuryProb = 0;
+        this.Killed = false;
         _onStatChange = new UnityEvent();
         _onStatusChange = new UnityEvent();
         _statuses = new Dictionary<StatusName, Status>();
@@ -121,6 +124,7 @@ public abstract class CharacterBrain
         this.Exp = 0;
         this.Bloodthirst = 0;
         this._injuryProb = 0;
+        this.Killed = false;
         _onStatChange = new UnityEvent();
         _onStatusChange = new UnityEvent();
         _statuses = new Dictionary<StatusName, Status>();

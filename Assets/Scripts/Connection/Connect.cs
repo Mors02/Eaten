@@ -120,9 +120,10 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         this._active = false;
         this._connectionActive = false;
         this.Character.ReceiveDamage(this.Character.MaxHP);
+        this.Character.Killed = true;
         //make the image red
-        this._image.sprite = GameAssets.i.DeadCharacter;
         this._image.color = new Color(143, 33, 40);
+        this._image.sprite = GameAssets.i.DeadCharacter;
     }
 
     public void OnPointerUp(PointerEventData eventData)
