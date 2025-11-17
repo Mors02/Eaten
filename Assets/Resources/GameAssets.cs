@@ -40,6 +40,8 @@ public class GameAssets : MonoBehaviour
     public Character Child;
     public Character Coolguy;
 
+    public Sprite DeadCharacter;
+
     public static CharacterBrain RandomCharacter()
     {
         List<CharacterBrain> characters = new List<CharacterBrain>

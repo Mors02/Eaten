@@ -346,6 +346,18 @@ public abstract class CharacterBrain
         }
         
     }
+
+    public bool Has(StatusName name) {
+        try
+        {
+            return _statuses[name] != null;
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+        
+    }
     
 
     public void TickDownStatuses()

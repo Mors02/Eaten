@@ -60,6 +60,7 @@ MonoBehaviour:
   Cleric: {fileID: 11400000, guid: d79a4927c2088184bb492f6b779443a5, type: 2}
   Child: {fileID: 11400000, guid: b278be36b7f2e104a984a141a16aefd9, type: 2}
   Coolguy: {fileID: 11400000, guid: 8fb92310100ab804ebfd63c3d60b1b15, type: 2}
+  DeadCharacter: {fileID: -7639927963524259605, guid: ff4164017d2a140d3910599fe1ac9cd1, type: 3}
   UiManager: {fileID: 0}
   RandomCombat: {fileID: 11400000, guid: 7a7237d22fc4f3045965d6f1b55f933c, type: 2}
   LostChild: {fileID: 11400000, guid: 2f672e734b17844a7b75c25f3093c125, type: 2}

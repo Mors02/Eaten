@@ -81,7 +81,7 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
     public void OnPointerDown(PointerEventData eventData)
     {
         //We want to avoid connecting when hovering the line clone
-        List<GameObject> hovered = eventData.hovered;
+            List<GameObject> hovered = eventData.hovered;
         hovered = hovered.Where(item =>{ return item.name == "Visible"; }).ToList();
         if (hovered.Count == 0)
             return;
@@ -113,6 +113,16 @@ public class Connect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
         _animator.SetTrigger("Enter");
         this.ChangeSlider(true);
 
+    }
+
+    public void Kill()
+    {
+        this._active = false;
+        this._connectionActive = false;
+        this.Character.ReceiveDamage(this.Character.MaxHP);
+        //make the image red
+        this._image.sprite = GameAssets.i.DeadCharacter;
+        this._image.color = new Color(143, 33, 40);
     }
 
     public void OnPointerUp(PointerEventData eventData)

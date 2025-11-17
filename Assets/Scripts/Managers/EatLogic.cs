@@ -57,29 +57,34 @@ public class EatLogic : MonoBehaviour
         {
             if (child.name == GameManager.i.SelectedCharacter.ToString())
             {
+                //get the movement inside the party member and save the original position
                 movement = child.GetComponentInChildren<CharacterMovement>();
                 _returnPosition = child.parent.transform.position + child.transform.localPosition;
 
-                
+                //get the animator of the party member
                 animator = child.GetComponent<Animator>();
 
+                //enable the component and set the enemy position
                 movement.enabled = true;
                 float time = movement.SetPosition(enemy.position);
                 
-                //animator.GetCurrentAnimatorStateInfo(0).normalizedTime
                 //remove enemy
                 enemy.GetComponent<CharacterMovement>().WillDieIn(time);
 
+                //make the party member go back
                 StartCoroutine(GoBack(time, movement, _returnPosition));
+
                 Camera.main.gameObject.GetComponent<ZoomOnEaten>().CenterOn(enemy.position, time);
                 //add eating bonuses
 
+                //eat the enemy
                 GameManager.i.Characters[GameManager.i.SelectedCharacter].EatEnemy(_em.EnemyParty);
 
+                //remove the enemy
                 this._em.EnemyPositions.Remove(enemy);
 
+                //set up the stats
                 GameManager.i.SelectedCharacter = -1;
-
                 GameManager.i.EnemiesEaten++;
 
                 _cm.RemoveAllHighlights();                

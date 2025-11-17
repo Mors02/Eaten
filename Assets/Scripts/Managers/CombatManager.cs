@@ -103,7 +103,31 @@ public class CombatManager : MonoBehaviour
             GameAssets.i.UiManager.AddToQueue("The enemies are escaping!");
             return;
         }
-        this.EnemyParty.Attack(new BattlefieldContext(EnemyParty, Party));
+
+        List<CharacterBrain> charactersAlmostDead = new List<CharacterBrain>();
+
+        //check all characters that are about to die
+        foreach (CharacterBrain character in GameManager.i.Characters)
+        {
+            //to test
+            charactersAlmostDead.Add(character);
+            /*if (character.CurrentHP <= 0 && character.Has(StatusName.Injured))
+            {
+                charactersAlmostDead.Add(character);
+            }*/
+        }
+
+        //check if there is at least one
+        if (charactersAlmostDead.Count >= 1)
+        {
+            EnemyEat(charactersAlmostDead[UnityEngine.Random.Range(0, charactersAlmostDead.Count)]);
+        }
+        else
+        {
+            this.EnemyParty.Attack(new BattlefieldContext(EnemyParty, Party));    
+        }
+
+        
         Invoke("CanPlay", 2f);
     }
 
@@ -231,6 +255,53 @@ public class CombatManager : MonoBehaviour
             brain.EndCombatChecks();
         }
     }
+
+    public void EnemyEat(CharacterBrain ch)
+    {
+        _cn.Restart();
+        //get a random enemy
+        int enemyIndex = UnityEngine.Random.Range(0, EnemyParty.EnemyPositions.Count);
+
+        //get the movement component
+        CharacterMovement enemyMovement = EnemyParty.EnemyPositions[enemyIndex].GetComponent<CharacterMovement>();
+        Vector3 _returnPosition = EnemyParty.EnemyPositions[enemyIndex].position;
+
+        //enable movement and set the position
+        enemyMovement.enabled = true;
+        float time = enemyMovement.SetPosition(_graphics[ch.Id].transform.position);
+
+        _graphics[ch.Id].GetComponent<CharacterMovement>().WillDieIn(time);
+
+        //make the party member go back
+        StartCoroutine(GoBack(time, enemyMovement, _returnPosition, ch));
+    }
+
+    private IEnumerator GoBack(float time, CharacterMovement movement, Vector2 position, CharacterBrain ch)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(time);
+            movement.enabled = true;
+            movement.SetPosition(position);
+            
+             //kill the character
+            foreach (Transform child in _party)
+            {
+                if (child.name == ch.Id.ToString())
+                {
+                    child.GetComponent<Connect>().Kill();
+                    GameManager.i.Characters.Remove(ch);
+                }
+            }
+           /* foreach (Transform graphic in _em.EnemyPositions)
+              {
+                  graphic.GetComponent<CharacterGraphics>().InvisibleAnimation(false);
+              } */
+            StopAllCoroutines();
+        }
+        
+    }
+
     public void SetupDrop()
     {
         foreach (Transform child in _dropParent)
